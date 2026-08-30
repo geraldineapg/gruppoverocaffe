@@ -105,7 +105,7 @@
   .photo-strip-grid img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease; }
   .photo-strip-grid figure:hover img{ transform:scale(1.05); }
   .origen-strip{ max-width:1080px; margin:0 auto; padding:0 1.5rem 5.5rem; border-top:1px solid var(--line); padding-top:2.5rem; }
-  .origen-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:0.9rem; }
+  .origen-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:0.9rem; }
 
   .video-divider{ position:relative; height:280px; overflow:hidden; }
   .video-divider video{
@@ -204,6 +204,9 @@
   .origen-grid figure{ position:relative; overflow:hidden; border-radius:4px; border:1px solid var(--line); aspect-ratio:1/1; }
   .origen-grid img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease; }
   .origen-grid figure:hover img{ transform:scale(1.05); }
+  @media (max-width:960px) and (min-width:701px){
+    .origen-grid{ grid-template-columns:repeat(2,1fr); }
+  }
   @media (max-width:700px){
     .photo-strip-grid{ grid-template-columns:1fr 1fr; }
     .origen-grid{ grid-template-columns:1fr; }
@@ -411,6 +414,10 @@
     <figure><img src="assets/origen/flor-cafeto.jpg?v=1" alt="Flor del cafeto en tierras venezolanas" loading="lazy"></figure>
     <figure><img src="assets/origen/cereza-verde.jpg?v=1" alt="Cereza de café verde en la mata" loading="lazy"></figure>
     <figure><img src="assets/origen/cereza-madura.jpg?v=1" alt="Cereza de café madurando" loading="lazy"></figure>
+    <figure><img src="assets/origen/cereza-verde-rama-1.jpg?v=1" alt="Racimos de cereza de café verde" loading="lazy"></figure>
+    <figure><img src="assets/origen/cereza-verde-rama-2.jpg?v=1" alt="Rama cargada de cereza de café verde" loading="lazy"></figure>
+    <figure><img src="assets/origen/cereza-verde-mata.jpg?v=1" alt="Mata de café cargada de cereza verde" loading="lazy"></figure>
+    <figure><img src="assets/origen/cereza-verde-cosecha.jpg?v=1" alt="Revisando la cosecha de cereza verde" loading="lazy"></figure>
   </div>
 </section>
 
