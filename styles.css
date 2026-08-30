@@ -453,10 +453,10 @@ h1.hero-title em{
 }
 .svc-list li:last-child{border-bottom:none;}
 .svc-num{
-  font-family:'IBM Plex Mono', monospace;
-  font-size:0.72rem;
+  font-size:1.1rem;
+  line-height:1;
   color:var(--brass);
-  padding-top:0.15rem;
+  padding-top:0.1rem;
   min-width:1.4em;
 }
 .presence-box{
@@ -488,7 +488,7 @@ h1.hero-title em{
 .accent-dp .presence-list span{border-color:rgba(21,105,171,0.35); background:#fff;}
 .accent-vc .eyebrow{color:var(--vero-red);}
 .accent-vc .svc-num{color:var(--vero-red);}
-.accent-vc .unit-media{border-color:rgba(200,36,25,0.25); background:#FBEEEC;}
+.accent-vc .unit-media{border-color:rgba(200,36,25,0.2); background:#FFFFFF; box-shadow:0 4px 18px rgba(30,18,16,0.06);}
 .accent-vc .soon-box p{color:var(--vero-red);}
 
 .unit-label{position:relative;}
