@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gruppo Vero Caffè — Il Mondo Vero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=23">
+<style>
+  /* Inicio — blanco limpio, acentos rojo/verde (herencia italiana), cada marca con su propio color */
+  :root{
+    --espresso: #171310;
+    --espresso-2: #241C18;
+    --brass: #7C1E1E;
+    --brass-light: #A83A3A;
+    --it-green: #009246;
+    --cream: #FFFFFF;
+    --cream-2: #F7F5F3;
+    --line: #E7E1DB;
+    --gold-soft: #E3C39A;
+  }
+  body{ background:#FFFFFF; }
+  header{ background:#ffffff; border-bottom-color:rgba(124,30,30,0.2); }
+  .footer-bottom{ border-top-color:rgba(124,30,30,0.2); }
+  .footer-logos{ border-top-color:rgba(124,30,30,0.2); }
+
+  .hero{
+    background:var(--brass);
+    color:var(--cream);
+    padding:5rem 1.5rem 4.5rem;
+  }
+  .hero .eyebrow{ color:var(--gold-soft); }
+  .hero .eyebrow::before{ background:var(--gold-soft); }
+  h1.hero-title{ text-shadow:none; }
+  h1.hero-title em{ color:var(--gold-soft); }
+  .hero-sub{ color:rgba(255,255,255,0.82); }
+  .hero-loc{ color:rgba(255,255,255,0.6); opacity:0.85; }
+
+  .tag{
+    background:#fff;
+    border:1px solid var(--line);
+    color:var(--brass);
+  }
+
+  .brand-card, .brand-card.tint-vero, .brand-card.tint-dp, .brand-card.tint-warm{
+    background:#fff;
+    border:1px solid var(--line);
+    box-shadow:0 4px 16px rgba(30,18,16,0.06);
+    border-radius:18px;
+  }
+  .brand-card:hover{ transform:translateY(-4px); box-shadow:0 10px 26px rgba(30,18,16,0.12); }
+  .brand-card span{ color:var(--espresso-2); }
+  .brand-card.tint-vero:hover{ border-color:rgba(124,30,30,0.4); }
+  .brand-card.tint-dp:hover{ border-color:rgba(0,106,175,0.4); }
+  .brand-card.tint-warm:hover{ border-color:rgba(176,141,87,0.4); }
+
+  .tricolore{ display:flex; height:8px; width:100%; }
+  .tricolore span{ flex:1; }
+  .tricolore span:nth-child(1){ background:#009246; }
+  .tricolore span:nth-child(2){ background:#FFFFFF; }
+  .tricolore span:nth-child(3){ background:#CE2B37; }
+
+  /* HERO — layout partido, tipografía enorme, ilustración propia */
+  .hero{ padding:0; overflow:visible; }
+  .hero-split{
+    max-width:1320px; margin:0 auto;
+    display:grid; grid-template-columns:1.15fr 0.85fr;
+    align-items:center;
+    min-height:88vh;
+  }
+  .hero-copy{ padding:4rem 3vw 3rem clamp(1.5rem,4vw,4rem); position:relative; z-index:2; min-width:0; }
+  .hero-copy .eyebrow{ margin-bottom:1.8rem; }
+  h1.hero-mega{
+    font-family:'Poppins', sans-serif;
+    font-weight:800;
+    font-size:clamp(2.8rem, 6.6vw, 5.6rem);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    text-transform:uppercase;
+    color:var(--cream);
+  }
+  h1.hero-mega .line2{
+    display:block;
+    font-style:italic; font-weight:400;
+    color:var(--gold-soft);
+    font-size:0.5em;
+    margin-top:0.5rem;
+  }
+  .hero-copy .hero-sub{ margin:2.2rem 0 0; max-width:46ch; text-align:left; }
+  .hero-copy .hero-tags-wrap{
+    margin-top:2.6rem;
+    padding:0.7rem 0;
+    background:linear-gradient(90deg, #8a6d24 0%, #e8c766 22%, #f6e2a0 50%, #e8c766 78%, #8a6d24 100%);
+    box-shadow:0 4px 18px rgba(0,0,0,0.25);
+  }
+  .hero-copy .hero-tags-wrap .tag{
+    background:rgba(23,19,16,0.88);
+    border-color:rgba(23,19,16,0.5);
+    color:#F6E2A0;
+  }
+
+  .hero-art{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+    min-height:60vh;
+    background:
+      radial-gradient(ellipse 70% 60% at 60% 40%, rgba(0,0,0,0.16), transparent 70%);
+  }
+  .hero-art svg{ width:min(80%, 460px); height:auto; }
+  .hero-art img{
+    width:min(62%, 320px); height:auto;
+    filter:drop-shadow(0 18px 30px rgba(0,0,0,0.35));
+  }
+  .hero-art-caption{
+    position:absolute; bottom:1.4rem; left:50%; transform:translateX(-50%);
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.1em;
+    color:rgba(255,255,255,0.6); text-transform:uppercase;
+    text-align:center; max-width:26ch; line-height:1.6;
+  }
+  @media (max-width:960px){
+    .hero-split{ grid-template-columns:1fr; min-height:0; }
+    .hero-copy{ padding:3.5rem 1.5rem 1rem; text-align:center; }
+    .hero-copy .hero-sub{ margin-left:auto; margin-right:auto; text-align:center; }
+    .hero-art{ order:-1; min-height:0; padding:2.5rem 1.5rem 0; }
+    .hero-art svg{ width:min(60%, 280px); }
+    .hero-art-caption{ display:none; }
+  }
+
+  /* BRAND INDEX — lista editorial en vez de tarjetas */
+  .brand-index{ border-top:1px solid var(--espresso); }
+  .brand-index-item{
+    display:flex; align-items:center; gap:1.6rem;
+    padding:1.8rem clamp(1.5rem,4vw,4rem);
+    border-bottom:1px solid var(--line);
+    position:relative; overflow:hidden;
+  }
+  .brand-index-item::before{
+    content:""; position:absolute; inset:0;
+    background:var(--row-accent, var(--brass));
+    transform:translateX(-101%);
+    transition:transform 0.45s cubic-bezier(.65,0,.35,1);
+    z-index:0;
+  }
+  .brand-index-item:hover::before{ transform:translateX(0); }
+  .brand-index-logo-box{
+    width:84px; height:84px; flex:0 0 auto;
+    display:flex; align-items:center; justify-content:center;
+    position:relative; z-index:1;
+  }
+  .brand-index-logo{
+    max-width:100%; max-height:100%; width:auto; height:auto;
+    object-fit:contain; display:block;
+    filter:none;
+  }
+  .brand-index-logo.round{
+    width:84px; height:84px; border-radius:50%; object-fit:cover;
+  }
+  .brand-index-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
+    letter-spacing:0.06em; text-transform:uppercase; color:#8a7a72;
+    position:relative; z-index:1; transition:color 0.3s ease;
+    min-width:14ch;
+  }
+  .brand-index-arrow{
+    font-size:1.6rem; font-family:'Fraunces', serif; position:relative; z-index:1;
+    transition:transform 0.35s ease, color 0.3s ease;
+  }
+  .brand-index-item:hover .brand-index-tag,
+  .brand-index-item:hover .brand-index-arrow{ color:#fff; }
+  .brand-index-item:hover .brand-index-arrow{ transform:translateX(10px); }
+  @media (max-width:640px){
+    .brand-index-item{ gap:1rem; padding:1.4rem 1.5rem; }
+    .brand-index-logo-box{ width:56px; height:56px; }
+    .brand-index-logo.round{ width:56px; height:56px; }
+    .brand-index-tag{ font-size:0.62rem; min-width:0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="brand">Gruppo <span>Vero Caffè</span></a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" id="navToggle">☰</button>
+    <div class="navlinks" id="navLinks">
+  <a href="divina-pastora.html" class="nav-logo-link nav-logo-stack"><img src="assets/divina-ig-profile.jpg?v=1" class="nav-logo round" alt="Divina Pastora"><span class="nav-logo-caption">Divina Pastora</span></a>
+  <a href="vero-caffe.html" class="nav-logo-link"><img src="assets/vero-mark.png?v=1" class="nav-logo" alt="Vero Caffè"></a>
+  <a href="vero-caffe-bar.html" class="nav-logo-link"><img src="assets/verocaffebar-logo.jpg?v=1" class="nav-logo round" alt="Vero Caffè Bar"></a>
+  <a href="vero-caffe-trattoria.html" class="nav-logo-link"><img src="assets/trattoria-logo-icon.png?v=1" class="nav-logo" alt="Vero Caffè Trattoria"></a>
+      <div class="header-icons">
+        <details class="lang-switch">
+        <summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.5 3.7 5.7 3.7 9s-1.3 6.5-3.7 9c-2.4-2.5-3.7-5.7-3.7-9s1.3-6.5 3.7-9z"/></svg><span>ES</span></summary>
+        <div class="lang-menu">
+          <a href="#" class="active">Español <small>ES</small></a>
+          <a href="#" class="soon">English <small>próx.</small></a>
+          <a href="#" class="soon">Italiano <small>próx.</small></a>
+          <a href="#" class="soon">Русский <small>próx.</small></a>
+          <a href="#" class="soon">中文 <small>próx.</small></a>
+        </div>
+      </details>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-split">
+    <div class="hero-copy">
+      <h1 class="hero-mega">Gruppo<br>Vero Caffè<span class="line2">Qualità italiana, origen venezolano</span></h1>
+      <p class="hero-sub">Un grupo empresarial familiar guiado por la pasión por el café: desde la selección meticulosa de cada grano, cosechado en el corazón de las bellas tierras venezolanas, hasta su cuidadoso tueste para satisfacer a los paladares más exigentes, en una taza servida y una mesa compartida.</p>
+      <div class="hero-tags-wrap">
+        <div class="hero-tags">
+          <span class="tag">SELECCIÓN</span>
+          <span class="tag">EXPORTACIÓN</span>
+          <span class="tag">TORREFACCIÓN</span>
+          <span class="tag">HOSPITALIDAD</span>
+          <span class="tag">EXPERIENCIA</span>
+          <span class="tag">SERVICIO</span>
+          <span class="tag">PROFESIONALISMO</span>
+          <span class="tag">EXCELENCIA</span>
+          <span class="tag">ARTESANÍA</span>
+          <span class="tag" aria-hidden="true">SELECCIÓN</span>
+          <span class="tag" aria-hidden="true">EXPORTACIÓN</span>
+          <span class="tag" aria-hidden="true">TORREFACCIÓN</span>
+          <span class="tag" aria-hidden="true">HOSPITALIDAD</span>
+          <span class="tag" aria-hidden="true">EXPERIENCIA</span>
+          <span class="tag" aria-hidden="true">SERVICIO</span>
+          <span class="tag" aria-hidden="true">PROFESIONALISMO</span>
+          <span class="tag" aria-hidden="true">EXCELENCIA</span>
+          <span class="tag" aria-hidden="true">ARTESANÍA</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="assets/bar/italy-map-cutout.png?v=1" alt="Il Mondo Vero — mapa de Italia">
+      <div class="hero-art-caption">Il Mondo Vero — dal chicco alla tazza, dalla tazza a uno stile di vita</div>
+    </div>
+  </div>
+</section>
+
+<div class="tricolore"><span></span><span></span><span></span></div>
+
+<section class="intro">
+  <p>Gruppo Vero Caffè nace de la unión entre el oficio cafetero italiano de nuestra familia y la riqueza del café venezolano. A través de <strong>Inversiones Divina Pastora</strong>, <strong>VERO CAFFÈ</strong>, <strong>VERO CAFFÈ BAR</strong> y <strong>VERO CAFFÈ TRATTORIA</strong>, recorremos cada etapa del camino: la selección y exportación del grano verde, el tueste bajo marca propia, y la hospitalidad de nuestras cafeterías y trattorias — donde cada taza y cada plato llevan el mismo nombre de familia.</p>
+</section>
+
+<section class="brand-index" aria-label="Nuestras marcas">
+  <a href="vero-caffe.html" class="brand-index-item" style="--row-accent:#7C1E1E;">
+    <span class="brand-index-logo-box"><img src="assets/vero-mark.png?v=1" class="brand-index-logo" alt="Vero Caffè"></span>
+    <span class="brand-index-tag">Torrefactora</span>
+    <span class="brand-index-arrow">→</span>
+  </a>
+  <a href="divina-pastora.html" class="brand-index-item" style="--row-accent:#006AAF;">
+    <span class="brand-index-logo-box"><img src="assets/divina-ig-profile.jpg?v=1" class="brand-index-logo round" alt="Divina Pastora"></span>
+    <span class="brand-index-tag">Beneficiadora de café</span>
+    <span class="brand-index-arrow">→</span>
+  </a>
+  <a href="vero-caffe-bar.html" class="brand-index-item" style="--row-accent:#B08D57;">
+    <span class="brand-index-logo-box"><img src="assets/verocaffebar-logo.jpg?v=1" class="brand-index-logo round" alt="Vero Caffè Bar"></span>
+    <span class="brand-index-tag">Cafetería</span>
+    <span class="brand-index-arrow">→</span>
+  </a>
+  <a href="vero-caffe-trattoria.html" class="brand-index-item" style="--row-accent:#009246;">
+    <span class="brand-index-logo-box"><img src="assets/trattoria-logo-color.png?v=1" class="brand-index-logo" alt="Vero Caffè Trattoria"></span>
+    <span class="brand-index-tag">Trattoria</span>
+    <span class="brand-index-arrow">→</span>
+  </a>
+</section>
+
+<footer id="contacto">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      Gruppo Vero Caffè
+      <p>Il Mondo Vero — dal chicco alla tazza, dalla tazza a uno stile di vita.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <p>Correo — próximamente</p>
+      <p>WhatsApp — próximamente</p>
+    </div>
+    <div class="footer-col">
+      <h3>Il Mondo Vero</h3>
+      <li><a href="divina-pastora.html">Inversiones Divina Pastora</a></li>
+      <li><a href="vero-caffe.html">VERO CAFFÈ</a></li>
+      <li><a href="vero-caffe-bar.html">VERO CAFFÈ BAR</a></li>
+      <li><a href="vero-caffe-trattoria.html">VERO CAFFÈ TRATTORIA</a></li>
+    </div>
+  </div>
+
+  <div class="footer-logos">
+    <a class="footer-logo-item" href="vero-caffe.html"><img src="assets/vero-mark.png?v=1" alt="Vero Caffè"></a>
+    <a class="footer-logo-item footer-logo-round" href="divina-pastora.html"><img src="assets/divina-ig-profile.jpg?v=1" alt="Inversiones Divina Pastora"></a>
+    <a class="footer-logo-item footer-logo-round" href="vero-caffe-bar.html"><img src="assets/verocaffebar-logo.jpg?v=1" alt="Vero Caffè Bar"></a>
+    <a class="footer-logo-item" href="vero-caffe-trattoria.html"><img src="assets/trattoria-logo-white.png?v=1" alt="Vero Caffè Trattoria"></a>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Gruppo Vero Caffè</span>
+    <span>Venezuela</span>
+  </div>
+</footer>
+
+<script src="script.js?v=2"></script>
+</body>
+</html>

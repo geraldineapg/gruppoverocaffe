@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inversiones Divina Pastora — Gruppo Vero Caffè</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=23">
+<style>
+  /* Divina Pastora — paleta propia de marca (azul), sobre la base compartida */
+  :root{
+    --brass: #4FA3DC;
+    --brass-light: #8FC5EA;
+    --espresso: #0A2A44;
+    --espresso-2: #123A5C;
+    --cream: #F3F8FC;
+    --cream-2: #E3EFF8;
+    --line: #C6DCEC;
+    --ink-soft: #4A6A85;
+  }
+  header{ background:#ffffff; border-bottom-color:rgba(79,163,220,0.25); }
+  .footer-bottom{ border-top-color:rgba(79,163,220,0.18); }
+  .footer-logos{ border-top-color:rgba(79,163,220,0.18); }
+  .unit-desc{ color:#1B3A52; }
+
+  /* Hero editorial — navy con acento azul, a tono con el isotipo */
+  .dp-hero{
+    position:relative;
+    min-height:74vh;
+    color:#EAF3FA;
+    display:flex; align-items:flex-end;
+    overflow:hidden;
+  }
+  .dp-hero-video{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    z-index:0;
+  }
+  .dp-hero-gradient{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 640px 420px at 12% -10%, rgba(79,163,220,0.30), transparent 60%),
+      linear-gradient(0deg, rgba(8,31,52,0.93) 0%, rgba(8,31,52,0.55) 55%, rgba(8,31,52,0.72) 100%);
+    z-index:1;
+  }
+  .dp-hero-inner{ padding:3rem 1.5rem 3.2rem; }
+  .dp-hero::after{
+    content:"";
+    position:absolute; right:-90px; top:-90px;
+    width:340px; height:340px;
+    border:1px solid rgba(143,197,234,0.14);
+    border-radius:50%;
+    z-index:2;
+  }
+  .dp-hero::before{
+    content:"";
+    position:absolute; right:40px; top:60px;
+    width:220px; height:220px;
+    border:1px solid rgba(143,197,234,0.1);
+    border-radius:50%;
+    z-index:2;
+  }
+  .dp-hero-inner{ max-width:1080px; margin:0 auto; position:relative; z-index:3; }
+  .dp-breadcrumb{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem; letter-spacing:0.05em;
+    color:rgba(234,243,250,0.5);
+    margin-bottom:2.4rem;
+  }
+  .dp-breadcrumb a{ color:#8FC5EA; }
+  .dp-breadcrumb a:hover{ text-decoration:underline; }
+  .dp-hero-mark{
+    display:flex; align-items:center; gap:1.1rem;
+    margin-bottom:1.8rem;
+  }
+  .dp-hero-mark img{
+    height:56px; width:56px; border-radius:50%; object-fit:cover;
+    border:1px solid rgba(143,197,234,0.35);
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+  }
+  .dp-hero-mark .eyebrow{ color:#8FC5EA; }
+  .dp-hero-mark .eyebrow::before{ background:#8FC5EA; }
+  h1.dp-hero-title{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(2.5rem, 5vw, 3.8rem);
+    line-height:1.08;
+    max-width:15ch;
+    text-wrap:balance;
+  }
+  h1.dp-hero-title em{ font-style:italic; font-weight:400; color:#8FC5EA; }
+  .dp-hero-sub{
+    margin-top:1.5rem; max-width:54ch;
+    font-size:1.1rem; font-weight:300;
+    color:rgba(234,243,250,0.82);
+  }
+  .dp-hero-rule{
+    width:64px; height:1px;
+    background:rgba(143,197,234,0.45);
+    margin:2.2rem 0 0;
+  }
+
+  /* Sección — tipografía más editorial */
+  #divina-pastora .unit-label h2{ font-style:italic; }
+  #divina-pastora .svc-list li{
+    padding:1.15rem 0;
+    transition:padding-left 0.25s ease;
+  }
+  #divina-pastora .svc-list li:hover{ padding-left:0.4rem; }
+  #divina-pastora .svc-num{ font-size:0.78rem; color:var(--brass); }
+
+  #divina-pastora{ padding-top:2.5rem; }
+  .planta-gallery-wrap{ margin-top:0; }
+  .planta-gallery-wrap + .unit-inner{
+    margin-top:4.5rem; padding-top:4.5rem;
+    border-top:1px solid var(--line);
+  }
+  .planta-gallery-head{ text-align:center; max-width:64ch; margin:0 auto 2.5rem; }
+  .planta-gallery-head p{ margin-left:auto; margin-right:auto; }
+  .planta-specs{
+    display:flex; flex-wrap:wrap; justify-content:center;
+    gap:0.6rem; margin-top:1.4rem;
+  }
+  .planta-specs span{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.03em;
+    border:1px solid var(--line); color:var(--ink-soft);
+    background:#fff; padding:0.5rem 1rem; border-radius:999px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand-group">
+      <a href="index.html" class="brand">Gruppo <span>Vero Caffè</span></a>
+      <span class="brand-page-logo-wrap"><img src="assets/divina-ig-profile.jpg?v=1" class="brand-page-logo round" alt="Inversiones Divina Pastora"></span>
+    </div>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" id="navToggle">☰</button>
+    <div class="navlinks" id="navLinks">
+  <a href="vero-caffe.html" class="nav-logo-link"><img src="assets/vero-mark.png?v=1" class="nav-logo" alt="Vero Caffè"></a>
+  <a href="vero-caffe-bar.html" class="nav-logo-link"><img src="assets/verocaffebar-logo.jpg?v=1" class="nav-logo round" alt="Vero Caffè Bar"></a>
+  <a href="vero-caffe-trattoria.html" class="nav-logo-link"><img src="assets/trattoria-logo-icon.png?v=1" class="nav-logo" alt="Vero Caffè Trattoria"></a>
+      <div class="header-icons">
+        <a href="https://wa.me/584127766007" target="_blank" rel="noopener" aria-label="WhatsApp" class="ic-whatsapp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.72.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/><path d="M12 2C6.49 2 2 6.49 2 12c0 1.76.46 3.48 1.35 5L2 22l5.13-1.34A9.96 9.96 0 0 0 12 22c5.51 0 10-4.49 10-10S17.51 2 12 2zm0 18.16h-.003a8.2 8.2 0 0 1-4.176-1.144l-.3-.178-3.043.792.813-2.968-.196-.305A8.18 8.18 0 0 1 3.84 12c0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.85 5.8 2.4a8.15 8.15 0 0 1 2.4 5.8c0 4.52-3.68 8.16-8.24 8.16z"/></svg></a>
+        <a href="https://instagram.com/dpcoffeetrading" target="_blank" rel="noopener" aria-label="Instagram" class="ic-instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg></a>
+        <details class="lang-switch">
+        <summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.5 3.7 5.7 3.7 9s-1.3 6.5-3.7 9c-2.4-2.5-3.7-5.7-3.7-9s1.3-6.5 3.7-9z"/></svg><span>ES</span></summary>
+        <div class="lang-menu">
+          <a href="#" class="active">Español <small>ES</small></a>
+          <a href="#" class="soon">English <small>próx.</small></a>
+          <a href="#" class="soon">Italiano <small>próx.</small></a>
+          <a href="#" class="soon">Русский <small>próx.</small></a>
+          <a href="#" class="soon">中文 <small>próx.</small></a>
+        </div>
+      </details>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="dp-hero">
+  <video class="dp-hero-video" src="assets/video/buhler-sorting-web.mp4" poster="assets/video/buhler-sorting-poster.jpg" autoplay muted loop playsinline></video>
+  <div class="dp-hero-gradient"></div>
+  <div class="dp-hero-inner">
+    <div class="dp-breadcrumb"><a href="index.html">Inicio</a> / Divina Pastora</div>
+    <div class="dp-hero-mark">
+      <img src="assets/divina-ig-profile.jpg?v=1" alt="Inversiones Divina Pastora">
+      <div class="eyebrow">Beneficio de café verde · Venezuela</div>
+    </div>
+    <h1 class="dp-hero-title">Inversiones <em>Divina Pastora</em></h1>
+    <p class="dp-hero-sub">Beneficiadora de Café — compra, selección y comercialización de café verde de origen 100% venezolano, tanto para la industria nacional como internacional.</p>
+    <div class="dp-hero-rule"></div>
+  </div>
+</section>
+
+<section class="unit accent-dp" id="divina-pastora">
+  <div class="planta-gallery-wrap">
+    <div class="planta-gallery-head">
+      <h3>Selección de café verde a la medida de cada cliente</h3>
+      <p>Todo grano pasa por nuestra planta de selección. Clasificamos según los requerimientos exactos de cada cliente: por tamaño, por densidad, por color y sus combinaciones.</p>
+      <div class="planta-specs">
+        <span>Mallas 12 – 18 · Peaberry</span>
+        <span>30&nbsp;t/día de capacidad</span>
+        <span>Clasificadora óptica hasta 18&nbsp;t/hora</span>
+      </div>
+    </div>
+    <div class="planta-grid">
+      <figure class="planta-item span-3 wide">
+        <img src="assets/planta/planta-01-nave.jpg?v=1" alt="Nave de silos y equipos de beneficio en la planta de Inversiones Divina Pastora" loading="lazy">
+        <figcaption>Nave de recepción, silos y elevadores de café verde</figcaption>
+      </figure>
+      <figure class="planta-item tall">
+        <video src="assets/video/finca-drone.mp4" poster="assets/video/finca-drone-poster.jpg" autoplay muted loop playsinline></video>
+        <span class="play-badge">Video</span>
+        <figcaption>Montañas cafeteras venezolanas — origen del grano</figcaption>
+      </figure>
+      <figure class="planta-item tall">
+        <img src="assets/planta/planta-02-buhler.jpg?v=1" alt="Clasificadora óptica Bühler Sortex B en la planta de beneficio" loading="lazy">
+        <figcaption>Clasificación por Color</figcaption>
+      </figure>
+      <figure class="planta-item tall">
+        <img src="assets/planta/planta-03-grano.jpg?v=1" alt="Café verde venezolano sobre mesa densimétrica" loading="lazy">
+        <figcaption>Clasificación por Densidad</figcaption>
+      </figure>
+      <figure class="planta-item tall">
+        <img src="assets/planta/planta-04-silo.jpg?v=1" alt="Silo de almacenamiento de café verde" loading="lazy">
+        <figcaption>Clasificación por Volumen</figcaption>
+      </figure>
+      <figure class="planta-item tall">
+        <img src="assets/origen/flor-cafeto.jpg?v=1" alt="Flor del cafeto en tierras venezolanas" loading="lazy">
+        <figcaption>Flor del cafeto</figcaption>
+      </figure>
+      <figure class="planta-item tall">
+        <img src="assets/origen/cereza-verde.jpg?v=1" alt="Cereza de café verde en la mata" loading="lazy">
+        <figcaption>Cereza en desarrollo</figcaption>
+      </figure>
+      <figure class="planta-item tall">
+        <img src="assets/origen/cereza-madura.jpg?v=1" alt="Cereza de café madurando" loading="lazy">
+        <figcaption>Cereza madurando</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="unit-inner">
+    <div class="unit-label">
+      <h2>Qué hacemos</h2>
+      <p class="unit-desc">Del acopio en las principales zonas cafeteras de Venezuela a la exportación y venta de café verde seleccionado.</p>
+    </div>
+    <div class="unit-media">
+      <ul class="svc-list">
+        <li><span class="svc-num">01</span><span>Selección de café verde — servicio para la industria nacional y de exportación</span></li>
+        <li><span class="svc-num">02</span><span>Exportación de café verde</span></li>
+        <li><span class="svc-num">03</span><span>Venta de café verde a la agroindustria, con o sin proceso de selección</span></li>
+      </ul>
+      <div class="presence-box">
+        <div class="eyebrow">Puntos de acopio</div>
+        <div class="presence-list">
+          <span>Mérida</span><span>Lara</span><span>Trujillo</span><span>Portuguesa</span><span>Anzoátegui</span><span>y más</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-panel" id="cotizacion">
+  <div class="quote-panel-head">
+    <div class="eyebrow">Café verde</div>
+    <h2>Solicita tu cotización</h2>
+    <p>Cuéntanos qué necesitas — marca lo que aplique y te responderemos por WhatsApp o correo electrónico con todos los detalles.</p>
+  </div>
+  <form class="quote-form" data-wa="584127766007" data-title="Cotización — Inversiones Divina Pastora">
+    <div class="quote-fields-grid">
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-empresa">Nombre de la empresa</label>
+        <input class="quote-input" type="text" id="dp-empresa" name="empresa" required>
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-origen">Origen de la empresa</label>
+        <input class="quote-input" type="text" id="dp-origen" name="origen de la empresa" placeholder="País / ciudad">
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-telefono">Teléfono</label>
+        <input class="quote-input" type="tel" id="dp-telefono" name="teléfono" required>
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-correo">Correo</label>
+        <input class="quote-input" type="email" id="dp-correo" name="correo" required>
+      </div>
+    </div>
+
+    <div class="quote-req-title">Requerimiento</div>
+
+    <label class="quote-check">
+      <input type="checkbox" name="req_saco_a_saco" data-toggles="dp-sub-1">
+      <span class="quote-check-label">Café verde saco a saco, directo del campo</span>
+    </label>
+    <div class="quote-subfields" id="dp-sub-1">
+      <div class="quote-radio-row">
+        <label class="quote-check"><input type="radio" name="tipo de proceso" value="Lavado"><span class="quote-check-label">Lavado</span></label>
+        <label class="quote-check"><input type="radio" name="tipo de proceso" value="Natural"><span class="quote-check-label">Natural</span></label>
+        <label class="quote-check"><input type="radio" name="tipo de proceso" value="Robusta"><span class="quote-check-label">Robusta</span></label>
+      </div>
+    </div>
+
+    <label class="quote-check">
+      <input type="checkbox" name="req_seleccionado" data-toggles="dp-sub-2">
+      <span class="quote-check-label">Café verde seleccionado</span>
+    </label>
+    <div class="quote-subfields" id="dp-sub-2">
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-norma-2">Norma</label>
+        <input class="quote-input" type="text" id="dp-norma-2" name="norma">
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-malla-2">Malla</label>
+        <input class="quote-input" type="text" id="dp-malla-2" name="malla">
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-qgrade-2">Q Grade</label>
+        <input class="quote-input" type="text" id="dp-qgrade-2" name="q grade">
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-defectos-2">Cantidad de defectos permitidos</label>
+        <input class="quote-input" type="text" id="dp-defectos-2" name="defectos permitidos">
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-cantidad-2">Cantidad de café</label>
+        <input class="quote-input" type="text" id="dp-cantidad-2" name="cantidad de café">
+      </div>
+    </div>
+
+    <label class="quote-check">
+      <input type="checkbox" name="req_especialidad" data-toggles="dp-sub-3">
+      <span class="quote-check-label">Café verde de especialidad</span>
+    </label>
+    <div class="quote-subfields" id="dp-sub-3">
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-region">Región</label>
+        <select class="quote-select" id="dp-region" name="región">
+          <option value=""></option>
+          <option>Lara</option>
+          <option>Mérida</option>
+          <option>Trujillo</option>
+          <option>Miranda</option>
+          <option>Aragua</option>
+          <option>Anzoátegui</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-region-otro">Si es otro, indicar</label>
+        <input class="quote-input" type="text" id="dp-region-otro" name="región (otro)">
+      </div>
+    </div>
+
+    <label class="quote-check">
+      <input type="checkbox" name="req_seleccion_verde" data-toggles="dp-sub-4">
+      <span class="quote-check-label">Selección de café verde</span>
+    </label>
+    <div class="quote-subfields" id="dp-sub-4">
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-norma-4">Norma</label>
+        <input class="quote-input" type="text" id="dp-norma-4" name="norma ">
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-malla-4">Malla</label>
+        <input class="quote-input" type="text" id="dp-malla-4" name="malla ">
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-qgrade-4">Q Grade</label>
+        <input class="quote-input" type="text" id="dp-qgrade-4" name="q grade ">
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-defectos-4">Cantidad de defectos permitidos (según tabla SCA)</label>
+        <input class="quote-input" type="text" id="dp-defectos-4" name="defectos permitidos ">
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="dp-sacos-4">Cantidad de sacos a cotizar</label>
+        <input class="quote-input" type="text" id="dp-sacos-4" name="cantidad de sacos">
+      </div>
+    </div>
+
+    <label class="quote-check">
+      <input type="checkbox" name="req_exportacion">
+      <span class="quote-check-label">Servicio de exportación</span>
+    </label>
+    <label class="quote-check">
+      <input type="checkbox" name="req_sacos_yute">
+      <span class="quote-check-label">Sacos de yute o fique</span>
+    </label>
+    <label class="quote-check">
+      <input type="checkbox" name="req_estampado">
+      <span class="quote-check-label">Estampado de sacos</span>
+    </label>
+    <label class="quote-check">
+      <input type="checkbox" name="req_bolsas_resistencia">
+      <span class="quote-check-label">Bolsas de alta resistencia para almacenamiento y exportación de café</span>
+    </label>
+
+    <button class="quote-submit" type="submit">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.72.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/><path d="M12 2C6.49 2 2 6.49 2 12c0 1.76.46 3.48 1.35 5L2 22l5.13-1.34A9.96 9.96 0 0 0 12 22c5.51 0 10-4.49 10-10S17.51 2 12 2zm0 18.16h-.003a8.2 8.2 0 0 1-4.176-1.144l-.3-.178-3.043.792.813-2.968-.196-.305A8.18 8.18 0 0 1 3.84 12c0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.85 5.8 2.4a8.15 8.15 0 0 1 2.4 5.8c0 4.52-3.68 8.16-8.24 8.16z"/></svg>
+      Enviar por WhatsApp
+    </button>
+  </form>
+</section>
+
+<footer id="contacto">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      Gruppo Vero Caffè
+      <p>Il Mondo Vero — dal chicco alla tazza, dalla tazza a uno stile di vita.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <p><a href="mailto:divinapastora@gruppoverocaffe.com">divinapastora@gruppoverocaffe.com</a></p>
+      <p><a href="https://wa.me/584127766007" target="_blank" rel="noopener">WhatsApp +58 412-7766007</a></p>
+      <p><a href="https://instagram.com/dpcoffeetrading" target="_blank" rel="noopener">@dpcoffeetrading</a></p>
+    </div>
+    <div class="footer-col">
+      <h3>Il Mondo Vero</h3>
+      <li><a href="divina-pastora.html">Inversiones Divina Pastora</a></li>
+      <li><a href="vero-caffe.html">VERO CAFFÈ</a></li>
+      <li><a href="vero-caffe-bar.html">VERO CAFFÈ BAR</a></li>
+      <li><a href="vero-caffe-trattoria.html">VERO CAFFÈ TRATTORIA</a></li>
+    </div>
+  </div>
+
+  <div class="footer-logos">
+    <a class="footer-logo-item" href="vero-caffe.html"><img src="assets/vero-mark.png?v=1" alt="Vero Caffè"></a>
+    <a class="footer-logo-item footer-logo-round" href="divina-pastora.html"><img src="assets/divina-ig-profile.jpg?v=1" alt="Inversiones Divina Pastora"></a>
+    <a class="footer-logo-item footer-logo-round" href="vero-caffe-bar.html"><img src="assets/verocaffebar-logo.jpg?v=1" alt="Vero Caffè Bar"></a>
+    <a class="footer-logo-item" href="vero-caffe-trattoria.html"><img src="assets/trattoria-logo-white.png?v=1" alt="Vero Caffè Trattoria"></a>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Gruppo Vero Caffè</span>
+    <span>Venezuela</span>
+  </div>
+</footer>
+
+<script src="script.js?v=2"></script>
+</body>
+</html>

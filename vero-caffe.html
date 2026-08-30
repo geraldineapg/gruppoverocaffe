@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vero Caffè — Gruppo Vero Caffè</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Alex+Brush&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=23">
+<style>
+  /* Vero Caffè — estilo limpio, inspirado en illy: blanco dominante, rojo/negro como acento */
+  :root{
+    --brass: #D40000;
+    --brass-light: #FF4D4D;
+    --it-green: #009246;
+    --cream: #FFFFFF;
+    --cream-2: #FBEEEC;
+    --line: #EAD9D6;
+    --ink-soft: #6B4A46;
+  }
+  header{ background:#ffffff; border-bottom-color:rgba(212,0,0,0.2); }
+  .footer-bottom{ border-top-color:rgba(212,0,0,0.15); }
+  .footer-logos{ border-top-color:rgba(212,0,0,0.15); }
+  .unit-desc{ color:#3A2624; }
+
+  .tricolore{ display:flex; height:8px; width:100%; }
+  .tricolore span{ flex:1; }
+  .tricolore span:nth-child(1){ background:#009246; }
+  .tricolore span:nth-child(2){ background:#FFFFFF; }
+  .tricolore span:nth-child(3){ background:#CE2B37; }
+
+  .mvv{
+    padding:0 1.5rem 5.5rem;
+    border-top:1px solid var(--line);
+    padding-top:5.5rem;
+  }
+  .mvv-inner{ max-width:1080px; margin:0 auto; }
+  .mvv-head{ text-align:center; max-width:56ch; margin:0 auto 3rem; }
+  .mvv-head h2{
+    font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+    font-size:1.9rem; margin-top:0.6rem;
+  }
+  .mvv-list{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:2.5rem;
+  }
+  .mvv-item{ padding-top:1.4rem; border-top:1px solid var(--line); }
+  .mvv-item h3{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--brass); margin-bottom:0.9rem;
+  }
+  .mvv-item.accent-green h3{ color:var(--it-green); }
+  .mvv-item p{ font-size:0.98rem; color:#3A2624; line-height:1.65; }
+  @media (max-width:820px){
+    .mvv-list{ grid-template-columns:1fr; gap:2rem; }
+  }
+
+  .vc-hero{
+    position:relative; min-height:52vh;
+    background:
+      linear-gradient(0deg, rgba(18,10,8,0.9) 0%, rgba(18,10,8,0.05) 55%, rgba(18,10,8,0.25) 100%),
+      url('assets/bar/latte-art.jpg') center 35% / cover no-repeat;
+    display:flex; align-items:flex-end; color:#fff;
+  }
+  .vc-hero-inner{ max-width:1080px; margin:0 auto; width:100%; padding:3rem 1.5rem 3.2rem; }
+  .vc-hero .eyebrow{ color:#FF8A7A; }
+  .vc-hero .eyebrow::before{ background:#FF8A7A; }
+  .vc-hero-mark{ display:flex; align-items:center; gap:1.1rem; margin-bottom:1.8rem; }
+  .vc-hero-mark img{
+    height:56px; width:56px; border-radius:50%; object-fit:cover;
+    border:1px solid rgba(255,255,255,0.35);
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+    background:#fff;
+  }
+  h1.vc-hero-title{
+    font-family:'Poppins', sans-serif; font-weight:800;
+    font-size:clamp(2.2rem, 5vw, 3.6rem); line-height:1.05;
+    margin-top:0.8rem; text-shadow:0 2px 20px rgba(0,0,0,0.4);
+    text-transform:uppercase;
+  }
+  .vc-hero-tagline{
+    display:block; font-family:'Alex Brush', cursive; font-weight:400; font-style:normal;
+    color:#FF8A7A; font-size:1.05em; margin-top:0.3rem; line-height:1;
+    text-transform:none;
+  }
+  .vc-hero-sub{ margin-top:1.2rem; max-width:48ch; font-size:1.05rem; font-weight:300; color:rgba(255,255,255,0.9); }
+  .breadcrumb-over{
+    position:absolute; top:1.6rem; left:1.5rem; z-index:2;
+    font-family:'IBM Plex Mono', monospace; font-size:0.7rem; letter-spacing:0.05em;
+    color:rgba(255,255,255,0.7); text-transform:uppercase;
+  }
+  .breadcrumb-over a{ color:#FF8A7A; }
+
+  .photo-strip{ max-width:1080px; margin:0 auto; padding:5.5rem 1.5rem; }
+  .photo-strip-head{ text-align:center; max-width:56ch; margin:0 auto 2rem; }
+  .photo-strip-head h3{
+    font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+    font-size:1.5rem; color:var(--espresso-2); margin-top:0.4rem;
+  }
+  .photo-strip-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:0.9rem; }
+  .photo-strip-grid figure{ border-radius:4px; overflow:hidden; border:1px solid var(--line); aspect-ratio:4/5; }
+  .photo-strip-grid img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease; }
+  .photo-strip-grid figure:hover img{ transform:scale(1.05); }
+  .origen-strip{ max-width:1080px; margin:0 auto; padding:0 1.5rem 5.5rem; border-top:1px solid var(--line); padding-top:2.5rem; }
+  .origen-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:0.9rem; }
+
+  .video-divider{ position:relative; height:280px; overflow:hidden; }
+  .video-divider video{
+    position:absolute; top:50%; left:50%;
+    width:100%; height:100%; object-fit:cover;
+    transform:translate(-50%,-50%);
+  }
+  .video-divider::after{
+    content:""; position:absolute; inset:0;
+    background:rgba(18,10,8,0.32);
+  }
+  @media (max-width:640px){ .video-divider{ height:190px; } }
+
+  /* PLACEHOLDER DE FOTO — listo para reemplazar por <img> cuando lleguen las fotos */
+  .photo-placeholder{
+    aspect-ratio:4/5; border-radius:6px;
+    border:1.5px dashed var(--line);
+    background:var(--cream-2);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:0.5rem; text-align:center; padding:1rem;
+  }
+  .photo-placeholder svg{ width:26px; height:26px; opacity:0.35; }
+  .photo-placeholder span{
+    font-family:'IBM Plex Mono', monospace; font-size:0.62rem;
+    letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); opacity:0.75;
+    line-height:1.4;
+  }
+  .photo-placeholder.wide{ aspect-ratio:21/9; }
+  .photo-placeholder.square{ aspect-ratio:1/1; }
+
+  /* PRODUCTOS */
+  .products{ max-width:1080px; margin:0 auto; padding:5.5rem 1.5rem 0; }
+  .products-head{ text-align:center; max-width:60ch; margin:0 auto 3.5rem; }
+  .products-head h2{
+    font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+    font-size:1.9rem; margin-top:0.6rem;
+  }
+  .product-group{ margin-bottom:4.5rem; }
+  .product-group-title{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--brass);
+    margin-bottom:0.5rem;
+  }
+  .product-group-desc{ color:#3A2624; max-width:64ch; margin-bottom:2rem; }
+
+  .molido-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.6rem; }
+  .molido-card{ border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  .molido-card .photo-placeholder{ border:none; border-radius:0; aspect-ratio:16/10; }
+  .molido-info{ padding:1.4rem 1.5rem 1.6rem; }
+  .molido-tag{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:0.65rem;
+    letter-spacing:0.06em; text-transform:uppercase; padding:0.3rem 0.7rem;
+    border-radius:999px; margin-bottom:0.7rem;
+  }
+  .molido-card.gourmet .molido-tag{ background:rgba(212,0,0,0.1); color:#B31212; }
+  .molido-card.premium .molido-tag{ background:rgba(20,60,120,0.1); color:#1D4E8F; }
+  .molido-card h4{ font-family:'Fraunces', serif; font-weight:500; font-size:1.25rem; margin-bottom:0.5rem; }
+  .molido-card p{ font-size:0.92rem; color:#3A2624; line-height:1.55; margin-bottom:1rem; }
+  .pack-sizes{ display:flex; gap:0.5rem; flex-wrap:wrap; }
+  .pack-sizes span{
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem;
+    border:1px solid var(--line); border-radius:999px; padding:0.3rem 0.75rem;
+    color:var(--ink-soft);
+  }
+
+  .grano-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; margin-bottom:1.6rem; }
+  .grano-card{ border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  .grano-card .photo-placeholder{ border:none; border-radius:0; aspect-ratio:1/1; }
+  .grano-info{ padding:1.1rem 1.2rem 1.3rem; }
+  .grano-info h4{ font-family:'Fraunces', serif; font-weight:500; font-size:1.05rem; }
+  .grano-roast{
+    font-family:'IBM Plex Mono', monospace; font-size:0.64rem;
+    letter-spacing:0.05em; text-transform:uppercase; color:var(--brass);
+    margin:0.3rem 0 0.6rem;
+  }
+  .grano-info p{ font-size:0.82rem; color:#3A2624; line-height:1.5; }
+
+  .capacity-strip{ max-width:1080px; margin:0 auto; padding:0 1.5rem 5.5rem; }
+  .capacity-strip .planta-specs{
+    display:flex; flex-wrap:wrap; align-items:center;
+    justify-content:flex-start; gap:0.9rem 0.7rem; margin-top:0;
+  }
+  .capacity-strip .planta-specs span{
+    font-family:'Work Sans', sans-serif; font-size:0.85rem; font-weight:500;
+    white-space:nowrap;
+    border:1px solid var(--line); color:var(--ink-soft);
+    background:#fff; padding:0.55rem 1.1rem; border-radius:999px;
+  }
+  @media (max-width:820px){
+    .molido-grid{ grid-template-columns:1fr; }
+    .grano-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:480px){
+    .grano-grid{ grid-template-columns:1fr; }
+  }
+  .origen-grid figure{ position:relative; overflow:hidden; border-radius:4px; border:1px solid var(--line); aspect-ratio:1/1; }
+  .origen-grid img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease; }
+  .origen-grid figure:hover img{ transform:scale(1.05); }
+  @media (max-width:700px){
+    .photo-strip-grid{ grid-template-columns:1fr 1fr; }
+    .origen-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand-group">
+      <a href="index.html" class="brand">Gruppo <span>Vero Caffè</span></a>
+      <span class="brand-page-logo-wrap"><img src="assets/vero-mark.png?v=1" class="brand-page-logo" alt="Vero Caffè"></span>
+    </div>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" id="navToggle">☰</button>
+    <div class="navlinks" id="navLinks">
+  <a href="divina-pastora.html" class="nav-logo-link nav-logo-stack"><img src="assets/divina-ig-profile.jpg?v=1" class="nav-logo round" alt="Divina Pastora"><span class="nav-logo-caption">Divina Pastora</span></a>
+  <a href="vero-caffe-bar.html" class="nav-logo-link"><img src="assets/verocaffebar-logo.jpg?v=1" class="nav-logo round" alt="Vero Caffè Bar"></a>
+  <a href="vero-caffe-trattoria.html" class="nav-logo-link"><img src="assets/trattoria-logo-icon.png?v=1" class="nav-logo" alt="Vero Caffè Trattoria"></a>
+      <div class="header-icons">
+        <a href="https://wa.me/584127766007" target="_blank" rel="noopener" aria-label="WhatsApp" class="ic-whatsapp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.72.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/><path d="M12 2C6.49 2 2 6.49 2 12c0 1.76.46 3.48 1.35 5L2 22l5.13-1.34A9.96 9.96 0 0 0 12 22c5.51 0 10-4.49 10-10S17.51 2 12 2zm0 18.16h-.003a8.2 8.2 0 0 1-4.176-1.144l-.3-.178-3.043.792.813-2.968-.196-.305A8.18 8.18 0 0 1 3.84 12c0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.85 5.8 2.4a8.15 8.15 0 0 1 2.4 5.8c0 4.52-3.68 8.16-8.24 8.16z"/></svg></a>
+        <a href="https://instagram.com/verocaffe.vzla" target="_blank" rel="noopener" aria-label="Instagram" class="ic-instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg></a>
+        <details class="lang-switch">
+        <summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.5 3.7 5.7 3.7 9s-1.3 6.5-3.7 9c-2.4-2.5-3.7-5.7-3.7-9s1.3-6.5 3.7-9z"/></svg><span>ES</span></summary>
+        <div class="lang-menu">
+          <a href="#" class="active">Español <small>ES</small></a>
+          <a href="#" class="soon">English <small>próx.</small></a>
+          <a href="#" class="soon">Italiano <small>próx.</small></a>
+          <a href="#" class="soon">Русский <small>próx.</small></a>
+          <a href="#" class="soon">中文 <small>próx.</small></a>
+        </div>
+      </details>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="vc-hero">
+  <div class="breadcrumb-over"><a href="index.html">Inicio</a> / Vero Caffè</div>
+  <div class="vc-hero-inner">
+    <div class="vc-hero-mark">
+      <img src="assets/vero-mark.png?v=1" alt="Vero Caffè">
+      <div class="eyebrow">Torrefazione</div>
+    </div>
+    <h1 class="vc-hero-title">Vero Caffè<span class="vc-hero-tagline">Un aroma que enamora</span></h1>
+    <p class="vc-hero-sub">Torrefactora del Gruppo Vero Caffè: transformamos el café verde seleccionado por Divina Pastora en café tostado bajo técnica italiana y proceso propios.</p>
+  </div>
+</section>
+
+<div class="tricolore"><span></span><span></span><span></span></div>
+
+<section class="mvv">
+  <div class="mvv-inner">
+    <div class="mvv-head">
+      <div class="eyebrow" style="justify-content:center;">Il Mondo Vero</div>
+      <h2>Misión, visión y valores</h2>
+    </div>
+    <div class="mvv-list">
+      <div class="mvv-item">
+        <h3>Misión</h3>
+        <p>Transformar el mejor café verde venezolano en una taza de calidad excepcional, con el rigor y la técnica del tueste italiano.</p>
+      </div>
+      <div class="mvv-item accent-green">
+        <h3>Visión</h3>
+        <p>Ser la torrefactora de referencia en Venezuela, reconocida por la calidad de su café y la hospitalidad de sus marcas.</p>
+      </div>
+      <div class="mvv-item">
+        <h3>Valores</h3>
+        <p>Precisión en cada proceso, pasión por el oficio y una búsqueda constante de la excelencia — de la selección del grano a la mesa compartida.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="unit accent-vc" id="vero-caffe">
+  <div class="unit-inner">
+    <div class="unit-label">
+      <div class="eyebrow">Torrefacción</div>
+      <h2>Qué ofrecemos</h2>
+      <p class="unit-desc">Café en grano y molido, con distintos perfiles de tostado, más servicio de maquila para terceros.</p>
+    </div>
+    <div class="unit-media">
+      <ul class="svc-list">
+        <li><span class="svc-num">01</span><span>Café en grano, con varios perfiles de tostado</span></li>
+        <li><span class="svc-num">02</span><span>Café molido</span></li>
+        <li><span class="svc-num">03</span><span>Servicio de maquila — tueste bajo marca de terceros</span></li>
+        <li><span class="svc-num">04</span><span>Abastecimiento a cafeterías, hoteles y restaurantes</span></li>
+      </ul>
+      <div class="soon-box">
+        <div class="eyebrow" style="margin-bottom:0.4rem;">Próximamente</div>
+        <p>Cafés de especialidad, de distintos orígenes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="productos">
+  <div class="products-head">
+    <div class="eyebrow" style="justify-content:center;">Nuestros productos</div>
+    <h2>Café molido y en grano</h2>
+  </div>
+
+  <div class="product-group">
+    <div class="product-group-title">Café molido</div>
+    <p class="product-group-desc">Dos líneas de café molido, ambas 100% arábica, en presentaciones de 100&nbsp;g, 200&nbsp;g y 500&nbsp;g.</p>
+    <div class="molido-grid">
+      <div class="molido-card gourmet">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>
+          <span>Foto — Café Molido Gourmet<br>(empaque rojo)</span>
+        </div>
+        <div class="molido-info">
+          <span class="molido-tag">Gourmet</span>
+          <h4>Café Molido Gourmet</h4>
+          <p>Elaborado con café lavado, 100% arábica.</p>
+          <div class="pack-sizes"><span>100 g</span><span>200 g</span><span>500 g</span></div>
+        </div>
+      </div>
+      <div class="molido-card premium">
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>
+          <span>Foto — Café Molido Premium<br>(empaque azul)</span>
+        </div>
+        <div class="molido-info">
+          <span class="molido-tag">Premium</span>
+          <h4>Café Molido Premium</h4>
+          <p>Mezcla de café lacado y café natural, 100% arábica.</p>
+          <div class="pack-sizes"><span>100 g</span><span>200 g</span><span>500 g</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-group">
+    <div class="product-group-title">Café en grano</div>
+    <p class="product-group-desc">Professionale, Superiore e Italiano son granos de especialidad, seleccionados a máquina y luego a mano, grano por grano, para retirar defectos después del tueste.</p>
+    <div class="grano-grid">
+      <div class="grano-card">
+        <div class="photo-placeholder square">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>
+          <span>Foto — Tradizionale</span>
+        </div>
+        <div class="grano-info">
+          <h4>Tradizionale</h4>
+          <div class="grano-roast">Tueste blend</div>
+          <p>Selección de granos con un perfil de tueste mixto.</p>
+        </div>
+      </div>
+      <div class="grano-card">
+        <div class="photo-placeholder square" style="border:none; padding:0;">
+          <img src="assets/vero-caffe/roast-professionale.jpg?v=2" alt="Grano Professionale — tueste claro" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="grano-info">
+          <h4>Professionale</h4>
+          <div class="grano-roast">Tueste claro</div>
+          <p>Grano de especialidad, seleccionado a máquina y a mano.</p>
+        </div>
+      </div>
+      <div class="grano-card">
+        <div class="photo-placeholder square" style="border:none; padding:0;">
+          <img src="assets/vero-caffe/roast-superiore.jpg?v=2" alt="Grano Superiore — tueste medio" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="grano-info">
+          <h4>Superiore</h4>
+          <div class="grano-roast">Tueste medio</div>
+          <p>Grano de especialidad, seleccionado a máquina y a mano.</p>
+        </div>
+      </div>
+      <div class="grano-card">
+        <div class="photo-placeholder square" style="border:none; padding:0;">
+          <img src="assets/vero-caffe/roast-italiano.jpg?v=2" alt="Grano Italiano — tueste oscuro" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="grano-info">
+          <h4>Italiano</h4>
+          <div class="grano-roast">Tueste oscuro</div>
+          <p>Grano de especialidad, seleccionado a máquina y a mano.</p>
+        </div>
+      </div>
+    </div>
+    <div class="photo-placeholder wide" style="border:none; padding:0;">
+      <img src="assets/vero-caffe/roast-comparison-wide.jpg?v=2" alt="Comparación de niveles de tueste, de claro a oscuro" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+  </div>
+</section>
+
+<section class="capacity-strip">
+  <div class="product-group-title">Capacidad y proceso</div>
+  <div class="planta-specs">
+    <span>200&nbsp;t de tueste por turno de 8h</span>
+    <span>Molienda en molinos de disco — sin pulverizar</span>
+    <span>Empacadoras automáticas — hasta 45 paq/min c/u</span>
+    <span>Maquila para terceros — en bobinas o bolsas</span>
+  </div>
+</section>
+
+<section class="origen-strip">
+  <div class="photo-strip-head">
+    <h3>Del cafetal a la torrefacción</h3>
+  </div>
+  <div class="origen-grid">
+    <figure><img src="assets/origen/flor-cafeto.jpg?v=1" alt="Flor del cafeto en tierras venezolanas" loading="lazy"></figure>
+    <figure><img src="assets/origen/cereza-verde.jpg?v=1" alt="Cereza de café verde en la mata" loading="lazy"></figure>
+    <figure><img src="assets/origen/cereza-madura.jpg?v=1" alt="Cereza de café madurando" loading="lazy"></figure>
+  </div>
+</section>
+
+<section class="video-divider">
+  <video src="assets/video/molido-bags-divider.mp4?v=1" autoplay muted loop playsinline></video>
+</section>
+
+<section class="photo-strip">
+  <div class="photo-strip-grid">
+    <figure><img src="assets/vero-caffe/bags-red-beans.jpg?v=1" alt="Bolsas de Vero Caffè con granos de café" loading="lazy"></figure>
+    <figure><img src="assets/vero-caffe/bags-blue-lineup.jpg?v=1" alt="Línea de presentaciones Vero Caffè" loading="lazy"></figure>
+    <figure><img src="assets/vero-caffe/french-press.jpg?v=1" alt="Café Vero Caffè preparado en prensa francesa" loading="lazy"></figure>
+    <figure><img src="assets/vero-caffe/retail-table.jpg?v=1" alt="Presentación de café y vasos Vero Caffè" loading="lazy"></figure>
+  </div>
+</section>
+
+<section class="quote-panel" id="cotizacion">
+  <div class="quote-panel-head">
+    <div class="eyebrow" style="justify-content:center;">Café molido, en grano y maquila</div>
+    <h2>Solicita tu cotización</h2>
+    <p>Cuéntanos qué necesitas — marca lo que aplique y te responderemos por WhatsApp o correo electrónico con todos los detalles.</p>
+  </div>
+  <form class="quote-form" data-wa="584127766007" data-title="Cotización — Vero Caffè">
+    <div class="quote-fields-grid">
+      <div class="quote-field">
+        <label class="quote-field-label" for="vc-empresa">Nombre de la empresa</label>
+        <input class="quote-input" type="text" id="vc-empresa" name="empresa" required>
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="vc-origen">Origen de la empresa</label>
+        <input class="quote-input" type="text" id="vc-origen" name="origen de la empresa" placeholder="País / ciudad">
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="vc-telefono">Teléfono</label>
+        <input class="quote-input" type="tel" id="vc-telefono" name="teléfono" required>
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="vc-correo">Correo</label>
+        <input class="quote-input" type="email" id="vc-correo" name="correo" required>
+      </div>
+    </div>
+
+    <div class="quote-req-title">Requerimiento</div>
+
+    <label class="quote-check">
+      <input type="checkbox" name="req_molido" data-toggles="vc-sub-1">
+      <span class="quote-check-label">Café molido</span>
+    </label>
+    <div class="quote-subfields" id="vc-sub-1">
+      <div class="quote-field">
+        <label class="quote-field-label" for="vc-tipo">Tipo</label>
+        <select class="quote-select" id="vc-tipo" name="tipo de café molido">
+          <option value=""></option>
+          <option>Gourmet (empaque rojo)</option>
+          <option>Premium (empaque azul)</option>
+        </select>
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="vc-presentacion">Presentación</label>
+        <select class="quote-select" id="vc-presentacion" name="presentación">
+          <option value=""></option>
+          <option>100 g</option>
+          <option>200 g</option>
+          <option>500 g</option>
+        </select>
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="vc-cantidad-molido">Cantidad</label>
+        <input class="quote-input" type="text" id="vc-cantidad-molido" name="cantidad de café molido">
+      </div>
+    </div>
+
+    <label class="quote-check">
+      <input type="checkbox" name="req_grano" data-toggles="vc-sub-2">
+      <span class="quote-check-label">Café en grano</span>
+    </label>
+    <div class="quote-subfields" id="vc-sub-2">
+      <label class="quote-check"><input type="checkbox" name="grano_tradizionale"><span class="quote-check-label">Tradizionale</span></label>
+      <label class="quote-check"><input type="checkbox" name="grano_professionale"><span class="quote-check-label">Professionale</span></label>
+      <label class="quote-check"><input type="checkbox" name="grano_superiore"><span class="quote-check-label">Superiore</span></label>
+      <label class="quote-check"><input type="checkbox" name="grano_italiano"><span class="quote-check-label">Italiano</span></label>
+      <div class="quote-field" style="margin-top:0.9rem;">
+        <label class="quote-field-label" for="vc-cantidad-grano">Cantidad</label>
+        <input class="quote-input" type="text" id="vc-cantidad-grano" name="cantidad de café en grano">
+      </div>
+    </div>
+
+    <label class="quote-check">
+      <input type="checkbox" name="req_maquila">
+      <span class="quote-check-label">Maquila</span>
+    </label>
+
+    <button class="quote-submit" type="submit">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.72.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/><path d="M12 2C6.49 2 2 6.49 2 12c0 1.76.46 3.48 1.35 5L2 22l5.13-1.34A9.96 9.96 0 0 0 12 22c5.51 0 10-4.49 10-10S17.51 2 12 2zm0 18.16h-.003a8.2 8.2 0 0 1-4.176-1.144l-.3-.178-3.043.792.813-2.968-.196-.305A8.18 8.18 0 0 1 3.84 12c0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.85 5.8 2.4a8.15 8.15 0 0 1 2.4 5.8c0 4.52-3.68 8.16-8.24 8.16z"/></svg>
+      Enviar por WhatsApp
+    </button>
+  </form>
+</section>
+
+<footer id="contacto">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      Gruppo Vero Caffè
+      <p>Il Mondo Vero — dal chicco alla tazza, dalla tazza a uno stile di vita.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <p><a href="mailto:info@gruppovercaffe.com">info@gruppovercaffe.com</a></p>
+      <p><a href="https://wa.me/584127766007" target="_blank" rel="noopener">WhatsApp +58 412-7766007</a></p>
+      <p><a href="https://instagram.com/verocaffe.vzla" target="_blank" rel="noopener">@verocaffe.vzla</a></p>
+    </div>
+    <div class="footer-col">
+      <h3>Il Mondo Vero</h3>
+      <li><a href="divina-pastora.html">Inversiones Divina Pastora</a></li>
+      <li><a href="vero-caffe.html">VERO CAFFÈ</a></li>
+      <li><a href="vero-caffe-bar.html">VERO CAFFÈ BAR</a></li>
+      <li><a href="vero-caffe-trattoria.html">VERO CAFFÈ TRATTORIA</a></li>
+    </div>
+  </div>
+
+  <div class="footer-logos">
+    <a class="footer-logo-item" href="vero-caffe.html"><img src="assets/vero-mark.png?v=1" alt="Vero Caffè"></a>
+    <a class="footer-logo-item footer-logo-round" href="divina-pastora.html"><img src="assets/divina-ig-profile.jpg?v=1" alt="Inversiones Divina Pastora"></a>
+    <a class="footer-logo-item footer-logo-round" href="vero-caffe-bar.html"><img src="assets/verocaffebar-logo.jpg?v=1" alt="Vero Caffè Bar"></a>
+    <a class="footer-logo-item" href="vero-caffe-trattoria.html"><img src="assets/trattoria-logo-white.png?v=1" alt="Vero Caffè Trattoria"></a>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Gruppo Vero Caffè</span>
+    <span>Venezuela</span>
+  </div>
+</footer>
+
+<script src="script.js?v=2"></script>
+</body>
+</html>
