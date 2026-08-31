@@ -17,7 +17,9 @@ document.querySelectorAll('.quote-check input[data-toggles]').forEach(cb => {
   sync();
 });
 
-/* Paneles de cotización — arma un mensaje de WhatsApp con lo que el usuario llenó/marcó */
+/* Paneles de cotización — arma un mensaje con lo que el usuario llenó/marcó y lo manda por WhatsApp y correo a la vez */
+const WEB3FORMS_ACCESS_KEY = '49cd053b-78fb-47ec-bcf5-bdfdd3549211';
+
 document.querySelectorAll('.quote-form').forEach(form => {
   form.addEventListener('submit', e => {
     e.preventDefault();
@@ -36,6 +38,17 @@ document.querySelectorAll('.quote-form').forEach(form => {
     });
     if (!lines.length) return;
     const message = `${title}\n\n${lines.join('\n')}`;
+
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: title,
+        message: message,
+      }),
+    }).catch(() => {});
   });
 });
