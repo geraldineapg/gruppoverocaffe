@@ -66,12 +66,11 @@
   .hero{ padding:0; overflow:visible; }
   .hero-split{
     max-width:1320px; margin:0 auto;
-    display:grid; grid-template-columns:1.15fr 0.85fr;
-    align-items:center;
-    min-height:88vh;
+    display:grid; grid-template-columns:1fr;
+    min-height:0;
   }
-  .hero-copy{ padding:4rem 3vw 0 clamp(1.5rem,4vw,4rem); position:relative; z-index:2; min-width:0; }
-  .hero-copy .eyebrow{ margin-bottom:1.8rem; }
+  .hero-copy{ padding:1rem 1.5rem 0; position:relative; z-index:2; min-width:0; text-align:center; }
+  .hero-copy .eyebrow{ margin-bottom:1.8rem; justify-content:center; }
   h1.hero-mega{
     font-family:'Poppins', sans-serif;
     font-weight:800;
@@ -88,7 +87,7 @@
     font-size:0.5em;
     margin-top:0.5rem;
   }
-  .hero-copy .hero-sub{ margin:2.2rem 0 0; max-width:46ch; text-align:left; }
+  .hero-copy .hero-sub{ margin:2.2rem auto 0; max-width:46ch; text-align:center; }
   .hero-copy .hero-tags-wrap{
     margin-top:2.6rem;
     padding:0.7rem 0;
@@ -104,11 +103,12 @@
   .hero-art{
     position:relative;
     display:flex; align-items:center; justify-content:center;
-    min-height:60vh;
+    min-height:0; order:-1;
+    padding:2.5rem 1.5rem 0;
     background:
       radial-gradient(ellipse 70% 60% at 60% 40%, rgba(0,0,0,0.16), transparent 70%);
   }
-  .hero-art svg{ width:min(80%, 460px); height:auto; }
+  .hero-art svg{ width:min(60%, 280px); height:auto; }
   .hero-art-stack{ display:flex; flex-direction:column; align-items:center; gap:0.4rem; }
   .hero-art-stack img{
     width:min(62%, 320px); height:auto;
@@ -120,20 +120,7 @@
     color:#171310;
     text-shadow:0 4px 12px rgba(0,0,0,0.25);
   }
-  .hero-art-caption{
-    position:absolute; bottom:1.4rem; left:50%; transform:translateX(-50%);
-    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.1em;
-    color:rgba(255,255,255,0.6); text-transform:uppercase;
-    text-align:center; max-width:26ch; line-height:1.6;
-  }
-  @media (max-width:960px){
-    .hero-split{ grid-template-columns:1fr; min-height:0; }
-    .hero-copy{ padding:1rem 1.5rem 0; text-align:center; }
-    .hero-copy .hero-sub{ margin-left:auto; margin-right:auto; text-align:center; }
-    .hero-art{ order:-1; min-height:0; padding:2.5rem 1.5rem 0; }
-    .hero-art svg{ width:min(60%, 280px); }
-    .hero-art-caption{ display:none; }
-  }
+  .hero-art-caption{ display:none; }
 
   /* BRAND INDEX — lista editorial en vez de tarjetas */
   .brand-index{ border-top:1px solid var(--espresso); }
@@ -313,6 +300,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=3"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>

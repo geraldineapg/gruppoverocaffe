@@ -41,14 +41,17 @@ document.querySelectorAll('.quote-form').forEach(form => {
 
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
 
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: title,
+      message: message,
+    };
+    if (form.dataset.cc) payload.cc = form.dataset.cc;
+
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        access_key: WEB3FORMS_ACCESS_KEY,
-        subject: title,
-        message: message,
-      }),
+      body: JSON.stringify(payload),
     }).catch(() => {});
   });
 });
