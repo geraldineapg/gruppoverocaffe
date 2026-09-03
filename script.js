@@ -55,3 +55,25 @@ document.querySelectorAll('.quote-form').forEach(form => {
     }).catch(() => {});
   });
 });
+
+/* Galerías con banco de fotos — muestra un número fijo de fotos, elegidas al azar de un grupo más grande, en cada carga */
+document.querySelectorAll('[data-rotate-pool]').forEach(grid => {
+  let pool;
+  try { pool = JSON.parse(grid.dataset.rotatePool); } catch (e) { return; }
+  const slots = grid.querySelectorAll('.photo-rotate');
+  if (!pool.length || !slots.length) return;
+
+  const shuffled = pool.slice();
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  slots.forEach((fig, i) => {
+    const pick = shuffled[i % shuffled.length];
+    const img = fig.querySelector('img');
+    const caption = fig.querySelector('figcaption');
+    if (img) { img.src = pick.src; img.alt = pick.alt; }
+    if (caption) caption.textContent = pick.caption;
+  });
+});
