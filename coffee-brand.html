@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee Brand — Gruppo Vero Caffè</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=27">
+<style>
+  /* Coffee Brand Colombia S.A.S. — paleta a tono con su logo real (verde) */
+  :root{
+    --brass: #4C7A2E;
+    --brass-light: #8DB84F;
+    --espresso: #1B2B12;
+    --espresso-2: #2A3F1D;
+    --cream: #F7FAF3;
+    --cream-2: #EAF1E1;
+    --line: #D6E3C8;
+    --ink-soft: #4C5A3F;
+  }
+  header{ background:#ffffff; border-bottom-color:rgba(76,122,46,0.25); }
+  .footer-bottom{ border-top-color:rgba(76,122,46,0.18); }
+  .footer-logos{ border-top-color:rgba(76,122,46,0.18); }
+  .unit-desc{ color:#2E3B22; }
+  .placeholder-note{
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.04em;
+    text-transform:uppercase; color:#fff; background:var(--brass);
+    display:inline-block; padding:0.3rem 0.7rem; border-radius:999px; margin-bottom:1rem;
+  }
+
+  /* Hero editorial — navy con acento azul, a tono con el isotipo */
+  .cb-hero{
+    position:relative;
+    min-height:74vh;
+    color:#F3F8EF;
+    display:flex; align-items:flex-end;
+    overflow:hidden;
+  }
+  .cb-hero-placeholder{
+    background:linear-gradient(135deg, var(--espresso) 0%, var(--espresso-2) 100%);
+  }
+  .cb-hero-gradient{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 640px 420px at 12% -10%, rgba(76,122,46,0.35), transparent 60%),
+      linear-gradient(0deg, rgba(27,43,18,0.93) 0%, rgba(27,43,18,0.55) 55%, rgba(27,43,18,0.72) 100%);
+    z-index:1;
+  }
+  .cb-hero-inner{ padding:3rem 1.5rem 3.2rem; }
+  .cb-hero::after{
+    content:"";
+    position:absolute; right:-90px; top:-90px;
+    width:340px; height:340px;
+    border:1px solid rgba(141,184,79,0.16);
+    border-radius:50%;
+    z-index:2;
+  }
+  .cb-hero::before{
+    content:"";
+    position:absolute; right:40px; top:60px;
+    width:220px; height:220px;
+    border:1px solid rgba(141,184,79,0.12);
+    border-radius:50%;
+    z-index:2;
+  }
+  .cb-hero-inner{ max-width:1080px; margin:0 auto; position:relative; z-index:3; }
+  .cb-breadcrumb{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem; letter-spacing:0.05em;
+    color:rgba(234,243,227,0.55);
+    margin-bottom:2.4rem;
+  }
+  .cb-breadcrumb a{ color:#8DB84F; }
+  .cb-breadcrumb a:hover{ text-decoration:underline; }
+  .cb-hero-mark{
+    display:flex; align-items:center; gap:1.1rem;
+    margin-bottom:1.8rem;
+  }
+  .cb-hero-mark img{
+    height:56px; width:56px; border-radius:50%; object-fit:cover;
+    border:1px solid rgba(141,184,79,0.4);
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+  }
+  .cb-hero-mark .eyebrow{ color:#8DB84F; }
+  .cb-hero-mark .eyebrow::before{ background:#8DB84F; }
+  h1.cb-hero-title{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(2.5rem, 5vw, 3.8rem);
+    line-height:1.08;
+    max-width:15ch;
+    text-wrap:balance;
+  }
+  h1.cb-hero-title em{ font-style:italic; font-weight:400; color:#8DB84F; }
+  .cb-hero-sub{
+    margin-top:1.5rem; max-width:54ch;
+    font-size:1.1rem; font-weight:300;
+    color:rgba(234,243,227,0.85);
+  }
+  .cb-hero-rule{
+    width:64px; height:1px;
+    background:rgba(141,184,79,0.5);
+    margin:2.2rem 0 0;
+  }
+
+  /* Sección — tipografía más editorial */
+  #coffee-brand .unit-label h2{ font-style:italic; }
+  #coffee-brand .svc-list li{
+    padding:1.15rem 0;
+    transition:padding-left 0.25s ease;
+  }
+  #coffee-brand .svc-list li:hover{ padding-left:0.4rem; }
+  #coffee-brand .svc-num{ font-size:0.78rem; color:var(--brass); }
+
+  #coffee-brand{ padding-top:2.5rem; }
+  .planta-gallery-wrap{ margin-top:0; }
+  .planta-gallery-wrap + .unit-inner{
+    margin-top:4.5rem; padding-top:4.5rem;
+    border-top:1px solid var(--line);
+  }
+  .planta-gallery-head{ text-align:center; max-width:64ch; margin:0 auto 2.5rem; }
+  .planta-gallery-head p{ margin-left:auto; margin-right:auto; }
+  .planta-specs{
+    display:flex; flex-wrap:wrap; justify-content:center;
+    gap:0.6rem; margin-top:1.4rem;
+  }
+  .planta-specs span{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.03em;
+    border:1px solid var(--line); color:var(--ink-soft);
+    background:#fff; padding:0.5rem 1rem; border-radius:999px;
+  }
+
+  /* Por qué elegirnos como aliado */
+  .ally-strip{ max-width:1080px; margin:0 auto; padding:4.5rem 1.5rem 0; }
+  .ally-head{ text-align:center; max-width:60ch; margin:0 auto 2.4rem; }
+  .ally-head h2{ font-style:italic; }
+  .ally-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.1rem; }
+  .ally-card{ border:1px solid var(--line); border-radius:8px; padding:1.5rem 1.4rem; background:#fff; }
+  .ally-card .ally-num{ font-family:'Fraunces', serif; font-weight:600; color:var(--brass); font-size:1.25rem; }
+  .ally-card h4{ font-family:'Fraunces', serif; font-weight:500; font-size:1.02rem; margin:0.7rem 0 0.5rem; line-height:1.25; }
+  .ally-card p{ font-size:0.85rem; color:var(--ink-soft); line-height:1.5; margin:0; }
+  @media (max-width:820px){ .ally-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:480px){ .ally-grid{ grid-template-columns:1fr; } }
+
+  /* Cumplimiento */
+  .compliance-strip{ max-width:1080px; margin:0 auto; padding:0 1.5rem 5.5rem; }
+  .compliance-note{
+    background:var(--cream-2); border:1px solid var(--line); border-radius:8px;
+    padding:1.4rem 1.6rem; font-size:0.88rem; color:var(--ink-soft); line-height:1.6;
+    max-width:70ch; margin:0 auto;
+  }
+  .compliance-note strong{ color:var(--espresso); }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand-group">
+      <a href="index.html" class="brand">Gruppo <span>Vero Caffè</span></a>
+      <span class="brand-page-logo-wrap"><img src="assets/coffeebrand-icon.png?v=1" class="brand-page-logo round" alt="Coffee Brand"></span>
+    </div>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" id="navToggle">☰</button>
+    <div class="navlinks" id="navLinks">
+  <div class="nav-country-group">
+    <span class="nav-country-label">🇻🇪 Venezuela</span>
+    <div class="nav-country-logos">
+      <a href="vero-caffe.html" class="nav-logo-link"><img src="assets/vero-mark.png?v=1" class="nav-logo" alt="Vero Caffè"></a>
+      <a href="vero-caffe-bar.html" class="nav-logo-link"><img src="assets/verocaffebar-logo.jpg?v=1" class="nav-logo round" alt="Vero Caffè Bar"></a>
+      <a href="vero-caffe-trattoria.html" class="nav-logo-link"><img src="assets/trattoria-logo-icon.png?v=1" class="nav-logo" alt="Vero Caffè Trattoria"></a>
+    </div>
+  </div>
+      <div class="header-icons">
+        <a href="https://wa.me/573144466948" target="_blank" rel="noopener" aria-label="WhatsApp" class="ic-whatsapp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.72.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/><path d="M12 2C6.49 2 2 6.49 2 12c0 1.76.46 3.48 1.35 5L2 22l5.13-1.34A9.96 9.96 0 0 0 12 22c5.51 0 10-4.49 10-10S17.51 2 12 2zm0 18.16h-.003a8.2 8.2 0 0 1-4.176-1.144l-.3-.178-3.043.792.813-2.968-.196-.305A8.18 8.18 0 0 1 3.84 12c0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.85 5.8 2.4a8.15 8.15 0 0 1 2.4 5.8c0 4.52-3.68 8.16-8.24 8.16z"/></svg></a>
+        <details class="lang-switch">
+        <summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.5 3.7 5.7 3.7 9s-1.3 6.5-3.7 9c-2.4-2.5-3.7-5.7-3.7-9s1.3-6.5 3.7-9z"/></svg><span>ES</span></summary>
+        <div class="lang-menu">
+          <a href="#" class="active">Español <small>ES</small></a>
+          <a href="#" class="soon">English <small>próx.</small></a>
+          <a href="#" class="soon">Italiano <small>próx.</small></a>
+          <a href="#" class="soon">Русский <small>próx.</small></a>
+          <a href="#" class="soon">中文 <small>próx.</small></a>
+        </div>
+      </details>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="cb-hero cb-hero-placeholder" style="background:linear-gradient(0deg, rgba(27,43,18,0.4) 0%, rgba(27,43,18,0.15) 55%), url('assets/coffeebrand/planta-general.jpg') center 40% / cover no-repeat;">
+  <div class="cb-hero-gradient"></div>
+  <div class="cb-hero-inner">
+    <div class="cb-breadcrumb"><a href="index.html">Inicio</a> / Coffee Brand</div>
+    <div class="cb-hero-mark">
+      <img src="assets/coffeebrand-icon.png?v=1" alt="Coffee Brand">
+      <div class="eyebrow">Trilla y selección de café · Colombia</div>
+    </div>
+    <h1 class="cb-hero-title">Coffee <em>Brand</em></h1>
+    <p class="cb-hero-sub">Planta trilladora Serintegrales — servicio de trilla y selección de café pergamino, para grandes volúmenes y microlotes, en Madrid (Cundinamarca).</p>
+    <div class="cb-hero-rule"></div>
+  </div>
+</section>
+
+<section class="ally-strip">
+  <div class="ally-head">
+    <div class="eyebrow" style="justify-content:center;">Por qué elegirnos como aliado</div>
+    <h2>Un proveedor técnico, no un intermediario</h2>
+  </div>
+  <div class="ally-grid">
+    <div class="ally-card">
+      <span class="ally-num">01</span>
+      <h4>Clasificación en cuatro niveles</h4>
+      <p>Por tamaño (11 mallas normalizadas), por peso, por densidad y por colorimetría (Bühler, Elexso y Xeltron).</p>
+    </div>
+    <div class="ally-card">
+      <span class="ally-num">02</span>
+      <h4>Grandes volúmenes y microlotes</h4>
+      <p>Capacidad instalada de 1.400 kg/hora, con flexibilidad para lotes pequeños de café de especialidad.</p>
+    </div>
+    <div class="ally-card">
+      <span class="ally-num">03</span>
+      <h4>Laboratorio propio</h4>
+      <p>Análisis, catación y trazabilidad de cada muestra antes, durante y después del proceso.</p>
+    </div>
+    <div class="ally-card">
+      <span class="ally-num">04</span>
+      <h4>Respaldo del grupo</h4>
+      <p>Parte de Gruppo Vero Caffè, junto a Inversiones Divina Pastora y Vero Caffè en Venezuela.</p>
+    </div>
+  </div>
+</section>
+
+<section class="unit accent-cb" id="coffee-brand">
+  <div class="planta-gallery-wrap">
+    <div class="planta-gallery-head">
+      <h3>Planta trilladora Serintegrales</h3>
+      <p>Bodega de 1.500&nbsp;m² en el Parque Industrial Santa Cruz, Madrid (Cundinamarca), con línea de proceso completamente automatizada y báscula camionera propia.</p>
+      <div class="planta-specs">
+        <span>1.400&nbsp;kg/hora de capacidad instalada</span>
+        <span>11 mallas normalizadas</span>
+        <span>Clasificación por color, peso y densidad</span>
+      </div>
+    </div>
+    <div class="planta-grid">
+      <figure class="planta-item span-3 wide">
+        <img src="assets/coffeebrand/planta-general.jpg?v=1" alt="Vista general de la línea de proceso de la planta trilladora Coffee Brand" loading="lazy">
+        <figcaption>Línea de proceso — elevadores, tolvas y clasificadoras</figcaption>
+      </figure>
+      <figure class="planta-item tall">
+        <img src="assets/coffeebrand/sacos-pergamino.jpg?v=1" alt="Sacos de café pergamino almacenados en la planta" loading="lazy">
+        <figcaption>Recepción de café pergamino</figcaption>
+      </figure>
+      <figure class="planta-item tall">
+        <img src="assets/coffeebrand/linea-proceso-1.jpg?v=1" alt="Elevadores y tolvas de la línea de trilla" loading="lazy">
+        <figcaption>Zona de trilladora y elevadores</figcaption>
+      </figure>
+      <figure class="planta-item tall">
+        <img src="assets/coffeebrand/linea-proceso-2.jpg?v=1" alt="Banda transportadora y clasificadoras de café almendra" loading="lazy">
+        <figcaption>Clasificación de café almendra</figcaption>
+      </figure>
+      <figure class="planta-item tall">
+        <img src="assets/coffeebrand/tolvas-almendra.jpg?v=1" alt="Tolvas de café almendra listas para empaque" loading="lazy">
+        <figcaption>Tolvas de producto y báscula de calibración</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="unit-inner">
+    <div class="unit-label">
+      <h2>Qué hacemos</h2>
+      <p class="unit-desc">Servicio de trilla y selección de café pergamino, para clientes con grandes volúmenes y para quienes requieren microlotes.</p>
+    </div>
+    <div class="unit-media">
+      <ul class="svc-list">
+        <li><span class="svc-num">•</span><span>Trilla de café pergamino — grandes volúmenes y microlotes</span></li>
+        <li><span class="svc-num">•</span><span>Selección por tamaño, peso, densidad y colorimetría</span></li>
+        <li><span class="svc-num">•</span><span>Laboratorio de análisis y catación para trazabilidad del proceso</span></li>
+      </ul>
+      <div class="presence-box">
+        <div class="eyebrow">Especificaciones de planta</div>
+        <div class="presence-list">
+          <span>1.400 kg/hora</span><span>Bodega de 1.500 m²</span><span>Báscula camionera</span><span>Laboratorio propio</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="compliance-strip">
+  <div class="compliance-note">
+    <strong>Cumplimiento —</strong> planta registrada ante la Federación Nacional de Cafeteros de Colombia (Coffee Brand Colombia S.A.S., NIT 901.136.616-1), con instalaciones eléctricas y condiciones físicas diseñadas para la obtención de certificaciones ISO, BASC, ICONTEC y RETIE.
+  </div>
+</section>
+
+<section class="quote-panel" id="cotizacion">
+  <div class="quote-panel-head">
+    <div class="eyebrow">Trilla y selección</div>
+    <h2>Solicita tu cotización</h2>
+    <p>Cuéntanos qué necesitas — marca lo que aplique y te responderemos por WhatsApp o correo electrónico con todos los detalles.</p>
+  </div>
+  <form class="quote-form" data-wa="573144466948" data-title="Cotización — Coffee Brand Colombia" data-cc="comercial@suame.com.co">
+    <div class="quote-fields-grid">
+      <div class="quote-field">
+        <label class="quote-field-label" for="cb-empresa">Nombre de la empresa</label>
+        <input class="quote-input" type="text" id="cb-empresa" name="empresa" required>
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="cb-origen">Origen de la empresa</label>
+        <input class="quote-input" type="text" id="cb-origen" name="origen de la empresa" placeholder="País / ciudad">
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="cb-telefono">Teléfono</label>
+        <input class="quote-input" type="tel" id="cb-telefono" name="teléfono" required>
+      </div>
+      <div class="quote-field">
+        <label class="quote-field-label" for="cb-correo">Correo</label>
+        <input class="quote-input" type="email" id="cb-correo" name="correo" required>
+      </div>
+    </div>
+
+    <div class="quote-req-title">Requerimiento</div>
+
+    <label class="quote-check">
+      <input type="checkbox" name="req_trilla" data-toggles="cb-sub-1">
+      <span class="quote-check-label">Servicio de trilla de café pergamino</span>
+    </label>
+    <div class="quote-subfields" id="cb-sub-1">
+      <div class="quote-radio-row">
+        <label class="quote-check"><input type="radio" name="volumen" value="Gran volumen"><span class="quote-check-label">Gran volumen</span></label>
+        <label class="quote-check"><input type="radio" name="volumen" value="Microlote"><span class="quote-check-label">Microlote</span></label>
+      </div>
+      <div class="quote-field" style="margin-top:0.9rem;">
+        <label class="quote-field-label" for="cb-sacos-1">Cantidad de sacos de pergamino</label>
+        <input class="quote-input" type="text" id="cb-sacos-1" name="cantidad de sacos de pergamino">
+      </div>
+    </div>
+
+    <label class="quote-check">
+      <input type="checkbox" name="req_clasificacion" data-toggles="cb-sub-2">
+      <span class="quote-check-label">Clasificación / selección de café almendra</span>
+    </label>
+    <div class="quote-subfields" id="cb-sub-2">
+      <div class="quote-radio-row">
+        <label class="quote-check"><input type="checkbox" name="clasificacion_tamano" value="Por tamaño (malla)"><span class="quote-check-label">Por tamaño (malla)</span></label>
+        <label class="quote-check"><input type="checkbox" name="clasificacion_peso" value="Por peso"><span class="quote-check-label">Por peso</span></label>
+        <label class="quote-check"><input type="checkbox" name="clasificacion_densidad" value="Por densidad"><span class="quote-check-label">Por densidad</span></label>
+        <label class="quote-check"><input type="checkbox" name="clasificacion_color" value="Por colorimetría"><span class="quote-check-label">Por colorimetría</span></label>
+      </div>
+      <div class="quote-field" style="margin-top:0.9rem;">
+        <label class="quote-field-label" for="cb-malla-2">Malla objetivo (si aplica)</label>
+        <input class="quote-input" type="text" id="cb-malla-2" name="malla objetivo">
+      </div>
+    </div>
+
+    <label class="quote-check">
+      <input type="checkbox" name="req_laboratorio">
+      <span class="quote-check-label">Análisis de laboratorio / catación</span>
+    </label>
+    <label class="quote-check">
+      <input type="checkbox" name="req_empaque">
+      <span class="quote-check-label">Empaque final y báscula de calibración</span>
+    </label>
+    <label class="quote-check">
+      <input type="checkbox" name="req_almacenamiento">
+      <span class="quote-check-label">Almacenamiento en bodega</span>
+    </label>
+
+    <button class="quote-submit" type="submit">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17 0-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.72.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/><path d="M12 2C6.49 2 2 6.49 2 12c0 1.76.46 3.48 1.35 5L2 22l5.13-1.34A9.96 9.96 0 0 0 12 22c5.51 0 10-4.49 10-10S17.51 2 12 2zm0 18.16h-.003a8.2 8.2 0 0 1-4.176-1.144l-.3-.178-3.043.792.813-2.968-.196-.305A8.18 8.18 0 0 1 3.84 12c0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.85 5.8 2.4a8.15 8.15 0 0 1 2.4 5.8c0 4.52-3.68 8.16-8.24 8.16z"/></svg>
+      Enviar por WhatsApp
+    </button>
+  </form>
+</section>
+
+<footer id="contacto">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      Gruppo Vero Caffè
+      <p>Il Mondo Vero — dal chicco alla tazza, dalla tazza a uno stile di vita.</p>
+    </div>
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <p><a href="mailto:comercial@suame.com.co">comercial@suame.com.co</a></p>
+      <p><a href="https://wa.me/573144466948" target="_blank" rel="noopener">WhatsApp +57 314-4466948</a></p>
+      <p>Madrid, Cundinamarca — Colombia</p>
+    </div>
+    <div class="footer-col">
+      <h3>Il Mondo Vero</h3>
+      <li><a href="divina-pastora.html">Inversiones Divina Pastora</a></li>
+      <li><a href="vero-caffe.html">VERO CAFFÈ</a></li>
+      <li><a href="vero-caffe-bar.html">VERO CAFFÈ BAR</a></li>
+      <li><a href="vero-caffe-trattoria.html">VERO CAFFÈ TRATTORIA</a></li>
+      <li><a href="coffee-brand.html">COFFEE BRAND</a></li>
+    </div>
+  </div>
+
+  <div class="footer-logos">
+    <div class="footer-country-group">
+      <span class="footer-country-label">🇻🇪 Venezuela</span>
+      <div class="footer-country-logos">
+        <a class="footer-logo-item footer-logo-round" href="divina-pastora.html"><img src="assets/divina-ig-profile.jpg?v=1" alt="Inversiones Divina Pastora"></a>
+        <a class="footer-logo-item" href="vero-caffe.html"><img src="assets/vero-mark.png?v=1" alt="Vero Caffè"></a>
+        <a class="footer-logo-item footer-logo-round" href="vero-caffe-bar.html"><img src="assets/verocaffebar-logo.jpg?v=1" alt="Vero Caffè Bar"></a>
+        <a class="footer-logo-item" href="vero-caffe-trattoria.html"><img src="assets/trattoria-logo-color.png?v=1" alt="Vero Caffè Trattoria"></a>
+      </div>
+    </div>
+    <div class="footer-country-divider"></div>
+    <div class="footer-country-group">
+      <span class="footer-country-label">🇨🇴 Colombia</span>
+      <div class="footer-country-logos">
+        <a class="footer-logo-item" href="coffee-brand.html"><img src="assets/coffeebrand-icon.png?v=1" alt="Coffee Brand"></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Gruppo Vero Caffè</span>
+    <span>Venezuela</span>
+  </div>
+</footer>
+
+<script src="script.js?v=5"></script>
+</body>
+</html>
