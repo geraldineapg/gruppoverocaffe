@@ -104,6 +104,12 @@ nav{
 .nav-logo.round{
   border-radius:50%; object-fit:cover;
 }
+.nav-logo-wordmark{
+  width:auto; height:40px; max-width:130px; object-fit:contain; display:block;
+}
+@media (max-width:1180px) and (min-width:821px){
+  .nav-logo-wordmark{ height:32px; max-width:104px; }
+}
 .navlinks a{
   color:var(--espresso);
   opacity:0.75;
@@ -586,6 +592,9 @@ a.footer-logo-item:hover{opacity:1;}
 .footer-logo-round img{
   border-radius:50%;
   object-fit:cover;
+}
+.footer-logo-item.footer-logo-wordmark img{
+  height:28px; width:auto; max-width:140px;
 }
 
 @media (max-width:1180px) and (min-width:821px){
