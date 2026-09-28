@@ -233,6 +233,81 @@
     .brand-index-logo.round{ width:56px; height:56px; }
     .brand-index-tag{ font-size:0.62rem; min-width:0; }
   }
+
+  /* HISTORIA — de la cereza a la taza (avanza con el scroll) */
+  .story{ --hdr:96px; --open:0; --selin:0; --sel:0; --bean:0; --roast:0; --grind:0; --cup:0; --pop:0;
+    position:relative; height:520vh; background:var(--espresso); color:#F7F5F3; }
+  .story-stage{
+    position:sticky; top:var(--hdr); height:calc(100vh - var(--hdr)); min-height:520px;
+    max-width:1180px; margin:0 auto; padding:0 1.5rem;
+    display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:2rem;
+  }
+  .story-copy{ position:relative; min-height:15rem; }
+  .story-kicker{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#E8C766; }
+  .story-title{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(2rem, 4.4vw, 3.4rem); line-height:1.05; margin:0.6rem 0 1.6rem; }
+  .story-title em{ font-style:italic; font-weight:400; color:#E8C766; }
+  .story-steps{ position:relative; min-height:9.5rem; }
+  .story-step{ position:absolute; inset:0 auto auto 0; opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease; pointer-events:none; max-width:40ch; }
+  .story-step.on{ opacity:1; transform:none; pointer-events:auto; }
+  .story-step h3{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(1.5rem, 2.6vw, 2rem); color:#fff; }
+  .story-step p{ margin-top:0.6rem; color:rgba(255,255,255,0.78); font-size:1.02rem; line-height:1.55; }
+  .story-links{ display:flex; flex-wrap:wrap; gap:0.5rem 1.4rem; margin-top:0.9rem; }
+  .story-step a{ display:inline-block; color:#E8C766; font-family:'IBM Plex Mono', monospace; font-size:0.74rem; letter-spacing:0.06em; text-transform:uppercase; border-bottom:1px solid rgba(232,199,102,0.5); }
+  .story-dots{ display:flex; gap:0.55rem; margin-top:2rem; }
+  .story-dots span{ width:26px; height:3px; border-radius:2px; background:rgba(255,255,255,0.22); transition:background .4s ease; }
+  .story-dots span.on{ background:#E8C766; }
+  .story-art{ display:flex; justify-content:center; }
+  .story-art svg{ width:min(100%, 460px); height:auto; overflow:visible; }
+  .story-art svg *{ transform-box:view-box; }
+
+  /* capas de la escena: solo opacity y transform */
+  #st-cherry{ opacity:calc(1 - var(--selin)); }
+  #st-half-l{ transform-origin:200px 310px; transform:translateX(calc(var(--open) * -44px)) rotate(calc(var(--open) * -26deg)); }
+  #st-half-r{ transform-origin:200px 310px; transform:translateX(calc(var(--open) * 44px)) rotate(calc(var(--open) * 26deg)); }
+  #st-pulp{ opacity:clamp(0, calc(var(--open) * 2), 1); }
+  #st-twin{ transform-origin:200px 216px; transform:scale(calc(0.8 + var(--open) * 0.2)); }
+  #st-leaf{ transform-origin:200px 122px; opacity:calc(1 - var(--open)); transform:rotate(calc(var(--open) * 30deg)); }
+  #st-beanwrap{ transform-origin:200px 215px; opacity:calc(var(--bean) * (1 - var(--grind))); transform:scale(calc(0.7 + var(--bean) * 0.3 - var(--grind) * 0.35)); }
+  #st-sort{ opacity:calc(var(--selin) * (1 - var(--bean))); transform-origin:200px 300px; transform:translateY(-62px) scale(1.22); }
+  .sb-x{ opacity:calc(1 - clamp(0, (var(--sel) - var(--t)) * 6, 1)); transform:translateY(calc(clamp(0, (var(--sel) - var(--t)) * 6, 1) * 92px)); }
+  .sb-g .sb-ring{ opacity:clamp(0, calc((var(--sel) - var(--t) - 0.04) * 6), 1); }
+  #st-scan{ transform:translateX(calc(34px + var(--sel) * 332px)); opacity:calc(clamp(0, var(--sel) * 20, 1) * clamp(0, (1 - var(--sel)) * 20, 1)); }
+  .st-lbl{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.14em; fill:#E8C766; opacity:.85; }
+  #st-bean-md{ opacity:clamp(0, calc(var(--roast) * 2), 1); }
+  #st-bean-dk{ opacity:clamp(0, calc(var(--roast) * 2 - 1), 1); }
+  #st-glow{ opacity:calc(var(--roast) * (1 - var(--grind)) * .9); }
+  #st-heat{ opacity:calc(var(--roast) * (1 - var(--grind))); }
+  #st-heat path{ animation:stHeat 1.6s ease-in-out infinite; }
+  #st-heat path:nth-child(2){ animation-delay:.25s; } #st-heat path:nth-child(3){ animation-delay:.5s; }
+  #st-ground{ opacity:calc(var(--grind) * (1 - var(--cup))); transform-origin:200px 300px; transform:scale(calc(0.6 + var(--grind) * 0.4)); }
+  #st-cup{ opacity:var(--cup); transform:translateY(calc((1 - var(--cup)) * 26px)); }
+  #st-steam path{ animation:stSteam 3s ease-in-out infinite; opacity:0; }
+  #st-pop{ transform-origin:200px 168px; opacity:var(--pop); transform:translateY(calc((1 - var(--pop)) * 46px)) scale(calc(0.35 + var(--pop) * 0.65)); }
+  #st-pop-in{ animation:stFloat 3.4s ease-in-out infinite; }
+  @keyframes stFloat{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-7px); } }
+  #st-steam path:nth-child(2){ animation-delay:.9s; } #st-steam path:nth-child(3){ animation-delay:1.8s; }
+  @keyframes stHeat{ 0%,100%{ transform:translateY(0); opacity:.55; } 50%{ transform:translateY(-8px); opacity:1; } }
+  @keyframes stSteam{ 0%{ transform:translateY(10px); opacity:0; } 35%{ opacity:.75; } 100%{ transform:translateY(-26px); opacity:0; } }
+
+  /* sin movimiento (o sin JS): todo visible, en lista */
+  .story.static{ height:auto; }
+  .story.static .story-stage{ position:static; height:auto; padding-top:4rem; padding-bottom:4rem; --open:1; --selin:1; --sel:1; --bean:1; --roast:1; --grind:1; --cup:1; --pop:1; }
+  .story.static #st-cup{ --cup:1; }
+  .story.static .story-steps{ min-height:0; display:grid; gap:1.6rem; }
+  .story.static .story-step{ position:static; opacity:1; transform:none; }
+  .story.static .story-dots{ display:none; }
+  .story.static .story-steam, .story.static #st-steam path{ animation:none; }
+  @media (prefers-reduced-motion: reduce){ #st-heat path, #st-steam path, #st-pop-in{ animation:none; } }
+  @media (max-width:820px){
+    .story{ height:440vh; }
+    .story-stage{ grid-template-columns:1fr; grid-template-rows:auto 1fr; align-content:start; gap:0.5rem; padding-top:1rem; min-height:0; }
+    .story-art{ order:-1; } .story-art svg{ width:min(64vw, 250px); }
+    .story-title{ margin-bottom:0.8rem; font-size:1.8rem; }
+    .story-copy{ text-align:center; } .story-step{ left:0; right:0; margin:0 auto; } .story-links{ justify-content:center; }
+    .story-dots{ justify-content:center; margin-top:1rem; }
+    .story-steps{ min-height:12.5rem; }
+    .story-step p{ font-size:.95rem; }
+  }
 </style>
 </head>
 <body>
@@ -338,6 +413,150 @@
   <p>Gruppo Vero Caffè nace de la unión entre el oficio cafetero italiano de nuestra familia y la riqueza del café venezolano. A través de <strong>Inversiones Divina Pastora</strong>, <strong>VERO CAFFÈ</strong>, <strong>VERO CAFFÈ BAR</strong> y <strong>VERO CAFFÈ TRATTORIA</strong>, recorremos cada etapa del camino: la selección y exportación del grano verde, el tueste bajo marca propia, y la hospitalidad de nuestras cafeterías y trattorias — donde cada taza y cada plato llevan el mismo nombre de familia.</p>
 </section>
 
+<section class="story static" id="historia" aria-label="De la cereza a la taza">
+  <div class="story-stage">
+    <div class="story-copy">
+      <div class="story-kicker">Dal chicco alla tazza</div>
+      <h2 class="story-title">De la cereza <em>a la taza</em></h2>
+      <div class="story-steps">
+        <div class="story-step on" data-step="0">
+          <h3>La cereza</h3>
+          <p>Madura en las montañas cafeteras de Venezuela. Dentro de cada fruto se esconden dos granos.</p>
+        </div>
+        <div class="story-step" data-step="1">
+          <h3>La selección</h3>
+          <p>Cada grano pasa por clasificación óptica y por tamaño, densidad y color. Solo el mejor sigue adelante.</p>
+          <div class="story-links">
+            <a href="divina-pastora.html">Inversiones Divina Pastora →</a>
+            <a href="coffee-brand.html">Coffee Brand →</a>
+          </div>
+        </div>
+        <div class="story-step" data-step="2">
+          <h3>El tueste</h3>
+          <p>El grano verde, ya seleccionado por tamaño, densidad y color, se lleva a su punto con técnica italiana.</p>
+<div class="story-links">
+          <a href="vero-caffe.html">Vero Caffè →</a>
+          </div>
+        </div>
+        <div class="story-step" data-step="3">
+          <h3>La molienda</h3>
+          <p>Se muele justo antes de servir, para que el café conserve todas sus propiedades sensoriales.</p>
+<div class="story-links">
+          <a href="vero-caffe.html">Vero Caffè →</a>
+          </div>
+        </div>
+        <div class="story-step" data-step="4">
+          <h3>La taza</h3>
+          <p>Servida en una mesa compartida: en el Bar, en la Trattoria, en casa.</p>
+<div class="story-links">
+          <a href="vero-caffe-bar.html">Vero Caffè Bar →</a>
+          <a href="vero-caffe-trattoria.html">Vero Caffè Trattoria →</a>
+          </div>
+        </div>
+      </div>
+      <div class="story-dots" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="story-art" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <defs>
+          <radialGradient id="stRed" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#E0434D"/><stop offset="0.6" stop-color="#B3202A"/><stop offset="1" stop-color="#7C1520"/></radialGradient>
+          <radialGradient id="stGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#F59A3B" stop-opacity=".55"/><stop offset="1" stop-color="#F59A3B" stop-opacity="0"/></radialGradient>
+          <linearGradient id="stScan" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E8C766" stop-opacity="0"/><stop offset=".5" stop-color="#E8C766" stop-opacity=".45"/><stop offset="1" stop-color="#E8C766" stop-opacity="0"/></linearGradient>
+          <linearGradient id="stBeanP" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#DCE0A0"/><stop offset="1" stop-color="#A9B96C"/></linearGradient>
+          <linearGradient id="stBeanG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A9BD6E"/><stop offset="1" stop-color="#6E8244"/></linearGradient>
+          <linearGradient id="stBeanM" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C98B4A"/><stop offset="1" stop-color="#8A5526"/></linearGradient>
+          <linearGradient id="stBeanD" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5A3620"/><stop offset="1" stop-color="#2E1A10"/></linearGradient>
+          <linearGradient id="stPorc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#DDD4C8"/><stop offset=".28" stop-color="#FFFFFF"/><stop offset=".7" stop-color="#F4EEE6"/><stop offset="1" stop-color="#CFC5B8"/></linearGradient>
+          <linearGradient id="stSaucer" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D5CCC0"/><stop offset=".4" stop-color="#FFFFFF"/><stop offset="1" stop-color="#CBC1B4"/></linearGradient>
+          <radialGradient id="stCrema" cx="45%" cy="40%" r="65%"><stop offset="0" stop-color="#D9A468"/><stop offset=".55" stop-color="#A9672F"/><stop offset="1" stop-color="#5A3016"/></radialGradient>
+        </defs>
+        <ellipse id="st-glow" cx="200" cy="215" rx="150" ry="150" fill="url(#stGlow)"/>
+        <g id="st-cherry">
+          <g id="st-pulp">
+            <ellipse cx="200" cy="218" rx="82" ry="102" fill="#F4CDA8"/>
+            <ellipse cx="200" cy="218" rx="74" ry="94" fill="#EFBF95" opacity=".55"/>
+            <g id="st-twin">
+              <g transform="rotate(-7 168 216)">
+                <ellipse cx="168" cy="216" rx="33" ry="58" fill="url(#stBeanP)"/>
+                <path d="M172 164 C156 200 184 232 166 272" stroke="#7E8A4B" stroke-width="5" fill="none" stroke-linecap="round"/>
+                <ellipse cx="156" cy="190" rx="6" ry="16" fill="rgba(255,255,255,.35)" transform="rotate(12 156 190)"/>
+              </g>
+              <g transform="rotate(7 232 216)">
+                <ellipse cx="232" cy="216" rx="33" ry="58" fill="url(#stBeanP)"/>
+                <path d="M228 164 C244 200 216 232 234 272" stroke="#7E8A4B" stroke-width="5" fill="none" stroke-linecap="round"/>
+                <ellipse cx="220" cy="190" rx="6" ry="16" fill="rgba(255,255,255,.35)" transform="rotate(12 220 190)"/>
+              </g>
+            </g>
+          </g>
+          <path id="st-half-l" d="M200 120 A95 95 0 0 0 200 310 Z" fill="url(#stRed)"/>
+          <path id="st-half-r" d="M200 120 A95 95 0 0 1 200 310 Z" fill="url(#stRed)"/>
+          <g id="st-leaf">
+            <path d="M200 122 C200 100 206 90 214 84" stroke="#5E7A3A" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M206 100 C226 78 254 80 268 92 C250 112 224 114 206 100 Z" fill="#6F8F45"/>
+          </g>
+        </g>
+        <g id="st-sort">
+          <rect x="34" y="292" width="332" height="12" rx="6" fill="#3A322C"/>
+          <rect x="34" y="292" width="332" height="4" rx="2" fill="rgba(255,255,255,.14)"/>
+          <circle cx="42" cy="298" r="9" fill="#2A241F"/><circle cx="358" cy="298" r="9" fill="#2A241F"/>
+          <g class="sb-g" style="--t:0.058"><ellipse class="sb-ring" cx="62" cy="266" rx="20" ry="27" fill="none" stroke="#E8C766" stroke-width="2.4"/><g transform="translate(62 266) rotate(-15)"><ellipse cx="0" cy="0" rx="13" ry="20" fill="url(#stBeanG)"/><path d="M-2 -17 C-8 -4 4 6 -1 17" stroke="rgba(0,0,0,.4)" stroke-width="2.4" fill="none" stroke-linecap="round"/></g></g>
+          <g class="sb-x" style="--t:0.162"><g transform="translate(101 266) rotate(3)"><ellipse cx="0" cy="0" rx="13" ry="20" fill="#4C3A22"/><path d="M-2 -17 C-8 -4 4 6 -1 17" stroke="#1E140B" stroke-width="2.4" fill="none"/><circle cx="5" cy="-6" r="3" fill="#1E140B"/></g></g>
+          <g class="sb-g" style="--t:0.266"><ellipse class="sb-ring" cx="140" cy="266" rx="20" ry="27" fill="none" stroke="#E8C766" stroke-width="2.4"/><g transform="translate(140 266) rotate(-11)"><ellipse cx="0" cy="0" rx="13" ry="20" fill="url(#stBeanG)"/><path d="M-2 -17 C-8 -4 4 6 -1 17" stroke="rgba(0,0,0,.4)" stroke-width="2.4" fill="none" stroke-linecap="round"/></g></g>
+          <g class="sb-g" style="--t:0.369"><ellipse class="sb-ring" cx="179" cy="266" rx="20" ry="27" fill="none" stroke="#E8C766" stroke-width="2.4"/><g transform="translate(179 266) rotate(6)"><ellipse cx="0" cy="0" rx="13" ry="20" fill="url(#stBeanG)"/><path d="M-2 -17 C-8 -4 4 6 -1 17" stroke="rgba(0,0,0,.4)" stroke-width="2.4" fill="none" stroke-linecap="round"/></g></g>
+          <g class="sb-x" style="--t:0.473"><g transform="translate(218 266) rotate(-8)"><ellipse cx="0" cy="4" rx="9" ry="14" fill="#D8CF7A"/><path d="M-1 -8 C-5 2 3 8 0 16" stroke="#8C8440" stroke-width="2" fill="none"/></g></g>
+          <g class="sb-g" style="--t:0.576"><ellipse class="sb-ring" cx="257" cy="266" rx="20" ry="27" fill="none" stroke="#E8C766" stroke-width="2.4"/><g transform="translate(257 266) rotate(10)"><ellipse cx="0" cy="0" rx="13" ry="20" fill="url(#stBeanG)"/><path d="M-2 -17 C-8 -4 4 6 -1 17" stroke="rgba(0,0,0,.4)" stroke-width="2.4" fill="none" stroke-linecap="round"/></g></g>
+          <g class="sb-x" style="--t:0.68"><g transform="translate(296 266) rotate(-2)"><ellipse cx="0" cy="0" rx="13" ry="20" fill="#8FA35A"/><path d="M-2 -17 C-8 -4 4 6 -1 17" stroke="#4F5F2C" stroke-width="2.4" fill="none"/><circle cx="-3" cy="6" r="5" fill="#3A2A18"/><path d="M6 -10 l4 6 -6 2z" fill="#3A2A18"/></g></g>
+          <g class="sb-g" style="--t:0.784"><ellipse class="sb-ring" cx="335" cy="266" rx="20" ry="27" fill="none" stroke="#E8C766" stroke-width="2.4"/><g transform="translate(335 266) rotate(14)"><ellipse cx="0" cy="0" rx="13" ry="20" fill="url(#stBeanG)"/><path d="M-2 -17 C-8 -4 4 6 -1 17" stroke="rgba(0,0,0,.4)" stroke-width="2.4" fill="none" stroke-linecap="round"/></g></g>
+          <g id="st-scan"><rect x="-16" y="205" width="32" height="100" fill="url(#stScan)"/><rect x="-1" y="205" width="2" height="100" fill="#F6E2A0"/></g>
+          <text class="st-lbl" x="200" y="338" text-anchor="middle">CLASIFICACIÓN ÓPTICA</text>
+        </g>
+        <g id="st-beanwrap">
+          <g transform="rotate(24 200 215)">
+            <ellipse cx="200" cy="215" rx="62" ry="92" fill="url(#stBeanG)"/>
+            <ellipse id="st-bean-md" cx="200" cy="215" rx="62" ry="92" fill="url(#stBeanM)"/>
+            <ellipse id="st-bean-dk" cx="200" cy="215" rx="62" ry="92" fill="url(#stBeanD)"/>
+            <path d="M196 132 C170 175 232 235 200 300" stroke="rgba(0,0,0,.38)" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <ellipse cx="176" cy="168" rx="9" ry="22" fill="rgba(255,255,255,.18)" transform="rotate(20 176 168)"/>
+          </g>
+        </g>
+        <g id="st-heat" fill="none" stroke="#F59A3B" stroke-width="5" stroke-linecap="round">
+          <path d="M150 330 q10 -14 0 -28 q-10 -14 0 -28"/>
+          <path d="M200 340 q10 -14 0 -28 q-10 -14 0 -28"/>
+          <path d="M250 330 q10 -14 0 -28 q-10 -14 0 -28"/>
+        </g>
+        <g id="st-ground">
+          <path d="M95 318 C110 262 160 232 200 232 C240 232 290 262 305 318 Z" fill="#7A4A2A" stroke="#C99A62" stroke-width="2"/>
+          <path d="M130 318 C142 280 172 258 200 258 C228 258 258 280 270 318 Z" fill="#8E5B35"/>
+          <g fill="#C99A62"><circle cx="150" cy="290" r="4"/><circle cx="178" cy="272" r="3.5"/><circle cx="205" cy="268" r="4"/><circle cx="232" cy="280" r="3.5"/><circle cx="252" cy="300" r="4"/><circle cx="190" cy="298" r="3"/><circle cx="222" cy="304" r="3"/><circle cx="165" cy="308" r="3"/></g>
+        </g>
+        <g id="st-cup">
+          <ellipse cx="200" cy="338" rx="142" ry="24" fill="url(#stSaucer)"/>
+          <ellipse cx="200" cy="336" rx="104" ry="15" fill="#E7DFD4"/>
+          <ellipse cx="200" cy="334" rx="112" ry="17" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="2"/>
+          <g transform="rotate(-8 92 344)"><ellipse cx="66" cy="344" rx="15" ry="7" fill="#CFCAC1"/><rect x="78" y="341.5" width="58" height="5" rx="2.5" fill="#C4BFB6"/></g>
+          <ellipse cx="200" cy="330" rx="92" ry="9" fill="rgba(0,0,0,.28)"/>
+          <path d="M291 252 C346 238 352 300 300 302" stroke="url(#stPorc)" stroke-width="15" fill="none" stroke-linecap="round"/>
+          <path d="M291 252 C336 244 340 292 298 294" stroke="rgba(0,0,0,.08)" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M106 238 C106 306 142 334 200 334 C258 334 294 306 294 238 Z" fill="url(#stPorc)"/>
+          <ellipse cx="200" cy="334" rx="40" ry="6" fill="#CDC3B6"/>
+          <ellipse cx="200" cy="238" rx="94" ry="16" fill="url(#stPorc)"/>
+          <ellipse cx="200" cy="238" rx="86" ry="12.5" fill="#EFE8DE"/>
+          <ellipse cx="200" cy="239" rx="82" ry="10.5" fill="url(#stCrema)"/>
+          <path d="M132 236 C160 229 236 229 268 236" stroke="rgba(255,236,200,.5)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <ellipse cx="172" cy="238" rx="26" ry="3.6" fill="rgba(255,240,210,.35)"/>
+          <path d="M120 262 C124 292 140 312 170 322" stroke="rgba(255,255,255,.85)" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>
+          <image href="assets/vero-mark-crop.png?v=1" x="176" y="262" width="48" height="58"/>
+        </g>
+        <g id="st-steam" fill="none" stroke="#F7F5F3" stroke-width="5" stroke-linecap="round" style="opacity:var(--cup)">
+          <path d="M150 214 q-14 -20 0 -40 q14 -20 0 -40"/>
+          <path d="M250 214 q-14 -20 0 -40 q14 -20 0 -40"/>
+        </g>
+        <g id="st-pop"><g id="st-pop-in"><image href="assets/vero-cherry.png?v=1" x="180" y="96" width="40" height="72"/></g></g>
+      </svg>
+    </div>
+  </div>
+</section>
+
 <section class="brand-index" id="marcas" aria-label="Nuestras marcas">
   <a href="divina-pastora.html" class="brand-index-item" style="--row-accent:#006AAF;">
     <span class="brand-index-logo-box"><img src="assets/divina-ig-profile.jpg?v=1" class="brand-index-logo round" alt="Divina Pastora"></span>
@@ -412,6 +631,39 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var s=document.getElementById('historia'); if(!s) return;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) return;
+  s.classList.remove('static');
+  var stage=s.querySelector('.story-stage'), header=document.querySelector('header');
+  var steps=[].slice.call(s.querySelectorAll('.story-step')), dots=[].slice.call(s.querySelectorAll('.story-dots span'));
+  var ticking=false, cur=-1;
+  function seg(p,a,b){ return Math.min(1,Math.max(0,(p-a)/(b-a))); }
+  function ease(t){ return t*t*(3-2*t); }
+  function update(){
+    ticking=false;
+    var hdr=header?header.offsetHeight:96; s.style.setProperty('--hdr',hdr+'px');
+    var r=s.getBoundingClientRect(), total=s.offsetHeight-stage.offsetHeight;
+    if(r.bottom<0 || r.top>innerHeight) return;
+    var p=Math.min(1,Math.max(0,(hdr-r.top)/total));
+    s.style.setProperty('--open',ease(seg(p,0.02,0.15)).toFixed(3));
+    s.style.setProperty('--selin',ease(seg(p,0.15,0.22)).toFixed(3));
+    s.style.setProperty('--sel',seg(p,0.24,0.40).toFixed(3));
+    s.style.setProperty('--bean',ease(seg(p,0.41,0.48)).toFixed(3));
+    s.style.setProperty('--roast',seg(p,0.50,0.65).toFixed(3));
+    s.style.setProperty('--grind',ease(seg(p,0.67,0.78)).toFixed(3));
+    s.style.setProperty('--cup',ease(seg(p,0.81,0.90)).toFixed(3));
+    s.style.setProperty('--pop',ease(seg(p,0.90,0.97)).toFixed(3));
+    var i=p<0.20?0:p<0.44?1:p<0.66?2:p<0.80?3:4;
+    if(i!==cur){ cur=i; steps.forEach(function(e,k){ e.classList.toggle('on',k===i); }); dots.forEach(function(e,k){ e.classList.toggle('on',k<=i); }); }
+  }
+  function req(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
+  addEventListener('scroll',req,{passive:true}); addEventListener('resize',req);
+  update();
+})();
+</script>
 <script src="script.js?v=5"></script>
 </body>
 </html>
