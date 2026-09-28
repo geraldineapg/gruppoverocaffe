@@ -234,6 +234,14 @@
   .btn-hero-ghost{ border:1.5px solid rgba(255,255,255,0.75); color:#fff; }
   .btn-hero-ghost:hover{ background:#fff; color:#171310; transform:translateY(-2px); }
   .btn-hero:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
+  .vc-hero-proof{
+    list-style:none; display:flex; flex-wrap:wrap; gap:1.2rem 2.6rem;
+    margin-top:2.2rem; padding-top:1.5rem;
+    border-top:1px solid rgba(255,138,122,0.45); max-width:48rem;
+    animation:heroRise 0.8s cubic-bezier(.2,.7,.2,1) .66s both;
+  }
+  .vc-hero-proof strong{ display:block; font-family:'Fraunces', serif; font-weight:500; font-size:clamp(1.7rem, 3vw, 2.2rem); line-height:1; color:#FF8A7A; }
+  .vc-hero-proof span{ display:block; margin-top:0.4rem; font-family:'IBM Plex Mono', monospace; font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.75); }
   #productos{ scroll-margin-top:100px; } #cotizacion{ scroll-margin-top:100px; }
   @keyframes heroRise{ from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:none; } }
   .vc-hero-mark, h1.vc-hero-title, .vc-hero-tagline, .vc-hero-sub, .vc-hero-cta{ animation:heroRise 0.8s cubic-bezier(.2,.7,.2,1) both; }
@@ -300,6 +308,11 @@
       <a href="#cotizacion" class="btn-hero btn-hero-primary">Cotizar café</a>
       <a href="#productos" class="btn-hero btn-hero-ghost">Ver productos</a>
     </div>
+    <ul class="vc-hero-proof" aria-label="Cifras de la torrefactora">
+      <li><strong>200 t</strong><span>De tueste por turno de 8 h</span></li>
+      <li><strong>45 paq/min</strong><span>Por empacadora</span></li>
+      <li><strong>100% arábica</strong><span>Café molido</span></li>
+    </ul>
   </div>
 </section>
 
