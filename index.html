@@ -69,7 +69,8 @@
     display:grid; grid-template-columns:1fr;
     min-height:0;
   }
-  .hero-copy{ padding:1rem 1.5rem 0; position:relative; z-index:2; min-width:0; text-align:center; }
+  .hero{ --hero-gap:clamp(2rem, 4.2vw, 3.2rem); }
+  .hero-copy{ padding:0 1.5rem 0; position:relative; z-index:2; min-width:0; text-align:center; }
   .hero-copy .eyebrow{ margin-bottom:1.8rem; justify-content:center; }
   h1.hero-mega{
     font-family:'Poppins', sans-serif;
@@ -87,7 +88,62 @@
     font-size:0.5em;
     margin-top:0.5rem;
   }
-  .hero-copy .hero-sub{ margin:2.2rem auto 0; max-width:46ch; text-align:center; }
+  .hero-copy .hero-sub{ margin:var(--hero-gap) auto 0; max-width:46ch; text-align:center; }
+  /* Botones y cifras de la portada */
+  .hero-cta{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:0.9rem;
+    margin-top:2.2rem;
+  }
+  .btn-hero{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:0.95rem 1.7rem; border-radius:999px;
+    font-family:'Poppins', sans-serif; font-weight:700; font-size:0.86rem;
+    letter-spacing:0.04em; text-transform:uppercase;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+  }
+  .btn-hero-primary{
+    background:#E8C766; color:#171310;
+    box-shadow:0 8px 22px rgba(0,0,0,0.28);
+  }
+  .btn-hero-primary:hover{ transform:translateY(-2px); box-shadow:0 12px 28px rgba(0,0,0,0.34); background:#F6E2A0; }
+  .btn-hero-ghost{
+    border:1.5px solid rgba(255,255,255,0.7); color:#fff;
+  }
+  .btn-hero-ghost:hover{ background:#fff; color:var(--brass); transform:translateY(-2px); }
+  .btn-hero:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
+  .hero-proof{
+    list-style:none; display:flex; flex-wrap:wrap; justify-content:center;
+    gap:1.2rem 3rem; margin-top:2.2rem;
+  }
+  .hero-proof li{ text-align:center; min-width:9rem; }
+  .hero-proof strong{
+    display:block; font-family:'Fraunces', serif; font-weight:500;
+    font-size:clamp(1.9rem, 3.4vw, 2.5rem); line-height:1; color:#E8C766;
+  }
+  .hero-proof span{
+    display:block; margin-top:0.4rem;
+    font-family:'IBM Plex Mono', monospace; font-size:0.68rem;
+    letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.72);
+  }
+  #marcas{ scroll-margin-top:110px; }
+
+  /* Entrada de la portada: una sola vez, sutil */
+  @keyframes heroRise{ from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:none; } }
+  @keyframes mapFromLeft{ from{ opacity:0; transform:translateX(-26px); } to{ opacity:1; transform:none; } }
+  @keyframes mapFromRight{ from{ opacity:0; transform:translateX(26px); } to{ opacity:1; transform:none; } }
+  @keyframes linkGrow{ from{ opacity:0; transform:scaleX(0.2); } to{ opacity:1; transform:none; } }
+  h1.hero-mega, .hero-art-signature, .hero-copy .hero-sub, .hero-cta, .hero-proof{
+    animation:heroRise 0.8s cubic-bezier(.2,.7,.2,1) both;
+  }
+  h1.hero-mega{ animation-delay:0.05s; }
+  .hero-maps .map-it{ animation:mapFromLeft 0.9s cubic-bezier(.2,.7,.2,1) 0.3s both; }
+  .hero-maps .map-ve{ animation:mapFromRight 0.9s cubic-bezier(.2,.7,.2,1) 0.3s both; }
+  .map-link{ animation:linkGrow 0.7s ease 0.85s both; }
+  .hero-art-signature{ animation-delay:1s; }
+  .hero-copy .hero-sub{ animation-delay:1.1s; }
+  .hero-cta{ animation-delay:1.2s; }
+  .hero-proof{ animation-delay:1.3s; }
+
   .hero-copy .hero-tags-wrap{
     margin-top:2.6rem;
     padding:0.7rem 0;
@@ -103,20 +159,26 @@
   .hero-art{
     position:relative;
     display:flex; align-items:center; justify-content:center;
-    min-height:0; order:-1;
-    padding:2.5rem 1.5rem 0;
+    min-height:0;
+    padding:var(--hero-gap) 1.5rem 0;
     background:
       radial-gradient(ellipse 70% 60% at 60% 40%, rgba(0,0,0,0.16), transparent 70%);
   }
   .hero-art svg{ width:min(60%, 280px); height:auto; }
   .hero-art-stack{ display:flex; flex-direction:column; align-items:center; gap:0.4rem; }
-  .hero-art-stack img{
-    width:min(62%, 320px); height:auto;
-    filter:drop-shadow(0 14px 24px rgba(0,0,0,0.3));
-  }
+  .hero-head{ padding:3.2rem 1.5rem 0; text-align:center; }
+  .hero-maps{ display:flex; align-items:center; justify-content:center; gap:clamp(0.6rem, 2.4vw, 1.6rem); }
+  .hero-maps img{ height:auto; filter:drop-shadow(0 14px 24px rgba(0,0,0,0.3)); }
+  .hero-maps .map-it{ width:clamp(96px, 15vw, 176px); }
+  .hero-maps .map-ve{ width:clamp(124px, 20vw, 236px); }
+  .map-link{ display:flex; align-items:center; gap:0.5rem; }
+  .map-line{ display:block; width:clamp(18px, 4vw, 56px); height:1px; background:linear-gradient(90deg, transparent, #E8C766); }
+  .map-line:last-child{ background:linear-gradient(90deg, #E8C766, transparent); }
+  .hero-art .map-bean{ width:clamp(16px, 2.2vw, 26px); height:auto; flex:0 0 auto; }
   .hero-art-signature{
     font-family:'Alex Brush', cursive;
     font-size:clamp(2.1rem, 4.2vw, 3rem);
+    line-height:1.05;
     color:#E8C766;
     text-shadow:0 4px 12px rgba(0,0,0,0.35);
   }
@@ -215,9 +277,35 @@
 
 <section class="hero" id="inicio">
   <div class="hero-split">
-    <div class="hero-copy">
+    <div class="hero-head">
       <h1 class="hero-mega">Gruppo<br>Vero Caffè<span class="line2">Qualità italiana, origen venezolano</span></h1>
+    </div>
+    <div class="hero-art">
+      <div class="hero-art-stack">
+        <div class="hero-maps">
+          <img class="map-it" src="assets/italy-map-gold.png?v=1" alt="Mapa de Italia">
+          <div class="map-link" aria-hidden="true">
+            <span class="map-line"></span>
+            <svg class="map-bean" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="6.2" ry="9" transform="rotate(30 12 12)" fill="#E8C766"/><path d="M8.6 5.8c3.6 2.6 3.6 9.8 6.8 12.4" stroke="#7C1E1E" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+            <span class="map-line"></span>
+          </div>
+          <img class="map-ve" src="assets/venezuela-map-gold.png?v=1" alt="Mapa de Venezuela">
+        </div>
+        <span class="hero-art-signature">Il mondo Vero</span>
+      </div>
+      <div class="hero-art-caption">Il Mondo Vero — dal chicco alla tazza, dalla tazza a uno stile di vita</div>
+    </div>
+    <div class="hero-copy">
       <p class="hero-sub">Un grupo empresarial familiar guiado por la pasión por el café: desde la selección meticulosa de cada grano, cosechado en el corazón de las bellas tierras venezolanas, hasta su cuidadoso tueste para satisfacer a los paladares más exigentes, en una taza servida y una mesa compartida.</p>
+      <div class="hero-cta">
+        <a href="divina-pastora.html#cotizacion" class="btn-hero btn-hero-primary">Cotizar café</a>
+        <a href="#marcas" class="btn-hero btn-hero-ghost">Conocer nuestras marcas</a>
+      </div>
+      <ul class="hero-proof" aria-label="Cifras del grupo">
+        <li><strong>30 t/día</strong><span>Capacidad de selección</span></li>
+        <li><strong>8 estados</strong><span>Puntos de acopio</span></li>
+        <li><strong>2 países</strong><span>Venezuela y Colombia</span></li>
+      </ul>
       <div class="hero-tags-wrap">
         <div class="hero-tags">
           <span class="tag">SELECCIÓN</span>
@@ -241,13 +329,6 @@
         </div>
       </div>
     </div>
-    <div class="hero-art">
-      <div class="hero-art-stack">
-        <img src="assets/italy-map-gold.png?v=1" alt="Mapa de Italia">
-        <span class="hero-art-signature">Il mondo Vero</span>
-      </div>
-      <div class="hero-art-caption">Il Mondo Vero — dal chicco alla tazza, dalla tazza a uno stile di vita</div>
-    </div>
   </div>
 </section>
 
@@ -257,7 +338,7 @@
   <p>Gruppo Vero Caffè nace de la unión entre el oficio cafetero italiano de nuestra familia y la riqueza del café venezolano. A través de <strong>Inversiones Divina Pastora</strong>, <strong>VERO CAFFÈ</strong>, <strong>VERO CAFFÈ BAR</strong> y <strong>VERO CAFFÈ TRATTORIA</strong>, recorremos cada etapa del camino: la selección y exportación del grano verde, el tueste bajo marca propia, y la hospitalidad de nuestras cafeterías y trattorias — donde cada taza y cada plato llevan el mismo nombre de familia.</p>
 </section>
 
-<section class="brand-index" aria-label="Nuestras marcas">
+<section class="brand-index" id="marcas" aria-label="Nuestras marcas">
   <a href="divina-pastora.html" class="brand-index-item" style="--row-accent:#006AAF;">
     <span class="brand-index-logo-box"><img src="assets/divina-ig-profile.jpg?v=1" class="brand-index-logo round" alt="Divina Pastora"></span>
     <span class="brand-index-tag">Beneficiadora de café</span>
