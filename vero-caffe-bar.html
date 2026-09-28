@@ -69,6 +69,31 @@
   .menu-page{ border:1px solid var(--line); border-radius:6px; overflow:hidden; box-shadow:0 4px 16px rgba(30,18,16,0.08); }
   .menu-page img{ width:100%; height:auto; display:block; }
   @media (max-width:700px){ .menu-grid{ grid-template-columns:1fr; } }
+
+  /* Botones y entrada suave de la portada */
+  .bar-hero-cta{ display:flex; flex-wrap:wrap; gap:0.9rem; margin-top:2rem; }
+  .btn-hero{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:0.95rem 1.7rem; border-radius:999px;
+    font-family:'Poppins', sans-serif; font-weight:700; font-size:0.86rem;
+    letter-spacing:0.04em; text-transform:uppercase;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+  }
+  .btn-hero-primary{ background:#E8A87C; color:#171310; box-shadow:0 8px 22px rgba(0,0,0,0.32); }
+  .btn-hero-primary:hover{ transform:translateY(-2px); background:#F2BE98; box-shadow:0 12px 28px rgba(0,0,0,0.38); }
+  .btn-hero-ghost{ border:1.5px solid rgba(255,255,255,0.75); color:#fff; }
+  .btn-hero-ghost:hover{ background:#fff; color:#171310; transform:translateY(-2px); }
+  .btn-hero:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
+  #carta{ scroll-margin-top:100px; } #cotizacion{ scroll-margin-top:100px; }
+  @keyframes heroRise{ from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:none; } }
+  .bar-hero-mark, h1.bar-hero-title, .bar-hero-sub, .bar-hero-cta{
+    animation:heroRise 0.8s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .bar-hero-mark{ animation-delay:.08s; } h1.bar-hero-title{ animation-delay:.2s; }
+  
+  .bar-hero-sub{ animation-delay:.36s; } .bar-hero-cta{ animation-delay:.5s; }
+  .rv{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay:calc(var(--d, 0) * 90ms); }
+  .rv.in{ opacity:1; transform:none; }
 </style>
 </head>
 <body>
@@ -123,6 +148,10 @@
     </div>
     <h1 class="bar-hero-title">Vero Caffè Bar</h1>
     <p class="bar-hero-sub">La cafetería del Gruppo Vero Caffè — un espresso servido con la misma pasión de siempre, dolci hechos en casa y el ritual de una buena mesa compartida.</p>
+    <div class="bar-hero-cta">
+      <a href="#carta" class="btn-hero btn-hero-primary">Ver la carta</a>
+      <a href="#cotizacion" class="btn-hero btn-hero-ghost">Reservar o cotizar un evento</a>
+    </div>
   </div>
 </section>
 
@@ -154,7 +183,7 @@
   </div>
 </section>
 
-<section class="menu-gallery">
+<section class="menu-gallery" id="carta">
   <div class="menu-gallery-head">
     <div class="eyebrow" style="justify-content:center;">Caffè · Dolci · Panini · Cornetti</div>
     <h2>Nuestra carta</h2>
@@ -253,6 +282,15 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  var els=[].slice.call(document.querySelectorAll('.photo-gallery-head, .photo-item, .menu-gallery-head'));
+  els.forEach(function(e,i){ e.classList.add('rv'); e.style.setProperty('--d', (i%4)); });
+  var io=new IntersectionObserver(function(es){ es.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }); },{threshold:.12, rootMargin:'0px 0px -6% 0px'});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
 <script src="script.js?v=5"></script>
 </body>
 </html>
