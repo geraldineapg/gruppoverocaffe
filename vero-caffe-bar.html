@@ -83,7 +83,21 @@
   .btn-hero-primary:hover{ transform:translateY(-2px); background:#F2BE98; box-shadow:0 12px 28px rgba(0,0,0,0.38); }
   .btn-hero-ghost{ border:1.5px solid rgba(255,255,255,0.75); color:#fff; }
   .btn-hero-ghost:hover{ background:#fff; color:#171310; transform:translateY(-2px); }
+  .btn-hero-ghost-dark{ border:1.5px solid var(--brass); color:var(--brass); }
+  .btn-hero-ghost-dark:hover{ background:var(--brass); color:#fff; transform:translateY(-2px); }
   .btn-hero:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
+  .bar-location{
+    max-width:640px; margin:0 auto; padding:4.5rem 1.5rem 5rem;
+    text-align:center;
+  }
+  .bar-location h2{
+    font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+    font-size:clamp(1.7rem, 3vw, 2.2rem); margin-top:0.5rem;
+  }
+  .bar-location p{
+    margin-top:1rem; font-size:1.02rem; color:var(--ink-soft);
+  }
+  .bar-location .btn-hero{ margin-top:1.8rem; }
   #carta{ scroll-margin-top:100px; } #cotizacion{ scroll-margin-top:100px; }
   @keyframes heroRise{ from{ opacity:0; transform:translateY(18px); } to{ opacity:1; transform:none; } }
   .bar-hero-mark, h1.bar-hero-title, .bar-hero-sub, .bar-hero-cta{
@@ -94,6 +108,15 @@
   .bar-hero-sub{ animation-delay:.36s; } .bar-hero-cta{ animation-delay:.5s; }
   .rv{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay:calc(var(--d, 0) * 90ms); }
   .rv.in{ opacity:1; transform:none; }
+
+  .feature-video{ max-width:900px; margin:2.5rem auto 0; padding:0 1.5rem; }
+  .feature-video-head{ text-align:center; max-width:60ch; margin:0 auto 1.6rem; }
+  .feature-video-head h3{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:1.5rem; margin-top:0.4rem; }
+  .feature-video-frame{
+    position:relative; border-radius:10px; overflow:hidden;
+    box-shadow:0 18px 40px rgba(0,0,0,0.16);
+  }
+  .feature-video-frame video{ width:100%; height:auto; display:block; background:#000; }
 </style>
 </head>
 <body>
@@ -173,14 +196,21 @@
   </div>
 </section>
 
-<section class="unit" style="padding-top:0;">
-  <div class="unit-inner" style="grid-template-columns:1fr;">
-    <div class="unit-label">
-      <div class="eyebrow">Cafetería</div>
-      <h2>Il Mondo Vero, a diario</h2>
-      <p class="unit-desc" style="max-width:44ch;">Próximamente la ubicación de Vero Caffè Bar.</p>
-    </div>
+<section class="feature-video">
+  <div class="feature-video-head">
+    <div class="eyebrow" style="justify-content:center;">Il rito del caffè</div>
+    <h3>La máquina, en acción</h3>
   </div>
+  <div class="feature-video-frame">
+    <video src="assets/video/bar-espresso.mp4?v=1" autoplay muted loop playsinline aria-label="Espresso preparándose en la máquina"></video>
+  </div>
+</section>
+
+<section class="bar-location">
+  <div class="eyebrow" style="justify-content:center;">Cafetería</div>
+  <h2>Il Mondo Vero, a diario</h2>
+  <p>Centro Comercial Parque Cerro Verde, Los Naranjos.</p>
+  <a href="https://www.google.com/maps/search/?api=1&query=Vero%20Caff%C3%A8%20Bar%2C%20Centro%20Comercial%20Parque%20Cerro%20Verde%2C%20Los%20Naranjos" target="_blank" rel="noopener" class="btn-hero btn-hero-ghost-dark">Cómo llegar</a>
 </section>
 
 <section class="menu-gallery" id="carta">
@@ -245,6 +275,8 @@
       <h3>Contacto</h3>
       <p>Correo — próximamente</p>
       <p><a href="https://wa.me/584129546604" target="_blank" rel="noopener">WhatsApp +58 412-9546604</a></p>
+      <p>Centro Comercial Parque Cerro Verde, Los Naranjos</p>
+      <p><a href="https://www.google.com/maps/search/?api=1&query=Vero%20Caff%C3%A8%20Bar%2C%20Centro%20Comercial%20Parque%20Cerro%20Verde%2C%20Los%20Naranjos" target="_blank" rel="noopener">Cómo llegar — Google Maps</a></p>
       <p><a href="https://instagram.com/verocaffebar" target="_blank" rel="noopener">@verocaffebar</a></p>
     </div>
     <div class="footer-col">

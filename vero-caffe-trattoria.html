@@ -108,6 +108,14 @@
   .trattoria-hero-addr{ margin-top:1.2rem; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.04em; color:rgba(255,255,255,0.78); max-width:46ch; animation:heroRise 0.8s cubic-bezier(.2,.7,.2,1) .62s both; }
   .rv{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay:calc(var(--d, 0) * 90ms); }
   .rv.in{ opacity:1; transform:none; }
+  .feature-video{ max-width:900px; margin:2.5rem auto 0; padding:0 1.5rem; }
+  .feature-video-head{ text-align:center; max-width:60ch; margin:0 auto 1.6rem; }
+  .feature-video-head h3{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:1.5rem; margin-top:0.4rem; }
+  .feature-video-frame{
+    position:relative; border-radius:10px; overflow:hidden;
+    box-shadow:0 18px 40px rgba(0,0,0,0.16);
+  }
+  .feature-video-frame video{ width:100%; height:auto; display:block; background:#000; }
 </style>
 </head>
 <body>
@@ -199,6 +207,16 @@
     <figure class="photo-item"><img src="assets/trattoria/dish-seafood-pasta.jpg?v=1" alt="Pasta con mariscos" loading="lazy"></figure>
     <figure class="photo-item"><img src="assets/trattoria/dish-squid-ink-risotto.jpg?v=1" alt="Risotto negro con calamares" loading="lazy"></figure>
     <figure class="photo-item"><img src="assets/trattoria/dish-burrata.jpg?v=1" alt="Burrata con prosciutto" loading="lazy"></figure>
+  </div>
+</section>
+
+<section class="feature-video">
+  <div class="feature-video-head">
+    <div class="eyebrow" style="justify-content:center;">Fatta in casa</div>
+    <h3>Pasta fresca, hecha a mano</h3>
+  </div>
+  <div class="feature-video-frame">
+    <video src="assets/video/trattoria-pasta-fresca.mp4?v=1" autoplay muted loop playsinline aria-label="Preparación de masa fresca para pasta"></video>
   </div>
 </section>
 
