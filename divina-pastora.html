@@ -152,10 +152,60 @@
     margin-top:4.5rem; padding-top:4.5rem;
     border-top:1px solid var(--line);
   }
-  .video-trio + .unit-inner{
-    margin-top:1rem; padding-top:3.5rem;
+
+  .video-trio + .sizes{
+    margin-top:4.5rem; padding-top:4.5rem;
     border-top:1px solid var(--line);
   }
+  .sizes + .defects{
+    margin-top:4.5rem; padding-top:4.5rem;
+    border-top:1px solid var(--line);
+  }
+  .defects + .unit-inner{ margin-top:1rem; padding-top:3.5rem; }
+  .sizes{ max-width:1080px; margin:0 auto; padding:0 1.5rem; }
+  .sizes-head{ text-align:center; max-width:60ch; margin:0 auto 2.6rem; }
+  .sizes-head h3{ font-family:'Fraunces', serif; font-weight:500; font-style:italic; font-size:clamp(1.6rem, 2.6vw, 2.1rem); }
+  .sizes-head p{ margin-top:0.8rem; color:var(--ink-soft); }
+  .sizes-row{
+    display:flex; align-items:flex-end; justify-content:center;
+    gap:clamp(0.8rem, 2.6vw, 1.8rem); flex-wrap:wrap;
+    padding-bottom:1.2rem; margin-bottom:1.2rem;
+    border-bottom:1px dashed var(--line);
+  }
+  .size-card{ display:flex; flex-direction:column; align-items:center; gap:0.6rem; width:4.4rem; }
+  .size-card .size-bean{ height:4.2rem; display:flex; align-items:flex-end; justify-content:center; }
+  .size-card .size-bean svg{ display:block; }
+  .size-card .size-malla{ font-family:'IBM Plex Mono', monospace; font-size:0.7rem; font-weight:500; color:var(--espresso); }
+  .size-card .size-tag{ font-family:'IBM Plex Mono', monospace; font-size:0.58rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); opacity:0.8; text-align:center; }
+  .sizes-screen{
+    display:flex; align-items:center; justify-content:center; gap:0.35rem;
+    margin-top:1.3rem; opacity:0.7;
+  }
+  .sizes-screen span{ width:1px; height:0.9rem; background:var(--line); }
+  .sizes-screen .hole{ width:0.5rem; height:0.5rem; border-radius:50%; border:1.5px solid var(--brass); }
+  .peaberry-row{ display:flex; align-items:center; justify-content:center; gap:1.6rem; flex-wrap:wrap; }
+  .peaberry-card{
+    display:flex; align-items:center; gap:1.1rem;
+    background:#fff; border:1px solid var(--line); border-radius:10px;
+    padding:1rem 1.4rem; max-width:30rem;
+  }
+  .peaberry-card .size-bean{ height:3.4rem; flex:0 0 auto; display:flex; align-items:center; }
+  .peaberry-card h4{ font-family:'Fraunces', serif; font-weight:500; font-size:1.05rem; color:var(--espresso); }
+  .peaberry-card p{ margin-top:0.25rem; font-size:0.85rem; color:var(--ink-soft); line-height:1.45; }
+
+  .defects{ max-width:1080px; margin:0 auto; padding:0 1.5rem; }
+  .defects-head{ text-align:center; max-width:60ch; margin:0 auto 2.6rem; }
+  .defects-head h3{ font-family:'Fraunces', serif; font-weight:500; font-style:italic; font-size:clamp(1.6rem, 2.6vw, 2.1rem); }
+  .defects-head p{ margin-top:0.8rem; color:var(--ink-soft); }
+  .defects-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; }
+  .defect-card{ background:#fff; border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  .defect-card img{ width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+  .defect-card-body{ padding:0.9rem 1rem 1.1rem; }
+  .defect-card h4{ font-family:'Fraunces', serif; font-weight:500; font-size:0.98rem; color:var(--espresso); }
+  .defect-card p{ margin-top:0.3rem; font-size:0.8rem; line-height:1.45; color:var(--ink-soft); }
+  .defects-source{ margin-top:1.4rem; text-align:center; font-family:'IBM Plex Mono', monospace; font-size:0.66rem; letter-spacing:0.03em; color:var(--ink-soft); opacity:0.75; }
+  @media (max-width:820px){ .defects-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:480px){ .defects-grid{ grid-template-columns:1fr; } }
   .video-trio{ max-width:1080px; margin:0 auto; padding:0 1.5rem 0; }
   .video-trio .photo-strip-head{ text-align:center; max-width:56ch; margin:0 auto 2rem; }
   .video-trio .photo-strip-head h3{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(1.6rem, 2.6vw, 2.1rem); font-style:italic; }
@@ -368,6 +418,152 @@
       <figure><video src="assets/video/seleccion-maquina.mp4?v=1" autoplay muted loop playsinline></video></figure>
       <figure><video src="assets/video/seleccion-detalle.mp4?v=1" autoplay muted loop playsinline></video></figure>
     </div>
+  <section class="sizes">
+    <div class="sizes-head rv">
+      <div class="eyebrow" style="justify-content:center;">Clasificación técnica</div>
+      <h3>Un tamaño para cada cliente</h3>
+      <p>Tras la selección óptica, el café pasa por mallas de zarandeo que lo separan por tamaño de grano — desde la malla 12 hasta la malla 18+.</p>
+    </div>
+    <div class="sizes-row">
+      <div class="size-card rv" style="--d:0">
+        <div class="size-bean">
+          <svg viewBox="0 0 20.0 28.4" width="20.0" height="28.4">
+            <ellipse cx="10.0" cy="14.2" rx="8.8" ry="13.0" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
+            <path d="M10.0 2.272 C7.199999999999999 9.088 12.8 19.312 10.0 26.128" stroke="var(--espresso)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="size-malla">Malla 12</span>
+      </div>
+      <div class="size-card rv" style="--d:1">
+        <div class="size-bean">
+          <svg viewBox="0 0 22.7 32.2" width="22.7" height="32.2">
+            <ellipse cx="11.35" cy="16.1" rx="10.15" ry="14.900000000000002" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
+            <path d="M11.35 2.576 C8.171999999999999 10.304 14.528 21.896000000000004 11.35 29.624000000000002" stroke="var(--espresso)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="size-malla">Malla 13</span>
+        
+      </div>
+      <div class="size-card rv" style="--d:2">
+        <div class="size-bean">
+          <svg viewBox="0 0 25.3 35.9" width="25.3" height="35.9">
+            <ellipse cx="12.65" cy="17.95" rx="11.450000000000001" ry="16.75" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
+            <path d="M12.65 2.872 C9.108 11.488 16.192 24.412 12.65 33.028" stroke="var(--espresso)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="size-malla">Malla 14</span>
+        
+      </div>
+      <div class="size-card rv" style="--d:3">
+        <div class="size-bean">
+          <svg viewBox="0 0 28.0 39.8" width="28.0" height="39.8">
+            <ellipse cx="14.0" cy="19.9" rx="12.8" ry="18.7" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
+            <path d="M14.0 3.1839999999999997 C10.08 12.735999999999999 17.92 27.064 14.0 36.616" stroke="var(--espresso)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="size-malla">Malla 15</span>
+        
+      </div>
+      <div class="size-card rv" style="--d:0">
+        <div class="size-bean">
+          <svg viewBox="0 0 30.7 43.6" width="30.7" height="43.6">
+            <ellipse cx="15.35" cy="21.8" rx="14.15" ry="20.6" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
+            <path d="M15.35 3.488 C11.052 13.952 19.648 29.648000000000003 15.35 40.112" stroke="var(--espresso)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="size-malla">Malla 16</span>
+        
+      </div>
+      <div class="size-card rv" style="--d:1">
+        <div class="size-bean">
+          <svg viewBox="0 0 33.3 47.3" width="33.3" height="47.3">
+            <ellipse cx="16.65" cy="23.65" rx="15.45" ry="22.45" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
+            <path d="M16.65 3.784 C11.988 15.136 21.311999999999998 32.164 16.65 43.516" stroke="var(--espresso)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="size-malla">Malla 17</span>
+        
+      </div>
+      <div class="size-card rv" style="--d:2">
+        <div class="size-bean">
+          <svg viewBox="0 0 36.0 51.1" width="36.0" height="51.1">
+            <ellipse cx="18.0" cy="25.55" rx="16.8" ry="24.35" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
+            <path d="M18.0 4.088 C12.959999999999999 16.352 23.04 34.748000000000005 18.0 47.012" stroke="var(--espresso)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="size-malla">Malla 18+</span>
+      </div>
+    </div>
+    <div class="sizes-screen" aria-hidden="true">
+      <span></span><span class="hole"></span><span></span><span class="hole" style="width:0.7rem;height:0.7rem;"></span><span></span><span class="hole" style="width:0.9rem;height:0.9rem;"></span><span></span>
+    </div>
+    <div class="peaberry-row">
+      <div class="peaberry-card rv" style="--d:1">
+        <div class="size-bean">
+          <svg viewBox="0 0 34 30" width="34" height="30">
+            <ellipse cx="17" cy="15" rx="15.5" ry="13.5" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
+            <ellipse cx="17" cy="15" rx="2.3" ry="3.2" fill="var(--espresso)" opacity="0.7"/>
+          </svg>
+        </div>
+        <div>
+          <h4>Caracolito (Peaberry)</h4>
+          <p>Cuando la cereza desarrolla un solo grano redondo en vez de los dos planos habituales. Se separa y se vende como categoría propia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="defects">
+    <div class="defects-head rv">
+      <div class="eyebrow" style="justify-content:center;">Descarte en la óptica</div>
+      <h3>Lo que no pasa el control de calidad</h3>
+      <p>Cada grano que separa la clasificadora óptica se revisa contra defectos físicos reconocidos — este es el grano, no una ilustración.</p>
+    </div>
+    <div class="defects-grid">
+      <div class="defect-card rv" style="--d:0">
+        <img src="assets/defectos/defecto-negro.jpg?v=1" alt="Grano negro" loading="lazy">
+        <div class="defect-card-body">
+          <h4>Grano negro</h4>
+          <p>Color opaco y oscuro en todo el grano — fermentación avanzada en la cereza.</p>
+        </div>
+      </div>
+      <div class="defect-card rv" style="--d:1">
+        <img src="assets/defectos/defecto-agrio.jpg?v=1" alt="Grano agrio" loading="lazy">
+        <div class="defect-card-body">
+          <h4>Grano agrio (avinagrado)</h4>
+          <p>Tonalidad amarillenta a marrón rojiza; al cortarlo libera un olor a vinagre.</p>
+        </div>
+      </div>
+      <div class="defect-card rv" style="--d:2">
+        <img src="assets/defectos/defecto-hongos.jpg?v=1" alt="Daño por hongos o cardenillo" loading="lazy">
+        <div class="defect-card-body">
+          <h4>Daño por hongos (marrón)</h4>
+          <p>Manchas de color amarillo a marrón rojizo que crecen hasta cubrir el grano.</p>
+        </div>
+      </div>
+      <div class="defect-card rv" style="--d:3">
+        <img src="assets/defectos/defecto-inmaduro.jpg?v=1" alt="Grano inmaduro" loading="lazy">
+        <div class="defect-card-body">
+          <h4>Grano inmaduro (verde)</h4>
+          <p>Piel plateada muy adherida y color pálido verdoso — cereza cosechada antes de tiempo.</p>
+        </div>
+      </div>
+      <div class="defect-card rv" style="--d:0">
+        <img src="assets/defectos/defecto-averanado.jpg?v=1" alt="Grano averanado" loading="lazy">
+        <div class="defect-card-body">
+          <h4>Grano averanado (amarillo)</h4>
+          <p>Grano pequeño y arrugado, como una uva pasa — causado por sequía durante el desarrollo.</p>
+        </div>
+      </div>
+      <div class="defect-card rv" style="--d:1">
+        <img src="assets/defectos/defecto-broca.jpg?v=1" alt="Dañado gravemente por insectos" loading="lazy">
+        <div class="defect-card-body">
+          <h4>Dañado por broca (severo)</h4>
+          <p>Perforaciones oscuras de 0,3 a 1,5 mm dejadas por el insecto de la broca del café.</p>
+        </div>
+      </div>
+    </div>
+    <div class="defects-source">Fuente: SCA — Guía de defectos del café verde Arábica (lavado)</div>
   </section>
 
   <div class="unit-inner">
@@ -589,7 +785,7 @@
 <script>
 (function(){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
-  var els=[].slice.call(document.querySelectorAll('.ally-card, .planta-gallery-head, .compliance-note'));
+  var els=[].slice.call(document.querySelectorAll('.ally-card, .planta-gallery-head, .compliance-note, .sizes-head, .size-card, .peaberry-card, .defects-head, .defect-card'));
   els.forEach(function(e,i){ e.classList.add('rv'); e.style.setProperty('--d', (i%4)); });
   var io=new IntersectionObserver(function(es){ es.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }); },{threshold:.15, rootMargin:'0px 0px -6% 0px'});
   els.forEach(function(e){ io.observe(e); });
