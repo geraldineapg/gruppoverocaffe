@@ -153,47 +153,56 @@
     border-top:1px solid var(--line);
   }
 
-  .video-trio + .sizes{
-    margin-top:4.5rem; padding-top:4.5rem;
+  .video-trio + .malla-story{
+    margin-top:4.5rem;
+  }
+  .sizes-legacy-removed{ display:none; }
+  .malla-story + .defects{
+    margin-top:0; padding-top:4.5rem;
     border-top:1px solid var(--line);
   }
-  .sizes + .defects{
-    margin-top:4.5rem; padding-top:4.5rem;
-    border-top:1px solid var(--line);
+  .malla-story{ --hdr:96px; --p:0; height:380vh; position:relative; background:var(--espresso); color:#EAF3FA; }
+  .malla-stage{
+    position:sticky; top:var(--hdr); height:calc(100vh - var(--hdr)); min-height:480px;
+    max-width:1080px; margin:0 auto; padding:0 1.5rem;
+    display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:2.5rem;
   }
-  .defects + .unit-inner{ margin-top:1rem; padding-top:3.5rem; }
-  .sizes{ max-width:1080px; margin:0 auto; padding:0 1.5rem; }
-  .sizes-head{ text-align:center; max-width:60ch; margin:0 auto 2.6rem; }
-  .sizes-head h3{ font-family:'Fraunces', serif; font-weight:500; font-style:italic; font-size:clamp(1.6rem, 2.6vw, 2.1rem); }
-  .sizes-head p{ margin-top:0.8rem; color:var(--ink-soft); }
-  .sizes-row{
-    display:flex; align-items:flex-end; justify-content:center;
-    gap:clamp(0.8rem, 2.6vw, 1.8rem); flex-wrap:wrap;
-    padding-bottom:1.2rem; margin-bottom:1.2rem;
-    border-bottom:1px dashed var(--line);
+  .malla-copy .eyebrow{ color:var(--brass-light); }
+  .malla-copy .eyebrow::before{ background:var(--brass-light); }
+  .malla-copy h2{
+    font-family:'Fraunces', serif; font-weight:500; font-style:italic;
+    font-size:clamp(1.8rem, 3.2vw, 2.5rem); margin-top:0.5rem; color:#fff;
   }
-  .size-card{ display:flex; flex-direction:column; align-items:center; gap:0.6rem; width:4.4rem; }
-  .size-card .size-bean{ height:4.2rem; display:flex; align-items:flex-end; justify-content:center; }
-  .size-card .size-bean svg{ display:block; }
-  .size-card .size-malla{ font-family:'IBM Plex Mono', monospace; font-size:0.7rem; font-weight:500; color:var(--espresso); }
-  .size-card .size-tag{ font-family:'IBM Plex Mono', monospace; font-size:0.58rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-soft); opacity:0.8; text-align:center; }
-  .sizes-screen{
-    display:flex; align-items:center; justify-content:center; gap:0.35rem;
-    margin-top:1.3rem; opacity:0.7;
+  .malla-sub{ margin-top:1rem; max-width:40ch; color:rgba(234,243,250,0.78); }
+  .malla-readout{ margin-top:2.2rem; min-height:6rem; }
+  .malla-number{
+    display:block; font-family:'Fraunces', serif; font-weight:500;
+    font-size:clamp(2.2rem, 4.4vw, 3.2rem); color:var(--brass-light);
   }
-  .sizes-screen span{ width:1px; height:0.9rem; background:var(--line); }
-  .sizes-screen .hole{ width:0.5rem; height:0.5rem; border-radius:50%; border:1.5px solid var(--brass); }
-  .peaberry-row{ display:flex; align-items:center; justify-content:center; gap:1.6rem; flex-wrap:wrap; }
-  .peaberry-card{
-    display:flex; align-items:center; gap:1.1rem;
-    background:#fff; border:1px solid var(--line); border-radius:10px;
-    padding:1rem 1.4rem; max-width:30rem;
+  .malla-desc{ margin-top:0.6rem; max-width:36ch; color:rgba(234,243,250,0.82); }
+  .malla-dots{ display:flex; gap:0.5rem; margin-top:2rem; }
+  .malla-dots span{ width:22px; height:3px; border-radius:2px; background:rgba(234,243,250,0.22); transition:background .4s ease; }
+  .malla-dots span.on{ background:var(--brass-light); }
+  .malla-art{ display:flex; justify-content:center; }
+  .malla-art svg{ width:min(100%, 340px); height:auto; overflow:visible; }
+  .malla-ring{ opacity:0.5; }
+  #beanTwin, #beanPeaberry{ transform-box:view-box; }
+  #phaseTamano, #phasePeso, #phaseColor{ transition:opacity .5s ease; }
+  #phaseTamano *, #phasePeso *, #phaseColor *{ transform-box:fill-box; }
+  .malla-svg-label{ font-family:'IBM Plex Mono', monospace; font-size:8px; letter-spacing:0.02em; fill:rgba(234,243,250,0.75); text-transform:uppercase; }
+  @media (max-width:820px){
+    .malla-story{ height:300vh; }
+    .malla-stage{ grid-template-columns:1fr; grid-template-rows:auto 1fr; align-content:start; gap:0.8rem; padding-top:1.2rem; min-height:0; }
+    .malla-art{ order:-1; } .malla-art svg{ width:min(58vw, 240px); }
+    .malla-copy{ text-align:center; }
+    .malla-sub, .malla-desc{ margin-left:auto; margin-right:auto; }
+    .malla-dots{ justify-content:center; }
+    .malla-readout{ min-height:0; }
   }
-  .peaberry-card .size-bean{ height:3.4rem; flex:0 0 auto; display:flex; align-items:center; }
-  .peaberry-card h4{ font-family:'Fraunces', serif; font-weight:500; font-size:1.05rem; color:var(--espresso); }
-  .peaberry-card p{ margin-top:0.25rem; font-size:0.85rem; color:var(--ink-soft); line-height:1.45; }
+  .malla-story.static .malla-stage{ position:static; height:auto; padding-top:3.5rem; padding-bottom:3.5rem; }
+  .malla-story.static{ height:auto; }
 
-  .defects{ max-width:1080px; margin:0 auto; padding:0 1.5rem; }
+  .defects{ max-width:1080px; margin:0 auto; padding:0 1.5rem 4rem; }
   .defects-head{ text-align:center; max-width:60ch; margin:0 auto 2.6rem; }
   .defects-head h3{ font-family:'Fraunces', serif; font-weight:500; font-style:italic; font-size:clamp(1.6rem, 2.6vw, 2.1rem); }
   .defects-head p{ margin-top:0.8rem; color:var(--ink-soft); }
@@ -418,97 +427,47 @@
       <figure><video src="assets/video/seleccion-maquina.mp4?v=1" autoplay muted loop playsinline></video></figure>
       <figure><video src="assets/video/seleccion-detalle.mp4?v=1" autoplay muted loop playsinline></video></figure>
     </div>
-  <section class="sizes">
-    <div class="sizes-head rv">
-      <div class="eyebrow" style="justify-content:center;">Clasificación técnica</div>
-      <h3>Un tamaño para cada cliente</h3>
-      <p>Tras la selección óptica, el café pasa por mallas de zarandeo que lo separan por tamaño de grano — desde la malla 12 hasta la malla 18+.</p>
-    </div>
-    <div class="sizes-row">
-      <div class="size-card rv" style="--d:0">
-        <div class="size-bean">
-          <svg viewBox="0 0 20.0 28.4" width="20.0" height="28.4">
-            <ellipse cx="10.0" cy="14.2" rx="8.8" ry="13.0" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
-            <path d="M10.0 2.272 C7.199999999999999 9.088 12.8 19.312 10.0 26.128" stroke="var(--espresso)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-          </svg>
+  </section>
+
+  <section class="malla-story" id="tamanos">
+    <div class="malla-stage">
+      <div class="malla-copy">
+        <div class="eyebrow" id="mallaKicker">Clasificación técnica · Tamaño</div>
+        <h2>Una selección en tres pasos</h2>
+        <div class="malla-readout">
+          <span class="malla-number" id="mallaNumber">Malla 12</span>
+          <p class="malla-desc" id="mallaDesc">El café pasa por mallas de zarandeo que separan cada grano por tamaño.</p>
         </div>
-        <span class="size-malla">Malla 12</span>
+        <div class="malla-dots" aria-hidden="true">
+          <span class="on"></span><span></span><span></span>
+        </div>
       </div>
-      <div class="size-card rv" style="--d:1">
-        <div class="size-bean">
-          <svg viewBox="0 0 22.7 32.2" width="22.7" height="32.2">
-            <ellipse cx="11.35" cy="16.1" rx="10.15" ry="14.900000000000002" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
-            <path d="M11.35 2.576 C8.171999999999999 10.304 14.528 21.896000000000004 11.35 29.624000000000002" stroke="var(--espresso)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <span class="size-malla">Malla 13</span>
-        
-      </div>
-      <div class="size-card rv" style="--d:2">
-        <div class="size-bean">
-          <svg viewBox="0 0 25.3 35.9" width="25.3" height="35.9">
-            <ellipse cx="12.65" cy="17.95" rx="11.450000000000001" ry="16.75" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
-            <path d="M12.65 2.872 C9.108 11.488 16.192 24.412 12.65 33.028" stroke="var(--espresso)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <span class="size-malla">Malla 14</span>
-        
-      </div>
-      <div class="size-card rv" style="--d:3">
-        <div class="size-bean">
-          <svg viewBox="0 0 28.0 39.8" width="28.0" height="39.8">
-            <ellipse cx="14.0" cy="19.9" rx="12.8" ry="18.7" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
-            <path d="M14.0 3.1839999999999997 C10.08 12.735999999999999 17.92 27.064 14.0 36.616" stroke="var(--espresso)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <span class="size-malla">Malla 15</span>
-        
-      </div>
-      <div class="size-card rv" style="--d:0">
-        <div class="size-bean">
-          <svg viewBox="0 0 30.7 43.6" width="30.7" height="43.6">
-            <ellipse cx="15.35" cy="21.8" rx="14.15" ry="20.6" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
-            <path d="M15.35 3.488 C11.052 13.952 19.648 29.648000000000003 15.35 40.112" stroke="var(--espresso)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <span class="size-malla">Malla 16</span>
-        
-      </div>
-      <div class="size-card rv" style="--d:1">
-        <div class="size-bean">
-          <svg viewBox="0 0 33.3 47.3" width="33.3" height="47.3">
-            <ellipse cx="16.65" cy="23.65" rx="15.45" ry="22.45" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
-            <path d="M16.65 3.784 C11.988 15.136 21.311999999999998 32.164 16.65 43.516" stroke="var(--espresso)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <span class="size-malla">Malla 17</span>
-        
-      </div>
-      <div class="size-card rv" style="--d:2">
-        <div class="size-bean">
-          <svg viewBox="0 0 36.0 51.1" width="36.0" height="51.1">
-            <ellipse cx="18.0" cy="25.55" rx="16.8" ry="24.35" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
-            <path d="M18.0 4.088 C12.959999999999999 16.352 23.04 34.748000000000005 18.0 47.012" stroke="var(--espresso)" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <span class="size-malla">Malla 18+</span>
-      </div>
-    </div>
-    <div class="sizes-screen" aria-hidden="true">
-      <span></span><span class="hole"></span><span></span><span class="hole" style="width:0.7rem;height:0.7rem;"></span><span></span><span class="hole" style="width:0.9rem;height:0.9rem;"></span><span></span>
-    </div>
-    <div class="peaberry-row">
-      <div class="peaberry-card rv" style="--d:1">
-        <div class="size-bean">
-          <svg viewBox="0 0 34 30" width="34" height="30">
-            <ellipse cx="17" cy="15" rx="15.5" ry="13.5" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.4"/>
-            <ellipse cx="17" cy="15" rx="2.3" ry="3.2" fill="var(--espresso)" opacity="0.7"/>
-          </svg>
-        </div>
-        <div>
-          <h4>Caracolito (Peaberry)</h4>
-          <p>Cuando la cereza desarrolla un solo grano redondo en vez de los dos planos habituales. Se separa y se vende como categoría propia.</p>
-        </div>
+      <div class="malla-art" aria-hidden="true">
+        <svg viewBox="0 0 220 220">
+          <g id="phaseTamano">
+            <circle class="malla-ring" cx="110" cy="110" r="92" fill="none" stroke="var(--brass)" stroke-width="2" stroke-dasharray="3 5"/>
+            <g id="beanTwin" transform="translate(110 110)">
+              <ellipse cx="0" cy="0" rx="16.8" ry="24.35" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.6"/>
+              <path d="M0 -20.6 C-4.8 -8.3 8 13.6 0 23.6" stroke="var(--espresso)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+            </g>
+            <g id="beanPeaberry" transform="translate(110 110)" opacity="0">
+              <ellipse cx="0" cy="0" rx="18.5" ry="16.2" fill="var(--brass-light)" stroke="var(--brass)" stroke-width="1.6"/>
+              <ellipse cx="0" cy="0" rx="2.6" ry="3.6" fill="var(--espresso)" opacity="0.75"/>
+            </g>
+          </g>
+          <g id="phasePeso" opacity="0">
+            <line x1="30" y1="150" x2="190" y2="90" stroke="var(--brass)" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="30" y1="150" x2="30" y2="166" stroke="var(--brass)" stroke-width="2.5" stroke-linecap="round"/>
+            <g id="pesoHeavy"></g>
+            <g id="pesoLight"></g>
+            <text x="38" y="186" class="malla-svg-label" id="pesoHeavyLabel">Más denso</text>
+            <text x="150" y="70" class="malla-svg-label" id="pesoLightLabel">Menos denso</text>
+          </g>
+          <g id="phaseColor" opacity="0">
+            <g id="colorRow"></g>
+            <rect id="colorBeam" x="20" y="92" width="6" height="36" rx="3" fill="var(--brass-light)" opacity="0.9"/>
+          </g>
+        </svg>
       </div>
     </div>
   </section>
@@ -784,8 +743,161 @@
 
 <script>
 (function(){
+  var s=document.getElementById('tamanos'); if(!s) return;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var stage=s.querySelector('.malla-stage'), header=document.querySelector('header');
+  var mallaNumberEl=document.getElementById('mallaNumber'), mallaDescEl=document.getElementById('mallaDesc'), kickerEl=document.getElementById('mallaKicker');
+  var dots=[].slice.call(s.querySelectorAll('.malla-dots span'));
+  var beanTwin=document.getElementById('beanTwin'), beanPeaberry=document.getElementById('beanPeaberry');
+  var phaseTamano=document.getElementById('phaseTamano'), phasePeso=document.getElementById('phasePeso'), phaseColor=document.getElementById('phaseColor');
+
+  var mallas=['Malla 12','Malla 13','Malla 14','Malla 15','Malla 16','Malla 17','Malla 18+','Caracolito'];
+  var mallaDescs=[
+    'El café pasa por mallas de zarandeo que separan cada grano por tamaño.',
+    'Cada malla deja pasar solo los granos de ese diámetro exacto.',
+    'El grano crece de tamaño conforme sube el número de malla.',
+    'Tamaño intermedio, uno de los más comunes en el lote.',
+    'Granos grandes, de buen desarrollo en la mata.',
+    'Casi en el tamaño máximo de la clasificación.',
+    'El grano más grande que se zarandea en la planta.',
+    'Un solo grano redondo por cereza, en vez de los dos planos habituales. Se separa y se vende como categoría propia.'
+  ];
+
+  // --- peso: generar puntos que se separan por densidad ---
+  var pesoHeavy=document.getElementById('pesoHeavy'), pesoLight=document.getElementById('pesoLight');
+  var heavyPts=[], lightPts=[];
+  var svgNS='http://www.w3.org/2000/svg';
+  for(var i=0;i<5;i++){
+    var c=document.createElementNS(svgNS,'circle');
+    c.setAttribute('r','5'); c.setAttribute('fill','var(--espresso-2)'); c.setAttribute('stroke','var(--brass-light)'); c.setAttribute('stroke-width','1');
+    c.setAttribute('cx','110'); c.setAttribute('cy','118');
+    pesoHeavy.appendChild(c); heavyPts.push(c);
+  }
+  for(var i=0;i<4;i++){
+    var c=document.createElementNS(svgNS,'circle');
+    c.setAttribute('r','4'); c.setAttribute('fill','var(--brass-light)'); c.setAttribute('opacity','0.85');
+    c.setAttribute('cx','110'); c.setAttribute('cy','118');
+    pesoLight.appendChild(c); lightPts.push(c);
+  }
+  var heavyTarget=[[52,160],[66,170],[80,178],[46,176],[62,184]];
+  var lightTarget=[[150,78],[164,66],[178,56],[168,82]];
+
+  // --- color: fila de granos con uno defectuoso que se expulsa ---
+  var colorRow=document.getElementById('colorRow'), colorBeam=document.getElementById('colorBeam');
+  var beanDots=[], defectiveIndex=3, rowY=110, rowX0=34, rowGap=24;
+  for(var i=0;i<7;i++){
+    var g=document.createElementNS(svgNS,'g');
+    var e=document.createElementNS(svgNS,'ellipse');
+    var isBad=(i===defectiveIndex);
+    e.setAttribute('rx','8'); e.setAttribute('ry','11');
+    e.setAttribute('fill', isBad ? 'var(--espresso-2)' : 'var(--brass-light)');
+    e.setAttribute('stroke', isBad ? '#1a1a1a' : 'var(--brass)');
+    e.setAttribute('stroke-width','1.3');
+    g.appendChild(e);
+    g.setAttribute('transform','translate('+(rowX0+i*rowGap)+' '+rowY+')');
+    colorRow.appendChild(g);
+    beanDots.push({el:g, x:rowX0+i*rowGap, bad:isBad, ejected:false});
+  }
+
+  function lerp(a,b,t){ return a+(b-a)*t; }
+  function clamp01(v){ return Math.min(1,Math.max(0,v)); }
+  function seg(p,a,b){ return clamp01((p-a)/(b-a)); }
+  function ease(t){ return t*t*(3-2*t); }
+
+  var cur=-1;
+  function render(p){
+    // fase 0: 0-0.34 tamaño | fase 1: 0.34-0.67 peso | fase 2: 0.67-1 color
+    var tT=seg(p,0,0.34), wT=seg(p,0.34,0.67), cT=seg(p,0.67,1);
+    var phase = p<0.34?0 : p<0.67?1 : 2;
+
+    phaseTamano.setAttribute('opacity', phase===0?1:0);
+    phasePeso.setAttribute('opacity', phase===1?1:0);
+    phaseColor.setAttribute('opacity', phase===2?1:0);
+
+    if(phase!==cur){
+      cur=phase;
+      dots.forEach(function(d,i){ d.classList.toggle('on', i===phase); });
+      kickerEl.textContent = phase===0?'Clasificación técnica · Tamaño' : phase===1?'Clasificación técnica · Peso':'Clasificación técnica · Color';
+    }
+
+    // --- tamaño: 8 pasos (7 mallas + caracolito) ---
+    var step=Math.min(7, Math.floor(tT*8));
+    var within=ease(clamp01((tT*8)-step));
+    var scaleMin=0.56, scaleMax=1;
+    var scale = step<7 ? lerp(scaleMin, scaleMax, (step+within)/7) : 1;
+    var peaberryT = step===7 ? within : 0;
+    beanTwin.setAttribute('transform','translate(110 110) scale('+(scale*(1-peaberryT*0.4)).toFixed(3)+')');
+    beanTwin.setAttribute('opacity', (1-peaberryT).toFixed(2));
+    beanPeaberry.setAttribute('transform','translate(110 110) scale('+scale.toFixed(3)+')');
+    beanPeaberry.setAttribute('opacity', peaberryT.toFixed(2));
+    if(phase===0){
+      mallaNumberEl.textContent = mallas[step];
+      mallaDescEl.textContent = mallaDescs[step];
+    }
+
+    // --- peso ---
+    if(phase===1){
+      var we=ease(wT);
+      heavyPts.forEach(function(c,i){
+        c.setAttribute('cx', lerp(110, heavyTarget[i][0], we));
+        c.setAttribute('cy', lerp(118, heavyTarget[i][1], we));
+      });
+      lightPts.forEach(function(c,i){
+        c.setAttribute('cx', lerp(110, lightTarget[i][0], we));
+        c.setAttribute('cy', lerp(118, lightTarget[i][1], we));
+        c.setAttribute('opacity', (1-we*0.15).toFixed(2));
+      });
+      mallaNumberEl.textContent='Mesa densimétrica';
+      mallaDescEl.textContent='Los granos más pesados caen hacia un lado; los livianos (vanos o inmaduros) se separan hacia el otro.';
+    }
+
+    // --- color ---
+    if(phase===2){
+      var ce=cT;
+      var beamX = lerp(20, 170, ce);
+      colorBeam.setAttribute('x', beamX.toFixed(1));
+      beanDots.forEach(function(b){
+        if(!b.ejected && beamX >= b.x - 2){
+          if(b.bad){
+            b.ejected=true;
+            b.el.setAttribute('transform','translate('+b.x+' '+(rowY+34)+') rotate(18)');
+            b.el.style.transition='transform .5s ease, opacity .5s ease';
+            b.el.style.opacity='0';
+          } else if(!b.flashed){
+            b.flashed=true;
+          }
+        }
+      });
+      mallaNumberEl.textContent='Clasificadora óptica';
+      mallaDescEl.textContent='Un sensor de color revisa cada grano y expulsa el que no cumple el estándar — manchado, negro o agrio.';
+    }
+  }
+
+  if(reduce || !('IntersectionObserver' in window)){
+    s.classList.add('static');
+    render(0.01); phaseTamano.setAttribute('opacity',1);
+    return;
+  }
+
+  var ticking=false;
+  function update(){
+    ticking=false;
+    var hdr=header?header.offsetHeight:96; s.style.setProperty('--hdr',hdr+'px');
+    var r=s.getBoundingClientRect(), total=s.offsetHeight-stage.offsetHeight;
+    if(r.bottom<0 || r.top>innerHeight) return;
+    var p=clamp01((hdr-r.top)/total);
+    render(p);
+  }
+  function req(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
+  addEventListener('scroll',req,{passive:true}); addEventListener('resize',req);
+  update();
+})();
+</script>
+
+<script>
+(function(){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
-  var els=[].slice.call(document.querySelectorAll('.ally-card, .planta-gallery-head, .compliance-note, .sizes-head, .size-card, .peaberry-card, .defects-head, .defect-card'));
+  var els=[].slice.call(document.querySelectorAll('.ally-card, .planta-gallery-head, .compliance-note, .defects-head, .defect-card'));
   els.forEach(function(e,i){ e.classList.add('rv'); e.style.setProperty('--d', (i%4)); });
   var io=new IntersectionObserver(function(es){ es.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }); },{threshold:.15, rootMargin:'0px 0px -6% 0px'});
   els.forEach(function(e){ io.observe(e); });
