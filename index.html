@@ -261,6 +261,17 @@
   }
   .hero-art-caption{ display:none; }
 
+  /* LLAMADO FINAL */
+  .cta-final{ position:relative; isolation:isolate; overflow:hidden; background:#171310; color:#fff; text-align:center; padding:clamp(4rem,9vw,7.5rem) 1.5rem; }
+  .cta-final video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; filter:saturate(1.05); }
+  .cta-final::before{ content:""; position:absolute; inset:0; z-index:-1; background:radial-gradient(ellipse 70% 80% at 50% 50%, rgba(23,19,16,0.55), rgba(23,19,16,0.88)); }
+  .cta-final .eyebrow{ justify-content:center; color:var(--gold-soft); } .cta-final .eyebrow::before{ background:var(--gold-soft); }
+  .cta-final h2{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(2.1rem,5vw,3.8rem); line-height:1.06; margin:0.8rem auto 0; max-width:18ch; }
+  .cta-final h2 em{ color:var(--gold-soft); }
+  .cta-final p{ max-width:52ch; margin:1.2rem auto 0; color:rgba(255,255,255,0.82); }
+  .cta-final .hero-cta{ margin-top:2rem; animation:none; }
+  .cta-final .cta-mail{ display:block; margin-top:1.4rem; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.06em; color:rgba(255,255,255,0.7); }
+  .cta-final .cta-mail a{ color:var(--gold-soft); text-decoration:underline; text-underline-offset:3px; }
   /* MARCAS — tarjetas con foto */
   .marcas{ padding:clamp(3.5rem,7vw,6rem) 1.5rem clamp(3.5rem,7vw,6rem); background:#fff; scroll-margin-top:110px; }
   .marcas-head{ max-width:62ch; margin:0 auto clamp(2rem,4vw,3.2rem); text-align:center; }
@@ -650,7 +661,7 @@
     <p>Del grano verde a la taza y a la mesa: cada marca cuida una etapa del camino y todas llevan el mismo nombre de familia.</p>
   </div>
   <div class="marcas-grid">
-    <a href="divina-pastora.html#cotizacion" class="marca marca-lg" style="--accent:#006AAF;">
+    <a href="divina-pastora.html" class="marca marca-lg" style="--accent:#006AAF;">
       <img class="marca-img" src="assets/planta/planta-01-nave.jpg?v=1" alt="" loading="lazy" style="object-position:50% 50%;">
       <span class="marca-shade" aria-hidden="true"></span>
       <span class="marca-logo"><img class="fill" src="assets/divina-ig-profile.jpg?v=1" alt="Divina Pastora · Beneficiadora"></span>
@@ -681,6 +692,18 @@
       <span class="marca-body"><span class="marca-kicker">Coffee Brand · Colombia</span><span class="marca-title">Trilla de café desde Colombia</span><span class="marca-cta">Conocer Coffee Brand<i aria-hidden="true">→</i></span></span>
     </a>
   </div>
+</section>
+
+<section class="cta-final" aria-labelledby="ctaTitulo">
+  <video muted loop playsinline preload="none" data-src="assets/video/reel-cosecha.mp4" aria-hidden="true"></video>
+  <div class="eyebrow">Trabajemos juntos</div>
+  <h2 id="ctaTitulo">¿Hablamos de <em>café</em>?</h2>
+  <p>Cotiza café verde para tu operación, conoce nuestro café tostado o reserva tu mesa. Escríbenos y te atendemos directamente.</p>
+  <div class="hero-cta">
+    <a href="divina-pastora.html#cotizacion" class="btn-hero btn-hero-primary">Cotizar café verde</a>
+    <a href="https://wa.me/584122902105?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20Gruppo%20Vero%20Caff%C3%A8" class="btn-hero btn-hero-ghost" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+  </div>
+  <span class="cta-mail">o por correo: <a href="mailto:info@gruppoverocaffe.com">info@gruppoverocaffe.com</a></span>
 </section>
 
 <footer id="contacto">
@@ -834,6 +857,15 @@
   cards.forEach(function(c,i){ c.classList.add('rv'); c.style.setProperty('--d', i%3); });
   var io=new IntersectionObserver(function(es){ es.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } }); },{threshold:.12});
   cards.forEach(function(c){ io.observe(c); });
+})();
+</script>
+<script>
+(function(){
+  var v=document.querySelector('.cta-final video'); if(!v) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function(es){ es.forEach(function(x){
+    if(x.isIntersecting){ if(!v.getAttribute('src')){ v.src=v.dataset.src; } var p=v.play(); if(p&&p.catch) p.catch(function(){}); } else { v.pause(); }
+  }); },{threshold:.15}).observe(v.parentNode);
 })();
 </script>
 </body>
