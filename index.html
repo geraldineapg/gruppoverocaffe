@@ -62,6 +62,73 @@
   .tricolore span:nth-child(2){ background:#FFFFFF; }
   .tricolore span:nth-child(3){ background:#CE2B37; }
 
+
+  /* PORTADA — reel cinematográfico */
+  .reel{ position:relative; background:#171310; color:#fff; }
+  .reel-stage{ position:relative; height:clamp(460px, 78vh, 720px); overflow:hidden; isolation:isolate; }
+  .reel-slides, .reel-slide{ position:absolute; inset:0; }
+  .reel-slide{ opacity:0; transition:opacity 1.2s ease; }
+  .reel-slide.is-active{ opacity:1; z-index:1; }
+  .reel-slide video{ width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.04); transition:transform 7s ease-out; filter:saturate(1.06) contrast(1.05); }
+  .reel-slide.is-active video{ transform:scale(1.0); }
+  .reel-slide.is-portrait .bg{ position:absolute; inset:-6%; width:112%; height:112%; object-fit:cover; filter:blur(28px) brightness(.55) saturate(1.1); transform:none; transition:none; }
+  .reel-slide.is-portrait .fg{ position:absolute; top:0; bottom:0; left:50%; width:auto; height:100%; max-width:none; aspect-ratio:9/16; transform:translateX(-50%) scale(1.03); object-fit:cover; box-shadow:0 0 80px rgba(0,0,0,.45); transition:transform 7s ease-out; }
+  .reel-slide.is-portrait.is-active .fg{ transform:translateX(-50%) scale(1); }
+  @media (max-width:640px){ .reel-slide.is-portrait .fg{ left:0; width:100%; height:100%; aspect-ratio:auto; transform:scale(1.03); } .reel-slide.is-portrait.is-active .fg{ transform:none; } .reel-slide.is-portrait .bg{ display:none; } }
+  .reel-slide.is-photo .bg{ object-fit:cover; }
+  .reel-slide.is-photo .fg{ aspect-ratio:3/4; left:auto; right:clamp(1.5rem, 9vw, 9rem); transform:scale(1.04); border-radius:2px; }
+  .reel-slide.is-photo.is-active .fg{ transform:scale(1); }
+  .reel.split .reel-content{ align-items:flex-start; text-align:left; padding-left:clamp(1.5rem, 8vw, 7rem); padding-right:50%; }
+  .reel.split .reel-title{ font-size:clamp(2.4rem, 5.4vw, 5rem); }
+  .reel-content{ transition:opacity .3s ease; } .reel-content.hold{ opacity:0; }
+  @media (max-width:820px){ .reel.split .reel-content{ padding-right:1.5rem; } .reel-slide.is-photo .fg{ right:50%; transform:translateX(50%) scale(1.04); } .reel-slide.is-photo.is-active .fg{ transform:translateX(50%) scale(1); } }
+  @media (max-width:640px){ .reel-slide.is-photo .fg{ right:0; left:0; width:100%; height:100%; aspect-ratio:auto; transform:scale(1.04); } .reel-slide.is-photo.is-active .fg{ transform:none; } .reel.split .reel-content{ opacity:0; } }
+  .reel-scrim{
+    position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:
+      radial-gradient(ellipse 75% 70% at 50% 46%, rgba(23,19,16,0.18), rgba(23,19,16,0.62) 100%),
+      linear-gradient(180deg, rgba(23,19,16,0.42) 0%, rgba(23,19,16,0.10) 38%, rgba(23,19,16,0.82) 100%);
+  }
+  .reel-content{ position:absolute; inset:0; z-index:3; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 1.5rem 3.5rem; }
+  .reel-title{
+    font-family:'Poppins', sans-serif; font-weight:800; text-transform:uppercase;
+    font-size:clamp(2.8rem, 7.4vw, 6.4rem); line-height:0.98; letter-spacing:-0.01em; color:#fff;
+    text-shadow:0 2px 30px rgba(0,0,0,0.35);
+    animation:heroRise 0.9s cubic-bezier(.2,.7,.2,1) 0.1s both;
+  }
+  .reel-tagline{
+    margin-top:1.3rem; font-family:'Fraunces', serif; font-style:italic; font-weight:400;
+    font-size:clamp(1.05rem, 2vw, 1.5rem); color:var(--gold-soft);
+    animation:heroRise 0.9s cubic-bezier(.2,.7,.2,1) 0.35s both;
+  }
+  .reel-meta{
+    position:absolute; left:0; right:0; bottom:0; z-index:4;
+    max-width:1320px; margin:0 auto; padding:0 1.5rem 1.4rem;
+    display:flex; align-items:flex-end; justify-content:space-between; gap:1.5rem;
+  }
+  .reel-chapter{ display:flex; align-items:baseline; gap:0.9rem; font-family:'IBM Plex Mono', monospace; font-size:0.74rem; letter-spacing:0.12em; text-transform:uppercase; min-width:0; }
+  .reel-num{ color:var(--gold-soft); }
+  .reel-name{ color:#fff; transition:opacity .35s ease; }
+  .reel-cap{ display:block; margin-top:0.35rem; color:rgba(255,255,255,0.7); letter-spacing:0.06em; text-transform:none; font-family:'Work Sans', sans-serif; font-size:0.82rem; transition:opacity .35s ease; }
+  .reel-chapter.swap .reel-name, .reel-chapter.swap .reel-cap{ opacity:0; }
+  .reel-controls{ display:flex; align-items:center; gap:1rem; flex:0 0 auto; }
+  .reel-progress{ list-style:none; display:flex; gap:6px; margin:0; padding:0; }
+  .reel-progress button{ display:block; width:clamp(22px, 4.2vw, 54px); height:14px; padding:0; border:0; background:transparent; cursor:pointer; position:relative; }
+  .reel-progress button::before{ content:""; position:absolute; left:0; right:0; top:6px; height:2px; background:rgba(255,255,255,0.28); }
+  .reel-progress button i{ position:absolute; left:0; top:6px; height:2px; width:100%; background:var(--gold-soft); transform:scaleX(0); transform-origin:left; }
+  .reel-progress button:focus-visible, .reel-toggle:focus-visible{ outline:2px solid #fff; outline-offset:3px; }
+  .reel-toggle{ width:30px; height:30px; border-radius:50%; border:1px solid rgba(255,255,255,0.5); background:rgba(23,19,16,0.35); color:#fff; cursor:pointer; display:grid; place-items:center; padding:0; transition:background .25s ease; }
+  .reel-toggle:hover{ background:rgba(255,255,255,0.18); }
+  .reel-toggle svg{ width:12px; height:12px; fill:currentColor; }
+  .reel-toggle .i-play{ display:none; } .reel.paused .reel-toggle .i-play{ display:block; } .reel.paused .reel-toggle .i-pause{ display:none; }
+  .hero-split{ padding-top:clamp(2.2rem, 4vw, 3.2rem); }
+  @media (max-width:640px){
+    .reel-stage{ height:clamp(420px, 72svh, 600px); }
+    .reel-meta{ flex-direction:column; align-items:flex-start; gap:0.9rem; }
+    .reel-progress button{ width:clamp(18px, 7vw, 40px); }
+  }
+  @media (prefers-reduced-motion:reduce){ .reel-slide{ transition:none; } .reel-slide video{ transition:none; transform:none; } .reel-title, .reel-tagline{ animation:none; } }
+
   /* HERO — layout partido, tipografía enorme, ilustración propia */
   .hero{ padding:0; overflow:visible; }
   .hero-split{
@@ -360,11 +427,38 @@
   </nav>
 </header>
 
-<section class="hero" id="inicio">
-  <div class="hero-split">
-    <div class="hero-head">
-      <h1 class="hero-mega">Gruppo<br>Vero Caffè<span class="line2">Qualità italiana, origen venezolano</span></h1>
+<section class="reel" id="inicio" aria-label="Gruppo Vero Caffè">
+  <div class="reel-stage">
+    <div class="reel-slides">
+      <div class="reel-slide is-active" data-label="Origen" data-cap="Donde nace el café"><video muted loop playsinline src="assets/video/reel-campo.mp4" preload="auto"></video></div>
+      <div class="reel-slide" data-label="La cereza" data-cap="La cereza en su punto de maduración"><video muted loop playsinline data-src="assets/video/reel-cereza.mp4" preload="none"></video></div>
+      <div class="reel-slide" data-label="Cosecha" data-cap="Cosecha manual, cereza por cereza"><video muted loop playsinline data-src="assets/video/reel-cosecha.mp4" preload="none"></video></div>
+      <div class="reel-slide" data-label="Clasificación óptica" data-cap="Selección en planta: 30 toneladas por día"><video muted loop playsinline data-src="assets/video/buhler-sorting-web.mp4" preload="none"></video></div>
+      <div class="reel-slide" data-label="Torrefacción" data-cap="El tueste del grano"><video muted loop playsinline data-src="assets/video/reel-tueste.mp4" preload="none"></video></div>
+      <div class="reel-slide is-portrait" data-label="Empaque" data-cap="Empaque automatizado"><video class="bg" muted loop playsinline preload="none" data-src="assets/video/bag-sealing-line.mp4?v=1" aria-hidden="true"></video><video class="fg" muted loop playsinline preload="none" data-src="assets/video/bag-sealing-line.mp4?v=1"></video></div>
+      <div class="reel-slide" data-label="Vero Caffè Bar" data-cap="El ritual del espresso, a la italiana"><video muted loop playsinline data-src="assets/video/bar-espresso.mp4?v=1" preload="none"></video></div>
+      <div class="reel-slide" data-label="Vero Trattoria" data-cap="Pasta fresca, elaborada cada día"><video muted loop playsinline data-src="assets/video/trattoria-pasta-fresca.mp4?v=1" preload="none"></video></div>
+      <div class="reel-slide is-portrait is-photo" data-label="Vero Trattoria" data-cap="Linguini alle vongole"><img class="bg" alt="" data-src="assets/trattoria/dish-seafood-pasta.jpg"><img class="fg" alt="Vero Trattoria: Linguini alle vongole" data-src="assets/trattoria/dish-seafood-pasta.jpg"></div>
+      <div class="reel-slide is-portrait is-photo" data-label="Vero Trattoria" data-cap="Fettuccine burrata, pomodori secchi e Parmigiano Reggiano"><img class="bg" alt="" data-src="assets/trattoria/dish-burrata.jpg"><img class="fg" alt="Vero Trattoria: Fettuccine burrata, pomodori secchi e Parmigiano Reggiano" data-src="assets/trattoria/dish-burrata.jpg"></div>
+      <div class="reel-slide is-portrait is-photo" data-label="Vero Trattoria" data-cap="Pizza al forno"><img class="bg" alt="" data-src="assets/bar/pizza.jpg"><img class="fg" alt="Vero Trattoria: Pizza al forno" data-src="assets/bar/pizza.jpg"></div>
     </div>
+    <div class="reel-scrim" aria-hidden="true"></div>
+    <div class="reel-content">
+      <h1 class="reel-title">Gruppo<br>Vero Caffè</h1>
+      <p class="reel-tagline">Qualità italiana, origen venezolano</p>
+    </div>
+    <div class="reel-meta">
+      <div class="reel-chapter" aria-live="off"><span class="reel-num">01</span><span><span class="reel-name">Origen</span><span class="reel-cap">Donde nace el café</span></span></div>
+      <div class="reel-controls">
+        <ol class="reel-progress"></ol>
+        <button class="reel-toggle" type="button" aria-label="Pausar video"><svg class="i-pause" viewBox="0 0 12 12"><rect x="1.5" y="1" width="3" height="10"/><rect x="7.5" y="1" width="3" height="10"/></svg><svg class="i-play" viewBox="0 0 12 12"><path d="M2.5 1 11 6 2.5 11z"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero">
+  <div class="hero-split">
     <div class="hero-art">
       <div class="hero-art-stack">
         <div class="hero-maps">
@@ -675,5 +769,69 @@
 })();
 </script>
 <script src="script.js?v=5"></script>
+<script>
+(function(){
+  var root=document.querySelector('.reel'); if(!root) return;
+  var slides=[].slice.call(root.querySelectorAll('.reel-slide'));
+  var vids=slides.map(function(s){ return [].slice.call(s.querySelectorAll('video')); });
+  var imgs=slides.map(function(s){ return [].slice.call(s.querySelectorAll('img')); });
+  var chap=root.querySelector('.reel-chapter'), num=chap.querySelector('.reel-num'), nameEl=chap.querySelector('.reel-name'), capEl=chap.querySelector('.reel-cap');
+  var list=root.querySelector('.reel-progress'), toggle=root.querySelector('.reel-toggle');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var DUR=5600, cur=0, elapsed=0, last=0, raf=0, userPaused=false, inView=true, tabVisible=true, fills=[];
+  slides.forEach(function(s,i){
+    var li=document.createElement('li'), b=document.createElement('button'), f=document.createElement('i');
+    b.type='button'; b.setAttribute('aria-label','Ir a '+s.dataset.label); b.appendChild(f); li.appendChild(b); list.appendChild(li); fills.push(f);
+    b.addEventListener('click',function(){ go(i); });
+  });
+  function load(g){ (g||[]).forEach(function(v){ if(!v.getAttribute('src') && v.dataset.src){ v.src=v.dataset.src; if(v.load) v.load(); } }); }
+  function loadSlide(i){ i=(i+slides.length)%slides.length; load(vids[i]); load(imgs[i]); }
+  function playAll(g){ g.forEach(function(v){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }); }
+  function pad(n){ return (n<10?'0':'')+n; }
+  function setChapter(i){
+    chap.classList.add('swap');
+    setTimeout(function(){ num.textContent=pad(i+1); nameEl.textContent=slides[i].dataset.label; capEl.textContent=slides[i].dataset.cap; chap.classList.remove('swap'); },280);
+  }
+  function paint(){ fills.forEach(function(f,i){ f.style.transform='scaleX('+(i<cur?1:i===cur?Math.min(1,elapsed/DUR):0)+')'; }); }
+  function go(i){
+    i=(i+slides.length)%slides.length;
+    var prev=cur; cur=i; elapsed=0;
+    loadSlide(i); loadSlide(i+1);
+    slides.forEach(function(s,k){ s.classList.toggle('is-active',k===i); });
+    vids[i].forEach(function(v){ try{ v.currentTime=0; }catch(e){} });
+    if(!userPaused && inView && tabVisible) playAll(vids[i]);
+    setTimeout(function(){ if(cur!==prev && vids[prev]) vids[prev].forEach(function(v){ v.pause(); }); },1300);
+    var wantSplit=slides[i].classList.contains('is-photo'), content=root.querySelector('.reel-content');
+    if(wantSplit!==root.classList.contains('split')){ content.classList.add('hold'); setTimeout(function(){ root.classList.toggle('split',wantSplit); content.classList.remove('hold'); },320); }
+    setChapter(i); paint();
+  }
+  function running(){ return !userPaused && inView && tabVisible; }
+  function tick(t){
+    raf=requestAnimationFrame(tick);
+    var dt=last?t-last:0; last=t;
+    if(!running()) return;
+    var v=vids[cur][vids[cur].length-1];
+    if(v && v.readyState<3 && elapsed>0 && elapsed<DUR*0.15) return;
+    elapsed+=dt; paint();
+    if(elapsed>=DUR) go(cur+1);
+  }
+  function syncPlayback(){
+    if(running()) playAll(vids[cur]); else vids[cur].forEach(function(v){ v.pause(); });
+    root.classList.toggle('paused',userPaused);
+    toggle.setAttribute('aria-label',userPaused?'Reproducir video':'Pausar video');
+  }
+  toggle.addEventListener('click',function(){ userPaused=!userPaused; syncPlayback(); });
+  document.addEventListener('visibilitychange',function(){ tabVisible=!document.hidden; syncPlayback(); });
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ inView=es[0].isIntersecting; syncPlayback(); },{threshold:0.25}).observe(root.querySelector('.reel-stage')); }
+  if(reduce){
+    list.style.display='none'; toggle.style.display='none';
+    vids[0][0].addEventListener('loadeddata',function(){ try{ vids[0][0].currentTime=0.1; }catch(e){} });
+    vids[0][0].pause(); return;
+  }
+  loadSlide(1);
+  playAll(vids[0]);
+  paint(); raf=requestAnimationFrame(tick);
+})();
+</script>
 </body>
 </html>
