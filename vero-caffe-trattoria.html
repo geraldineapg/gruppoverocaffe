@@ -18,6 +18,13 @@
     display:flex; align-items:flex-end;
     color:#fff;
   }
+  .trattoria-hero{ overflow:hidden; isolation:isolate; }
+  .trattoria-hero .hero-bg-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; opacity:0; transition:opacity 1.2s ease; filter:saturate(1.08) contrast(1.04); }
+  .trattoria-hero .hero-bg-video.on{ opacity:1; }
+  .trattoria-hero .hero-bg-shade{ position:absolute; inset:0; z-index:-1; background:linear-gradient(0deg, rgba(15,10,8,0.88) 0%, rgba(15,10,8,0.2) 55%, rgba(15,10,8,0.45) 100%); }
+  .trattoria-hero .breadcrumb-over{ z-index:2; }
+  .trattoria-hero-inner{ position:relative; z-index:2; }
+  @media (prefers-reduced-motion:reduce){ .trattoria-hero .hero-bg-video{ display:none; } }
   .trattoria-hero-inner{ max-width:1080px; margin:0 auto; width:100%; padding:3rem 1.5rem 3.2rem; }
   .trattoria-hero .eyebrow{ color:#E8A87C; }
   .trattoria-hero .eyebrow::before{ background:#E8A87C; }
@@ -108,6 +115,10 @@
   .trattoria-hero-addr{ margin-top:1.2rem; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.04em; color:rgba(255,255,255,0.78); max-width:46ch; animation:heroRise 0.8s cubic-bezier(.2,.7,.2,1) .62s both; }
   .rv{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay:calc(var(--d, 0) * 90ms); }
   .rv.in{ opacity:1; transform:none; }
+  .feature-video-pair{ display:grid; grid-template-columns:repeat(2,minmax(0,300px)); gap:1rem; justify-content:center; }
+  .feature-video-pair figure{ margin:0; aspect-ratio:9/16; border-radius:6px; overflow:hidden; background:#000; box-shadow:0 14px 36px rgba(30,18,16,0.22); }
+  .feature-video-pair video{ width:100%; height:100%; object-fit:cover; display:block; }
+  @media (max-width:520px){ .feature-video-pair{ gap:0.6rem; } }
   .feature-video{ max-width:900px; margin:2.5rem auto 0; padding:0 1.5rem; }
   .feature-video-head{ text-align:center; max-width:60ch; margin:0 auto 1.6rem; }
   .feature-video-head h3{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:1.5rem; margin-top:0.4rem; }
@@ -162,6 +173,8 @@
 </header>
 
 <section class="trattoria-hero">
+  <video class="hero-bg-video" muted loop playsinline autoplay preload="auto" src="assets/video/trattoria-pasta-fresca.mp4?v=1" aria-hidden="true"></video>
+  <div class="hero-bg-shade" aria-hidden="true"></div>
   <div class="breadcrumb-over"><a href="index.html">Inicio</a> / Vero Caffè Trattoria</div>
   <div class="trattoria-hero-inner">
     <div class="trattoria-hero-mark">
@@ -213,10 +226,11 @@
 <section class="feature-video">
   <div class="feature-video-head">
     <div class="eyebrow" style="justify-content:center;">Fatta in casa</div>
-    <h3>Pasta fresca, hecha a mano</h3>
+    <h3>Pizza y platos de la casa</h3>
   </div>
-  <div class="feature-video-frame">
-    <video src="assets/video/trattoria-pasta-fresca.mp4?v=1" autoplay muted loop playsinline aria-label="Preparación de masa fresca para pasta"></video>
+  <div class="feature-video-pair">
+    <figure><video src="assets/video/trat-hero-pizza.mp4" autoplay muted loop playsinline aria-label="Pizza preparada por el chef"></video></figure>
+    <figure><video src="assets/video/trat-pastas.mp4" autoplay muted loop playsinline aria-label="Pastas y platos fuertes servidos"></video></figure>
   </div>
 </section>
 
@@ -331,5 +345,13 @@
 })();
 </script>
 <script src="script.js?v=5"></script>
+<script>
+(function(){
+  var v=document.querySelector('.hero-bg-video'); if(!v) return;
+  v.addEventListener('playing',function(){ v.classList.add('on'); });
+  var p=v.play(); if(p&&p.catch) p.catch(function(){});
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ if(es[0].isIntersecting){ var q=v.play(); if(q&&q.catch) q.catch(function(){}); } else v.pause(); },{threshold:.1}).observe(v.parentNode); }
+})();
+</script>
 </body>
 </html>

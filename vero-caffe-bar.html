@@ -18,6 +18,17 @@
     display:flex; align-items:flex-end;
     color:#fff;
   }
+  .bar-hero{ overflow:hidden; isolation:isolate; }
+  .bar-hero .hero-bg-video{ position:absolute; inset:-8%; width:116%; height:116%; object-fit:cover; z-index:-3; opacity:0; transition:opacity 1.2s ease; filter:blur(30px) brightness(.55) saturate(1.15); }
+  .bar-hero .hero-fg-video{ position:absolute; z-index:-1; top:50%; right:max(1.5rem, calc((100% - 1080px)/2)); height:84%; aspect-ratio:9/16; width:auto; transform:translateY(-50%); object-fit:cover; border-radius:6px; box-shadow:0 24px 70px rgba(0,0,0,.5); opacity:0; transition:opacity 1.2s ease; }
+  .bar-hero .hero-bg-video.on, .bar-hero .hero-fg-video.on{ opacity:1; }
+  .bar-hero .hero-bg-shade{ position:absolute; inset:0; z-index:-2; background:linear-gradient(90deg, rgba(15,10,8,0.82) 0%, rgba(15,10,8,0.55) 45%, rgba(15,10,8,0.15) 100%), linear-gradient(0deg, rgba(15,10,8,0.7) 0%, rgba(15,10,8,0) 40%); }
+  .bar-hero .breadcrumb-over{ z-index:2; }
+  .bar-hero-inner{ position:relative; z-index:2; }
+  @media (max-width:820px){ .bar-hero .hero-fg-video{ right:0; left:0; top:0; height:100%; width:100%; aspect-ratio:auto; transform:none; border-radius:0; box-shadow:none; } .bar-hero .hero-bg-video{ display:none; } .bar-hero .hero-bg-shade{ background:linear-gradient(0deg, rgba(15,10,8,0.9) 0%, rgba(15,10,8,0.35) 60%, rgba(15,10,8,0.45) 100%); } }
+  @media (prefers-reduced-motion:reduce){ .bar-hero .hero-bg-video, .bar-hero .hero-fg-video{ display:none; } }
+  .bar-hero-inner{ position:relative; z-index:2; }
+  @media (prefers-reduced-motion:reduce){ .bar-hero .hero-bg-video{ display:none; } }
   .bar-hero-inner{ max-width:1080px; margin:0 auto; width:100%; padding:3rem 1.5rem 3.2rem; }
   .bar-hero .eyebrow{ color:#E8A87C; }
   .bar-hero .eyebrow::before{ background:#E8A87C; }
@@ -109,6 +120,10 @@
   .rv{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay:calc(var(--d, 0) * 90ms); }
   .rv.in{ opacity:1; transform:none; }
 
+  .feature-video-pair{ display:grid; grid-template-columns:repeat(2,minmax(0,300px)); gap:1rem; justify-content:center; }
+  .feature-video-pair figure{ margin:0; aspect-ratio:9/16; border-radius:6px; overflow:hidden; background:#000; box-shadow:0 14px 36px rgba(30,18,16,0.22); }
+  .feature-video-pair video{ width:100%; height:100%; object-fit:cover; display:block; }
+  @media (max-width:520px){ .feature-video-pair{ gap:0.6rem; } }
   .feature-video{ max-width:900px; margin:2.5rem auto 0; padding:0 1.5rem; }
   .feature-video-head{ text-align:center; max-width:60ch; margin:0 auto 1.6rem; }
   .feature-video-head h3{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:1.5rem; margin-top:0.4rem; }
@@ -163,6 +178,9 @@
 </header>
 
 <section class="bar-hero">
+  <video class="hero-bg-video" muted loop playsinline autoplay preload="auto" src="assets/video/bar-hero.mp4" aria-hidden="true"></video>
+  <video class="hero-fg-video" muted loop playsinline autoplay preload="auto" src="assets/video/bar-hero.mp4" aria-label="Preparación de café con leche en Vero Caffè Bar"></video>
+  <div class="hero-bg-shade" aria-hidden="true"></div>
   <div class="breadcrumb-over"><a href="index.html">Inicio</a> / Vero Caffè Bar</div>
   <div class="bar-hero-inner">
     <div class="bar-hero-mark">
@@ -199,10 +217,11 @@
 <section class="feature-video">
   <div class="feature-video-head">
     <div class="eyebrow" style="justify-content:center;">Il rito del caffè</div>
-    <h3>La máquina, en acción</h3>
+    <h3>Dolci y paninos, hechos al momento</h3>
   </div>
-  <div class="feature-video-frame">
-    <video src="assets/video/bar-espresso.mp4?v=1" autoplay muted loop playsinline aria-label="Espresso preparándose en la máquina"></video>
+  <div class="feature-video-pair">
+    <figure><video src="assets/video/bar-paninos.mp4" autoplay muted loop playsinline aria-label="Paninos de la casa"></video></figure>
+    <figure><video src="assets/video/bar-postres.mp4" autoplay muted loop playsinline aria-label="Postres de la casa"></video></figure>
   </div>
 </section>
 
@@ -324,5 +343,14 @@
 })();
 </script>
 <script src="script.js?v=5"></script>
+<script>
+(function(){
+  var vs=[].slice.call(document.querySelectorAll('.hero-bg-video, .hero-fg-video')); if(!vs.length) return;
+  vs.forEach(function(v){ v.addEventListener('playing',function(){ v.classList.add('on'); }); });
+  function play(){ vs.forEach(function(v){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }); }
+  play();
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ if(es[0].isIntersecting) play(); else vs.forEach(function(v){ v.pause(); }); },{threshold:.1}).observe(document.querySelector('.bar-hero')); }
+})();
+</script>
 </body>
 </html>
