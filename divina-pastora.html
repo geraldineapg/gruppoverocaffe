@@ -349,9 +349,9 @@
         <details class="lang-switch">
         <summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.5 3.7 5.7 3.7 9s-1.3 6.5-3.7 9c-2.4-2.5-3.7-5.7-3.7-9s1.3-6.5 3.7-9z"/></svg><span>ES</span></summary>
         <div class="lang-menu">
-          <a href="#" class="active">Español <small>ES</small></a>
-          <a href="#" class="soon">English <small>próx.</small></a>
-          <a href="#" class="soon">Italiano <small>próx.</small></a>
+          <a href="#" data-lang="es" class="active">Español <small>ES</small></a>
+          <a href="#" data-lang="en">English <small>EN</small></a>
+          <a href="#" data-lang="it">Italiano <small>IT</small></a>
           <a href="#" class="soon">Русский <small>próx.</small></a>
           <a href="#" class="soon">中文 <small>próx.</small></a>
         </div>
@@ -1023,6 +1023,7 @@
 })();
 </script>
 <script src="script.js?v=6"></script>
+<script src="i18n.js?v=1"></script>
 <script>
 (function(){
   var cv=document.getElementById('ogCanvas'); if(!cv) return;
@@ -1032,6 +1033,7 @@
   var startO=$('ogStart'), endO=$('ogEnd'), pausedO=$('ogPaused'), pauseBtn=$('ogPause');
   var TYPES={ negro:'Grano negro', agrio:'Grano agrio', hongos:'Daño por hongos', inmaduro:'Grano inmaduro', averanado:'Grano averanado', broca:'Dañado por broca' };
   var DEF=Object.keys(TYPES);
+  var T=function(x){ return window.__t?window.__t(x):x; };
   var W=900,H=360,S=1,DPR=1;
   var beans=[],parts=[],texts=[];
   var mode='attract', paused=false, inView=true, tabVis=true;
@@ -1096,10 +1098,10 @@
     ctx.fillStyle='#1d3a52'; ctx.fillRect(cx-16*S,0,32*S,bt.top-5*S); ctx.fillStyle='#2a5273'; ctx.fillRect(cx-22*S,bt.top-18*S,44*S,13*S);
     ctx.fillStyle='rgba(255,70,70,'+pulse+')'; ctx.fillRect(cx-1.2*S,bt.top,2.4*S,bh);
     var lg=ctx.createLinearGradient(cx-26*S,0,cx+26*S,0); lg.addColorStop(0,'rgba(255,70,70,0)'); lg.addColorStop(0.5,'rgba(255,70,70,'+(pulse*0.22)+')'); lg.addColorStop(1,'rgba(255,70,70,0)'); ctx.fillStyle=lg; ctx.fillRect(cx-26*S,bt.top,52*S,bh);
-    ctx.font=(10*S)+'px "IBM Plex Mono", monospace'; ctx.fillStyle='rgba(143,197,234,0.7)'; ctx.textAlign='center'; ctx.fillText('CÁMARA ÓPTICA',cx,bt.top-24*S);
+    ctx.font=(10*S)+'px "IBM Plex Mono", monospace'; ctx.fillStyle='rgba(143,197,234,0.7)'; ctx.textAlign='center'; ctx.fillText(T('CÁMARA ÓPTICA'),cx,bt.top-24*S);
     var sx=W-62*S; ctx.fillStyle='#8a6a43'; ctx.beginPath(); ctx.moveTo(sx,bt.top+4*S); ctx.lineTo(W,bt.top+4*S); ctx.lineTo(W,bt.bot-4*S); ctx.lineTo(sx,bt.bot-4*S); ctx.closePath(); ctx.fill();
     ctx.fillStyle=flash>0?'rgba(255,90,70,'+Math.min(.55,flash)+')':'rgba(0,0,0,0.18)'; ctx.fillRect(sx,bt.top+4*S,62*S,bt.bot-bt.top-8*S);
-    ctx.fillStyle='rgba(255,255,255,0.75)'; ctx.fillText('SACO',sx+31*S,(bt.top+bt.bot)/2+4*S);
+    ctx.fillStyle='rgba(255,255,255,0.75)'; ctx.fillText(T('SACO'),sx+31*S,(bt.top+bt.bot)/2+4*S);
     beans.forEach(drawBean);
     parts.forEach(function(p){ ctx.globalAlpha=Math.max(0,p.l); ctx.fillStyle=p.c; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); }); ctx.globalAlpha=1;
     texts.forEach(function(t){ ctx.globalAlpha=Math.max(0,t.l); ctx.fillStyle=t.c; ctx.font='700 '+(14*S)+'px Poppins, sans-serif'; ctx.textAlign='center'; ctx.fillText(t.s,t.x,t.y); }); ctx.globalAlpha=1;
@@ -1117,7 +1119,7 @@
     best.ej=true; best.t=0; best.vy=-380*S; best.vx=rnd(-40,40)*S;
     if(best.type==='good'){ wrong++; score-=8; streak=0; say(best.x,best.y-18*S,'−8','#ff8a7a'); puff(best.x,best.y,'rgba(255,138,122,0.8)'); }
     else { caught++; var pts=10+Math.min(streak,5)*2; streak++; score+=pts; say(best.x,best.y-18*S,'+'+pts,'#8FC5EA'); puff(best.x,best.y);
-      if(!unlocked[best.type]){ unlocked[best.type]=1; saveUnlocked(); var n=li[best.type]; if(n){ n.classList.remove('locked'); n.classList.add('new'); setTimeout(function(){ n.classList.remove('new'); },1600); } showToast('Desbloqueaste: '+TYPES[best.type]); } }
+      if(!unlocked[best.type]){ unlocked[best.type]=1; saveUnlocked(); var n=li[best.type]; if(n){ n.classList.remove('locked'); n.classList.add('new'); setTimeout(function(){ n.classList.remove('new'); },1600); } showToast(T('Desbloqueaste: ')+T(TYPES[best.type])); } }
     hud();
   }
   cv.addEventListener('pointerdown',function(e){ var r=cv.getBoundingClientRect(); hit((e.clientX-r.left)*(W/r.width),(e.clientY-r.top)*(H/r.height)); if(mode==='play') e.preventDefault(); });
@@ -1160,13 +1162,13 @@
     mode='end'; stage.classList.remove('playing'); pauseBtn.hidden=true;
     var D=Math.max(1,caught+escaped), rate=caught/D;
     var g,t;
-    if(rate>=0.85&&wrong<=2){ g='Selector de exportación'; t='Tu lote saldría limpio. Así trabaja nuestra clasificadora, pero sin cansarse y a 18 toneladas por hora.'; }
-    else if(rate>=0.6&&wrong<=5){ g='Buen ojo'; t='Te pasaron algunos defectos. Por eso la selección óptica es clave para un café de calidad.'; }
-    else { g='Aún pasan muchos defectos'; t='No es fácil a esta velocidad. Nuestra clasificadora no se cansa ni se distrae.'; }
+    if(rate>=0.85&&wrong<=2){ g=T('Selector de exportación'); t=T('Tu lote saldría limpio. Así trabaja nuestra clasificadora, pero sin cansarse y a 18 toneladas por hora.'); }
+    else if(rate>=0.6&&wrong<=5){ g=T('Buen ojo'); t=T('Te pasaron algunos defectos. Por eso la selección óptica es clave para un café de calidad.'); }
+    else { g=T('Aún pasan muchos defectos'); t=T('No es fácil a esta velocidad. Nuestra clasificadora no se cansa ni se distrae.'); }
     $('ogGrade').textContent=g; $('ogGradeText').textContent=t;
     $('ogCaught').textContent=caught; $('ogWrong').textContent=wrong; $('ogEscaped').textContent=escaped;
     var best=0; try{ best=+localStorage.getItem('og_best')||0; if(score>best){ best=score; localStorage.setItem('og_best',best); } best=Math.max(0,best); }catch(e){}
-    $('ogBest').textContent='Puntos: '+Math.max(0,score)+(best?'  ·  Mejor marca: '+best:'');
+    $('ogBest').textContent=T('Puntos: ')+Math.max(0,score)+(best?'  ·  '+T('Mejor marca: ')+best:'');
     endO.hidden=false; $('ogAgain').focus({ preventScroll:true });
   }
   function setPaused(v){ if(mode!=='play') return; paused=v; pausedO.hidden=!v; pauseBtn.textContent=v?'Continuar':'Pausa'; if(v) $('ogResume').focus({ preventScroll:true }); }

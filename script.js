@@ -26,7 +26,8 @@ function buildQuoteMessage(form){
   form.querySelectorAll('[name]').forEach(el => {
     const wrap = el.closest('.quote-field, .quote-check');
     const labelEl = wrap ? wrap.querySelector('.quote-field-label, .quote-check-label') : null;
-    const label = labelEl ? labelEl.textContent.trim() : el.name;
+    const raw = labelEl ? labelEl.textContent.trim() : el.name;
+    const label = window.__es ? window.__es(raw) : raw;
     if (el.type === 'checkbox' || el.type === 'radio') {
       if (el.checked) lines.push(`• ${label}`);
     } else if (el.value && el.value.trim()) {
