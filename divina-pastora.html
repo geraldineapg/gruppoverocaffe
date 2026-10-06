@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=28">
+<link rel="stylesheet" href="styles.css?v=29">
 <style>
   /* Divina Pastora — paleta propia de marca (azul), sobre la base compartida */
   :root{
@@ -202,6 +202,54 @@
   .malla-story.static .malla-stage{ position:static; height:auto; padding-top:3.5rem; padding-bottom:3.5rem; }
   .malla-story.static{ height:auto; }
 
+
+  /* JUEGO — Prueba la óptica */
+  .optica-game{ background:var(--espresso); color:#EAF3FA; padding:clamp(3.5rem,7vw,6rem) 1.5rem; }
+  .og-inner{ max-width:1000px; margin:0 auto; }
+  .og-head{ text-align:center; max-width:60ch; margin:0 auto 1.8rem; }
+  .og-head .eyebrow{ justify-content:center; color:var(--brass-light); } .og-head .eyebrow::before{ background:var(--brass-light); }
+  .og-head h2{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(2rem,4.4vw,3.2rem); line-height:1.08; margin-top:0.7rem; color:#fff; }
+  .og-head h2 em{ color:var(--brass-light); }
+  .og-head p{ margin-top:1rem; color:rgba(234,243,250,0.8); }
+  .og-hud{ display:flex; align-items:center; gap:clamp(0.8rem,3vw,2rem); justify-content:center; flex-wrap:wrap; margin-bottom:1rem; font-family:'IBM Plex Mono', monospace; }
+  .og-hud div{ display:flex; flex-direction:column; align-items:center; min-width:5.2rem; }
+  .og-hud span{ font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:rgba(234,243,250,0.6); }
+  .og-hud b{ font-size:1.5rem; font-weight:500; color:#fff; font-variant-numeric:tabular-nums; }
+  .og-hud .og-bag.warn b{ color:#ff8a7a; }
+  .og-pause{ background:none; border:1.5px solid rgba(234,243,250,0.4); color:#EAF3FA; border-radius:999px; padding:0.45rem 1rem; font-family:'IBM Plex Mono', monospace; font-size:0.7rem; letter-spacing:0.05em; text-transform:uppercase; cursor:pointer; }
+  .og-pause:hover{ border-color:var(--brass-light); color:var(--brass-light); }
+  .og-stage{ position:relative; border-radius:10px; overflow:hidden; background:#07202f; border:1px solid rgba(143,197,234,0.25); box-shadow:0 24px 60px rgba(0,0,0,0.35); user-select:none; -webkit-user-select:none; }
+  .og-stage.playing{ touch-action:none; cursor:crosshair; }
+  .og-stage canvas{ display:block; width:100%; }
+  .og-overlay{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:1rem 1.2rem; overflow:auto; background:radial-gradient(ellipse at center, rgba(7,32,47,0.72), rgba(7,32,47,0.9)); }
+  .og-overlay[hidden]{ display:none; }
+  .og-overlay h3{ font-family:'Fraunces', serif; font-weight:500; font-size:clamp(1.6rem,3.6vw,2.4rem); color:#fff; margin:0; }
+  .og-overlay p{ max-width:44ch; margin:0.8rem auto 0; color:rgba(234,243,250,0.82); font-size:0.95rem; }
+  .og-btns{ display:flex; flex-wrap:wrap; gap:0.8rem; justify-content:center; margin-top:1.4rem; }
+  .og-btn{ display:inline-flex; align-items:center; justify-content:center; padding:0.9rem 1.7rem; border-radius:999px; border:1.5px solid var(--brass); background:var(--brass); color:#06202f; font-family:'Poppins', sans-serif; font-weight:700; font-size:0.82rem; letter-spacing:0.04em; text-transform:uppercase; cursor:pointer; transition:transform .2s ease, box-shadow .2s ease; text-decoration:none; }
+  .og-btn:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,0.3); }
+  .og-btn.ghost{ background:none; color:#EAF3FA; border-color:rgba(234,243,250,0.5); }
+  .og-btn:focus-visible, .og-pause:focus-visible{ outline:3px solid #fff; outline-offset:3px; }
+  .og-legend{ display:flex; gap:1.2rem; flex-wrap:wrap; justify-content:center; margin-top:1.1rem; font-size:0.78rem; color:rgba(234,243,250,0.75); font-family:'IBM Plex Mono', monospace; letter-spacing:0.03em; }
+  .og-legend i{ display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:0.4rem; vertical-align:middle; }
+  .og-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:0.6rem 1.2rem; margin-top:0.9rem; font-family:'IBM Plex Mono', monospace; }
+  .og-stats div{ display:flex; flex-direction:column; align-items:center; } .og-stats b{ font-size:1.6rem; font-weight:500; color:#fff; } .og-stats span{ font-size:0.62rem; letter-spacing:0.07em; text-transform:uppercase; color:rgba(234,243,250,0.65); max-width:14ch; }
+  .og-toast{ position:absolute; left:50%; top:0.9rem; transform:translate(-50%,-20px); background:var(--brass); color:#06202f; padding:0.55rem 1.1rem; border-radius:999px; font-family:'IBM Plex Mono', monospace; font-size:0.74rem; letter-spacing:0.04em; text-transform:uppercase; opacity:0; pointer-events:none; transition:all .35s cubic-bezier(.2,.7,.2,1); white-space:nowrap; }
+  .og-toast.show{ opacity:1; transform:translate(-50%,0); }
+  .og-collection{ list-style:none; margin:1.6rem 0 0; padding:0; display:grid; grid-template-columns:repeat(6,1fr); gap:0.7rem; }
+  .og-collection li{ position:relative; border-radius:8px; overflow:hidden; aspect-ratio:1/1.12; background:#0d3350; border:1px solid rgba(143,197,234,0.22); }
+  .og-collection img{ width:100%; height:100%; object-fit:cover; display:block; transition:filter .6s ease, opacity .6s ease, transform .6s ease; }
+  .og-collection .og-name{ position:absolute; left:0; right:0; bottom:0; padding:1.2rem 0.5rem 0.5rem; background:linear-gradient(0deg, rgba(5,20,32,0.95), transparent); font-size:0.7rem; line-height:1.25; text-align:center; color:#fff; }
+  .og-collection .og-lock{ position:absolute; inset:0; display:grid; place-items:center; font-family:'Fraunces', serif; font-size:2rem; color:rgba(143,197,234,0.6); transition:opacity .4s ease; }
+  .og-collection li.locked img{ filter:grayscale(1) brightness(.35) blur(6px); transform:scale(1.1); }
+  .og-collection li.locked .og-name{ color:rgba(234,243,250,0.45); }
+  .og-collection li:not(.locked) .og-lock{ opacity:0; }
+  .og-collection li.new{ animation:ogPop .8s cubic-bezier(.2,.7,.2,1); box-shadow:0 0 0 2px var(--brass-light), 0 0 24px rgba(143,197,234,0.45); }
+  @keyframes ogPop{ 0%{ transform:scale(.88); } 55%{ transform:scale(1.06); } 100%{ transform:scale(1); } }
+  .og-note{ text-align:center; margin-top:1.1rem; font-size:0.84rem; color:rgba(234,243,250,0.6); }
+  .og-note a{ color:var(--brass-light); text-decoration:underline; text-underline-offset:3px; }
+  @media (max-width:760px){ .og-collection{ grid-template-columns:repeat(3,1fr); } .og-stats{ grid-template-columns:1fr 1fr 1fr; } }
+  @media (max-width:480px){ .og-hud b{ font-size:1.25rem; } .og-hud div{ min-width:4rem; } .og-legend{ display:none; } }
   .defects{ max-width:1080px; margin:0 auto; padding:0 1.5rem 4rem; }
   .defects-head{ text-align:center; max-width:60ch; margin:0 auto 2.6rem; }
   .defects-head h3{ font-family:'Fraunces', serif; font-weight:500; font-style:italic; font-size:clamp(1.6rem, 2.6vw, 2.1rem); }
@@ -248,7 +296,7 @@
   @media (max-width:480px){ .ally-grid{ grid-template-columns:1fr; } }
 
   /* Cumplimiento */
-  .compliance-strip{ max-width:1080px; margin:0 auto; padding:0 1.5rem 5.5rem; }
+  .compliance-strip{ max-width:1080px; margin:0 auto; padding:clamp(3rem,6vw,4.5rem) 1.5rem 5.5rem; }
   .compliance-note{
     background:var(--cream-2); border:1px solid var(--line); border-radius:8px;
     padding:1.4rem 1.6rem; font-size:0.88rem; color:var(--ink-soft); line-height:1.6;
@@ -472,7 +520,7 @@
     </div>
   </section>
 
-  <section class="defects">
+  <section class="defects" id="defectos">
     <div class="defects-head rv">
       <div class="eyebrow" style="justify-content:center;">Descarte en la óptica</div>
       <h3>Lo que no pasa el control de calidad</h3>
@@ -543,6 +591,49 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="optica-game" id="juego" aria-labelledby="juegoTitulo">
+  <div class="og-inner">
+    <div class="og-head">
+      <div class="eyebrow">Ponte en nuestro lugar</div>
+      <h2 id="juegoTitulo">Prueba la <em>óptica</em></h2>
+      <p>Los granos avanzan por la banda hacia el saco. Toca los que tengan defectos antes de que lleguen. Nuestra clasificadora óptica revisa 18 toneladas por hora: ¿cuánto aguantas tú?</p>
+    </div>
+    <div class="og-hud" role="status" aria-live="off">
+      <div><span>Tiempo</span><b id="ogTime">45</b></div>
+      <div><span>Puntos</span><b id="ogScore">0</b></div>
+      <div class="og-bag" id="ogBagBox"><span>Defectos en el saco</span><b id="ogBag">0</b></div>
+      <button class="og-pause" id="ogPause" type="button" hidden>Pausa</button>
+    </div>
+    <div class="og-stage" id="ogStage">
+      <canvas id="ogCanvas" role="img" aria-label="Banda transportadora con granos de café verde. Toca los granos con defectos para descartarlos antes de que lleguen al saco."></canvas>
+      <div class="og-overlay" id="ogStart">
+        <h3>¿Listo para clasificar?</h3>
+        <p>Toca o haz clic en cada grano defectuoso para descartarlo. Si tocas un grano bueno, pierdes puntos; si un defecto llega al saco, también.</p>
+        <div class="og-btns"><button class="og-btn" id="ogPlay" type="button">Jugar</button></div>
+      </div>
+      <div class="og-overlay" id="ogEnd" hidden>
+        <h3 id="ogGrade">¡Turno terminado!</h3>
+        <p id="ogGradeText"></p>
+        <div class="og-stats">
+          <div><b id="ogCaught">0</b><span>Defectos descartados</span></div>
+          <div><b id="ogWrong">0</b><span>Granos buenos descartados</span></div>
+          <div><b id="ogEscaped">0</b><span>Defectos que pasaron</span></div>
+        </div>
+        <p id="ogBest" style="margin-top:1rem;font-size:0.82rem;opacity:.75"></p>
+        <div class="og-btns">
+          <button class="og-btn" id="ogAgain" type="button">Jugar de nuevo</button>
+          <a class="og-btn ghost" href="#cotizacion">Cotizar café seleccionado</a>
+        </div>
+      </div>
+      <div class="og-overlay" id="ogPaused" hidden><h3>En pausa</h3><div class="og-btns"><button class="og-btn" id="ogResume" type="button">Continuar</button></div></div>
+      <div class="og-toast" id="ogToast" role="status"></div>
+    </div>
+    <div class="og-legend" aria-hidden="true"><span><i style="background:#7f9a5b"></i>Grano sano</span><span><i style="background:#26211c;border:1px solid #888"></i>Defecto: no lo dejes pasar</span></div>
+    <ul class="og-collection" id="ogCollection" aria-label="Colección de defectos"><li class="locked" data-type="negro"><img src="assets/defectos/defecto-negro.jpg" alt="" loading="lazy"><span class="og-lock" aria-hidden="true">?</span><span class="og-name">Grano negro</span></li><li class="locked" data-type="agrio"><img src="assets/defectos/defecto-agrio.jpg" alt="" loading="lazy"><span class="og-lock" aria-hidden="true">?</span><span class="og-name">Grano agrio</span></li><li class="locked" data-type="hongos"><img src="assets/defectos/defecto-hongos.jpg" alt="" loading="lazy"><span class="og-lock" aria-hidden="true">?</span><span class="og-name">Daño por hongos</span></li><li class="locked" data-type="inmaduro"><img src="assets/defectos/defecto-inmaduro.jpg" alt="" loading="lazy"><span class="og-lock" aria-hidden="true">?</span><span class="og-name">Grano inmaduro</span></li><li class="locked" data-type="averanado"><img src="assets/defectos/defecto-averanado.jpg" alt="" loading="lazy"><span class="og-lock" aria-hidden="true">?</span><span class="og-name">Grano averanado</span></li><li class="locked" data-type="broca"><img src="assets/defectos/defecto-broca.jpg" alt="" loading="lazy"><span class="og-lock" aria-hidden="true">?</span><span class="og-name">Dañado por broca</span></li></ul>
+    <p class="og-note">Cada defecto que descartes por primera vez se desbloquea con su foto real de la guía de la SCA. ¿Prefieres no jugar? <a href="#defectos">Ver los defectos reales</a>.</p>
   </div>
 </section>
 
@@ -903,6 +994,161 @@
   els.forEach(function(e){ io.observe(e); });
 })();
 </script>
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
+<script>
+(function(){
+  var cv=document.getElementById('ogCanvas'); if(!cv) return;
+  var ctx=cv.getContext('2d'), stage=document.getElementById('ogStage');
+  var $=function(id){ return document.getElementById(id); };
+  var elTime=$('ogTime'), elScore=$('ogScore'), elBag=$('ogBag'), bagBox=$('ogBagBox'), toast=$('ogToast');
+  var startO=$('ogStart'), endO=$('ogEnd'), pausedO=$('ogPaused'), pauseBtn=$('ogPause');
+  var TYPES={ negro:'Grano negro', agrio:'Grano agrio', hongos:'Daño por hongos', inmaduro:'Grano inmaduro', averanado:'Grano averanado', broca:'Dañado por broca' };
+  var DEF=Object.keys(TYPES);
+  var W=900,H=360,S=1,DPR=1;
+  var beans=[],parts=[],texts=[];
+  var mode='attract', paused=false, inView=true, tabVis=true;
+  var DURATION=45, tLeft=DURATION, score=0, caught=0, wrong=0, escaped=0, defSpawned=0, streak=0, spawnT=0, belt=0, flash=0, last=0;
+  var unlocked={}; try{ unlocked=JSON.parse(localStorage.getItem('og_unlocked')||'{}'); }catch(e){}
+  function saveUnlocked(){ try{ localStorage.setItem('og_unlocked',JSON.stringify(unlocked)); }catch(e){} }
+  var li={}; [].forEach.call(document.querySelectorAll('#ogCollection li'),function(n){ li[n.dataset.type]=n; if(unlocked[n.dataset.type]) n.classList.remove('locked'); });
+  function rnd(a,b){ return a+Math.random()*(b-a); }
+  function lerp(a,b,t){ return a+(b-a)*t; }
+
+  function resize(){
+    var ow=W,oh=H;
+    W=stage.clientWidth||900; H=W<560?Math.round(Math.max(380,W*1.02)):Math.round(Math.max(350,Math.min(420,W*0.44)));
+    S=H/340; DPR=Math.min(2,window.devicePixelRatio||1);
+    cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR); cv.style.height=H+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    beans.forEach(function(b){ b.x*=W/ow; b.y*=H/oh; });
+  }
+  addEventListener('resize',resize); resize();
+  if('ResizeObserver' in window) new ResizeObserver(function(){ if(stage.clientWidth!==W) resize(); }).observe(stage);
+
+  function belt$(){ return { top:H*0.26, bot:H*0.84 }; }
+  function spawn(){
+    var bt=belt$(), isDef=Math.random()<(mode==='play'?0.4:0.3), type='good';
+    if(isDef){ type=DEF[Math.floor(Math.random()*DEF.length)]; }
+    var sz=type==='averanado'?0.82:rnd(0.92,1.08);
+    var b={ x:-30*S, y:rnd(bt.top+26*S, bt.bot-26*S), ang:rnd(-0.9,0.9), type:type, sz:sz, alpha:1, ej:false, t:0, spin:rnd(-9,9), spots:[], dead:false, seed:Math.random() };
+    if(type==='hongos'){ for(var i=0;i<7;i++) b.spots.push({ x:rnd(-0.7,0.7), y:rnd(-0.8,0.8), r:rnd(0.12,0.26), c:i%2?'#d9e2dc':'#9a4a2a' }); }
+    if(type==='broca'){ for(var j=0;j<3;j++) b.spots.push({ x:rnd(-0.45,0.45), y:rnd(-0.65,0.65), r:rnd(0.09,0.14) }); }
+    if(isDef && mode==='play') defSpawned++;
+    beans.push(b);
+  }
+  function drawBean(b){
+    var a=15*S*b.sz, h=22*S*b.sz, t=b.type;
+    ctx.save(); ctx.translate(b.x,b.y); ctx.rotate(b.ang+(b.ej?b.spin*b.t:0)); ctx.globalAlpha=b.alpha;
+    ctx.shadowColor='rgba(0,0,0,0.4)'; ctx.shadowBlur=7*S; ctx.shadowOffsetY=3*S;
+    var g=ctx.createRadialGradient(-a*0.3,-h*0.35,a*0.1,0,0,h*1.1), edge='rgba(0,0,0,0.35)', crease='rgba(30,45,20,0.75)';
+    if(t==='good'||t==='broca'){ g.addColorStop(0,'#a9c47c'); g.addColorStop(1,'#6a8a48'); }
+    else if(t==='negro'){ g.addColorStop(0,'#3a342d'); g.addColorStop(1,'#0d0b09'); crease='rgba(0,0,0,0.9)'; }
+    else if(t==='agrio'){ g.addColorStop(0,'#e0b54a'); g.addColorStop(1,'#a8701c'); crease='rgba(95,60,12,0.8)'; }
+    else if(t==='hongos'){ g.addColorStop(0,'#b99a68'); g.addColorStop(1,'#7a5832'); crease='rgba(60,38,18,0.75)'; }
+    else if(t==='inmaduro'){ g.addColorStop(0,'#cddcaa'); g.addColorStop(1,'#9db476'); crease='rgba(225,232,205,0.95)'; }
+    else { g.addColorStop(0,'#d6b84a'); g.addColorStop(1,'#98782a'); crease='rgba(80,60,15,0.7)'; }
+    ctx.fillStyle=g; ctx.beginPath(); ctx.ellipse(0,0,a,h,0,0,Math.PI*2); ctx.fill();
+    ctx.shadowColor='transparent'; ctx.strokeStyle=edge; ctx.lineWidth=1*S; ctx.stroke();
+    ctx.strokeStyle=crease; ctx.lineWidth=(t==='inmaduro'?2.4:1.7)*S; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(0,-h*0.82); ctx.bezierCurveTo(-a*0.55,-h*0.3,a*0.55,h*0.3,0,h*0.82); ctx.stroke();
+    if(t==='hongos'){ b.spots.forEach(function(p){ ctx.fillStyle=p.c; ctx.globalAlpha=b.alpha*0.85; ctx.beginPath(); ctx.arc(p.x*a,p.y*h,p.r*a*1.6,0,Math.PI*2); ctx.fill(); }); ctx.globalAlpha=b.alpha; }
+    if(t==='broca'){ b.spots.forEach(function(p){ ctx.fillStyle='#1b130d'; ctx.beginPath(); ctx.arc(p.x*a,p.y*h,p.r*a*1.5,0,Math.PI*2); ctx.fill(); ctx.strokeStyle='rgba(60,40,20,0.8)'; ctx.lineWidth=0.8*S; ctx.stroke(); }); }
+    if(t==='averanado'){ ctx.strokeStyle='rgba(70,52,12,0.55)'; ctx.lineWidth=1*S; for(var k=-1;k<=1;k++){ ctx.beginPath(); ctx.moveTo(-a*0.8,k*h*0.38); ctx.quadraticCurveTo(0,k*h*0.38+a*0.35,a*0.8,k*h*0.38); ctx.stroke(); } }
+    if(t==='negro'){ ctx.fillStyle='rgba(255,255,255,0.07)'; ctx.beginPath(); ctx.ellipse(-a*0.3,-h*0.4,a*0.28,h*0.18,-0.4,0,Math.PI*2); ctx.fill(); }
+    ctx.restore();
+  }
+  function drawScene(now){
+    var bt=belt$(); ctx.clearRect(0,0,W,H);
+    var bg=ctx.createLinearGradient(0,0,0,H); bg.addColorStop(0,'#0b2c43'); bg.addColorStop(1,'#061b2a'); ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+    var bh=bt.bot-bt.top, grad=ctx.createLinearGradient(0,bt.top,0,bt.bot); grad.addColorStop(0,'#1a2832'); grad.addColorStop(0.5,'#222f3a'); grad.addColorStop(1,'#161f27');
+    ctx.fillStyle=grad; ctx.fillRect(0,bt.top,W,bh);
+    ctx.strokeStyle='rgba(143,197,234,0.18)'; ctx.lineWidth=1; var step=34*S; for(var x=-step+(belt%step);x<W;x+=step){ ctx.beginPath(); ctx.moveTo(x,bt.top); ctx.lineTo(x,bt.bot); ctx.stroke(); }
+    ctx.fillStyle='#3b4a56'; ctx.fillRect(0,bt.top-5*S,W,5*S); ctx.fillRect(0,bt.bot,W,5*S);
+    var cx=W*0.5, pulse=0.55+0.25*Math.sin(now/180);
+    ctx.fillStyle='#1d3a52'; ctx.fillRect(cx-16*S,0,32*S,bt.top-5*S); ctx.fillStyle='#2a5273'; ctx.fillRect(cx-22*S,bt.top-18*S,44*S,13*S);
+    ctx.fillStyle='rgba(255,70,70,'+pulse+')'; ctx.fillRect(cx-1.2*S,bt.top,2.4*S,bh);
+    var lg=ctx.createLinearGradient(cx-26*S,0,cx+26*S,0); lg.addColorStop(0,'rgba(255,70,70,0)'); lg.addColorStop(0.5,'rgba(255,70,70,'+(pulse*0.22)+')'); lg.addColorStop(1,'rgba(255,70,70,0)'); ctx.fillStyle=lg; ctx.fillRect(cx-26*S,bt.top,52*S,bh);
+    ctx.font=(10*S)+'px "IBM Plex Mono", monospace'; ctx.fillStyle='rgba(143,197,234,0.7)'; ctx.textAlign='center'; ctx.fillText('CÁMARA ÓPTICA',cx,bt.top-24*S);
+    var sx=W-62*S; ctx.fillStyle='#8a6a43'; ctx.beginPath(); ctx.moveTo(sx,bt.top+4*S); ctx.lineTo(W,bt.top+4*S); ctx.lineTo(W,bt.bot-4*S); ctx.lineTo(sx,bt.bot-4*S); ctx.closePath(); ctx.fill();
+    ctx.fillStyle=flash>0?'rgba(255,90,70,'+Math.min(.55,flash)+')':'rgba(0,0,0,0.18)'; ctx.fillRect(sx,bt.top+4*S,62*S,bt.bot-bt.top-8*S);
+    ctx.fillStyle='rgba(255,255,255,0.75)'; ctx.fillText('SACO',sx+31*S,(bt.top+bt.bot)/2+4*S);
+    beans.forEach(drawBean);
+    parts.forEach(function(p){ ctx.globalAlpha=Math.max(0,p.l); ctx.fillStyle=p.c; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); }); ctx.globalAlpha=1;
+    texts.forEach(function(t){ ctx.globalAlpha=Math.max(0,t.l); ctx.fillStyle=t.c; ctx.font='700 '+(14*S)+'px Poppins, sans-serif'; ctx.textAlign='center'; ctx.fillText(t.s,t.x,t.y); }); ctx.globalAlpha=1;
+  }
+  function puff(x,y,c){ for(var i=0;i<9;i++){ var a=rnd(0,6.28), v=rnd(30,120)*S; parts.push({ x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,r:rnd(2,4.5)*S,l:1,c:c||'rgba(190,225,250,0.9)' }); } }
+  function say(x,y,s,c){ texts.push({ x:x,y:y,s:s,c:c,l:1 }); }
+  function showToast(m){ toast.textContent=m; toast.classList.add('show'); clearTimeout(showToast.t); showToast.t=setTimeout(function(){ toast.classList.remove('show'); },2600); }
+  function hud(){ elTime.textContent=Math.max(0,Math.ceil(tLeft)); elScore.textContent=Math.max(0,score); elBag.textContent=escaped; bagBox.classList.toggle('warn',escaped>0); }
+
+  function hit(px,py){
+    if(mode!=='play'||paused) return;
+    var best=null,bd=1e9, r=Math.max(30*S,24);
+    beans.forEach(function(b){ if(b.ej) return; var d=Math.hypot(b.x-px,b.y-py); if(d<r && d<bd){ bd=d; best=b; } });
+    if(!best) return;
+    best.ej=true; best.t=0; best.vy=-380*S; best.vx=rnd(-40,40)*S;
+    if(best.type==='good'){ wrong++; score-=8; streak=0; say(best.x,best.y-18*S,'−8','#ff8a7a'); puff(best.x,best.y,'rgba(255,138,122,0.8)'); }
+    else { caught++; var pts=10+Math.min(streak,5)*2; streak++; score+=pts; say(best.x,best.y-18*S,'+'+pts,'#8FC5EA'); puff(best.x,best.y);
+      if(!unlocked[best.type]){ unlocked[best.type]=1; saveUnlocked(); var n=li[best.type]; if(n){ n.classList.remove('locked'); n.classList.add('new'); setTimeout(function(){ n.classList.remove('new'); },1600); } showToast('Desbloqueaste: '+TYPES[best.type]); } }
+    hud();
+  }
+  cv.addEventListener('pointerdown',function(e){ var r=cv.getBoundingClientRect(); hit((e.clientX-r.left)*(W/r.width),(e.clientY-r.top)*(H/r.height)); if(mode==='play') e.preventDefault(); });
+
+  function update(dt){
+    belt+=dt*(mode==='play'?150:70)*S;
+    var prog=mode==='play'?1-tLeft/DURATION:0;
+    var speed=(W/7)*lerp(1,1.9,prog)*(mode==='play'?1:0.55);
+    if(mode!=='end'){ spawnT-=dt; if(spawnT<=0){ spawn(); spawnT=(mode==='play'?lerp(0.85,0.42,prog):1.1)*rnd(0.85,1.15); } }
+    var exitX=W-62*S;
+    for(var i=beans.length-1;i>=0;i--){
+      var b=beans[i];
+      if(b.ej){ b.t+=dt; b.y+=b.vy*dt; b.x+=b.vx*dt; b.alpha=Math.max(0,1-b.t*2.2); if(b.alpha<=0) beans.splice(i,1); continue; }
+      b.x+=speed*dt;
+      if(b.x>exitX){
+        if(mode==='play'){ if(b.type!=='good'){ escaped++; score-=12; streak=0; flash=0.6; say(exitX-10*S,b.y,'−12','#ff8a7a'); } else score+=1; hud(); }
+        beans.splice(i,1);
+      }
+    }
+    parts.forEach(function(p){ p.x+=p.vx*dt; p.y+=p.vy*dt; p.l-=dt*2.2; }); parts=parts.filter(function(p){ return p.l>0; });
+    texts.forEach(function(t){ t.y-=28*S*dt; t.l-=dt*1.3; }); texts=texts.filter(function(t){ return t.l>0; });
+    if(flash>0) flash-=dt*1.6;
+    if(mode==='play'){ tLeft-=dt; hud(); if(tLeft<=0) finish(); }
+  }
+  function frame(now){
+    requestAnimationFrame(frame);
+    var dt=Math.min(0.05,(now-(last||now))/1000); last=now;
+    if(!inView||!tabVis) return;
+    if(!paused) update(dt);
+    drawScene(now);
+  }
+
+  function reset(){ beans=[]; parts=[]; texts=[]; tLeft=DURATION; score=0; caught=0; wrong=0; escaped=0; defSpawned=0; streak=0; spawnT=0; flash=0; hud(); }
+  function begin(){
+    reset(); mode='play'; paused=false; startO.hidden=true; endO.hidden=true; pausedO.hidden=true; pauseBtn.hidden=false;
+    stage.classList.add('playing'); pauseBtn.textContent='Pausa';
+    var top=stage.getBoundingClientRect().top+scrollY-120; if(Math.abs(scrollY-top)>80) scrollTo({ top:top, behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth' });
+  }
+  function finish(){
+    mode='end'; stage.classList.remove('playing'); pauseBtn.hidden=true;
+    var D=Math.max(1,caught+escaped), rate=caught/D;
+    var g,t;
+    if(rate>=0.85&&wrong<=2){ g='Selector de exportación'; t='Tu lote saldría limpio. Así trabaja nuestra clasificadora, pero sin cansarse y a 18 toneladas por hora.'; }
+    else if(rate>=0.6&&wrong<=5){ g='Buen ojo'; t='Te pasaron algunos defectos. Por eso la selección óptica es clave para un café de calidad.'; }
+    else { g='Aún pasan muchos defectos'; t='No es fácil a esta velocidad. Nuestra clasificadora no se cansa ni se distrae.'; }
+    $('ogGrade').textContent=g; $('ogGradeText').textContent=t;
+    $('ogCaught').textContent=caught; $('ogWrong').textContent=wrong; $('ogEscaped').textContent=escaped;
+    var best=0; try{ best=+localStorage.getItem('og_best')||0; if(score>best){ best=score; localStorage.setItem('og_best',best); } best=Math.max(0,best); }catch(e){}
+    $('ogBest').textContent='Puntos: '+Math.max(0,score)+(best?'  ·  Mejor marca: '+best:'');
+    endO.hidden=false; $('ogAgain').focus({ preventScroll:true });
+  }
+  function setPaused(v){ if(mode!=='play') return; paused=v; pausedO.hidden=!v; pauseBtn.textContent=v?'Continuar':'Pausa'; if(v) $('ogResume').focus({ preventScroll:true }); }
+  $('ogPlay').addEventListener('click',begin); $('ogAgain').addEventListener('click',begin);
+  pauseBtn.addEventListener('click',function(){ setPaused(!paused); }); $('ogResume').addEventListener('click',function(){ setPaused(false); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&mode==='play') setPaused(!paused); });
+  document.addEventListener('visibilitychange',function(){ tabVis=!document.hidden; if(!tabVis) setPaused(true); });
+  if('IntersectionObserver' in window) new IntersectionObserver(function(es){ inView=es[0].isIntersecting; if(!inView) setPaused(true); },{ threshold:0.05 }).observe(stage);
+  hud(); requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
