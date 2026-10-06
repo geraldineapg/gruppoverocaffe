@@ -266,6 +266,26 @@
   .vc-hero-sub{ animation-delay:.38s; } .vc-hero-cta{ animation-delay:.52s; }
   .rv{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay:calc(var(--d, 0) * 90ms); }
   .rv.in{ opacity:1; transform:none; }
+  /* Trazabilidad — acceso opcional por código de lote */
+  .trace{ background:#171310; color:#fff; padding:clamp(3rem,6vw,4.8rem) 1.5rem; }
+  .trace-inner{ max-width:900px; margin:0 auto; display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(1.5rem,5vw,3.5rem); align-items:center; }
+  .trace .eyebrow{ color:#E3C39A; } .trace .eyebrow::before{ background:#E3C39A; }
+  .trace h2{ font-family:'Fraunces',serif; font-weight:500; font-size:clamp(1.8rem,3.6vw,2.6rem); line-height:1.1; margin:0.7rem 0 0; }
+  .trace h2 em{ color:#E3C39A; }
+  .trace p{ margin:1rem 0 0; color:rgba(255,255,255,0.8); }
+  .trace-box{ background:rgba(255,255,255,0.06); border:1px solid rgba(227,195,154,0.35); border-radius:12px; padding:1.5rem; }
+  .trace-box label{ display:block; font-family:'IBM Plex Mono',monospace; font-size:0.68rem; letter-spacing:0.07em; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:0.5rem; }
+  .trace-row{ display:flex; gap:0.6rem; flex-wrap:wrap; }
+  .trace-row input{ flex:1 1 11rem; font:inherit; padding:0.85rem 1rem; border-radius:999px; border:1px solid rgba(255,255,255,0.25); background:#fff; color:#171310; text-transform:uppercase; }
+  .trace-row button{ border:0; cursor:pointer; padding:0.85rem 1.5rem; border-radius:999px; background:#E8C766; color:#171310; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.8rem; letter-spacing:0.04em; text-transform:uppercase; }
+  .trace-examples{ margin-top:1.1rem; font-size:0.84rem; color:rgba(255,255,255,0.65); }
+  .trace-examples a{ color:#E3C39A; text-decoration:underline; text-underline-offset:3px; margin-right:0.9rem; }
+  .trace-cta{ display:inline-flex; padding:0.9rem 1.7rem; border-radius:999px; background:#E8C766; color:#171310; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.8rem; letter-spacing:0.04em; text-transform:uppercase; text-decoration:none; transition:transform .2s ease, box-shadow .2s ease; }
+  .trace-cta:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,0.3); }
+  .trace-opt{ padding:0.9rem 0; border-bottom:1px solid rgba(255,255,255,0.14); } .trace-opt:first-child{ padding-top:0; } .trace-opt:last-child{ border-bottom:0; padding-bottom:0; }
+  .trace-opt strong{ display:block; font-family:'Fraunces',serif; font-weight:500; font-size:1.15rem; color:#E3C39A; }
+  .trace-opt span{ display:block; margin-top:0.25rem; color:rgba(255,255,255,0.78); font-size:0.92rem; }
+  @media (max-width:760px){ .trace-inner{ grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -513,6 +533,21 @@
     <figure class="photo-rotate"><img src="assets/vero-caffe/bags-blue-lineup.jpg?v=1" alt="Línea de presentaciones Vero Caffè" loading="lazy"></figure>
     <figure class="photo-rotate"><img src="assets/vero-caffe/french-press.jpg?v=1" alt="Café Vero Caffè preparado en prensa francesa" loading="lazy"></figure>
     <figure class="photo-rotate"><img src="assets/vero-caffe/retail-table.jpg?v=1" alt="Presentación de café y vasos Vero Caffè" loading="lazy"></figure>
+  </div>
+</section>
+
+<section class="trace" id="trazabilidad" aria-labelledby="traceTitulo">
+  <div class="trace-inner">
+    <div>
+      <div class="eyebrow">Trazabilidad bajo pedido</div>
+      <h2 id="traceTitulo">Tu pedido, con su <em>origen</em> a la vista</h2>
+      <p>Estamos en capacidad de montar pedidos con código QR de trazabilidad en el empaque, siempre que el cliente lo solicite.</p>
+      <p style="margin-top:1.4rem"><a class="trace-cta" href="#cotizacion">Solicitar un pedido con QR</a></p>
+    </div>
+    <div class="trace-box">
+      <div class="trace-opt"><strong>Solo zonas de origen</strong><span>El QR muestra de qué zonas de Venezuela viene el café.</span></div>
+      <div class="trace-opt"><strong>Recorrido completo</strong><span>Finca, selección, tueste y empaque del lote, según la información disponible.</span></div>
+    </div>
   </div>
 </section>
 
