@@ -296,6 +296,19 @@
   @media (max-width:480px){ .ally-grid{ grid-template-columns:1fr; } }
 
   /* Cumplimiento */
+  /* Trazabilidad bajo pedido */
+  .trace{ max-width:1080px; margin:0 auto; padding:0 1.5rem clamp(3rem,6vw,4.5rem); }
+  .trace-inner{ background:var(--cream-2); border:1px solid var(--line); border-radius:12px; padding:clamp(1.6rem,4vw,2.8rem); display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(1.5rem,4vw,3rem); align-items:center; }
+  .trace h2{ font-family:'Fraunces',serif; font-weight:500; font-size:clamp(1.7rem,3.2vw,2.3rem); line-height:1.1; margin:0.7rem 0 0; color:var(--espresso); }
+  .trace h2 em{ color:var(--brass); }
+  .trace p{ margin:1rem 0 0; color:var(--ink-soft); }
+  .trace-cta{ display:inline-flex; padding:0.9rem 1.7rem; border-radius:999px; background:var(--brass); color:#06202f; font-family:'Poppins',sans-serif; font-weight:700; font-size:0.8rem; letter-spacing:0.04em; text-transform:uppercase; text-decoration:none; transition:transform .2s ease, box-shadow .2s ease; }
+  .trace-cta:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,0.18); }
+  .trace-box{ background:#fff; border:1px solid var(--line); border-radius:10px; padding:1.3rem 1.5rem; }
+  .trace-opt{ padding:0.9rem 0; border-bottom:1px solid var(--line); } .trace-opt:first-child{ padding-top:0; } .trace-opt:last-child{ border-bottom:0; padding-bottom:0; }
+  .trace-opt strong{ display:block; font-family:'Fraunces',serif; font-weight:500; font-size:1.15rem; color:var(--espresso); }
+  .trace-opt span{ display:block; margin-top:0.25rem; color:var(--ink-soft); font-size:0.92rem; }
+  @media (max-width:760px){ .trace-inner{ grid-template-columns:1fr; } }
   .compliance-strip{ max-width:1080px; margin:0 auto; padding:clamp(3rem,6vw,4.5rem) 1.5rem 5.5rem; }
   .compliance-note{
     background:var(--cream-2); border:1px solid var(--line); border-radius:8px;
@@ -640,6 +653,21 @@
 <section class="compliance-strip">
   <div class="compliance-note">
     <strong>Cumplimiento —</strong> operamos con los permisos de exportación agrícola y el registro fiscal y comercial exigidos por las autoridades venezolanas, disponibles para el comprador durante la negociación. Por el momento no contamos con certificaciones internacionales de sostenibilidad, aunque apoyamos directamente a los caficultores venezolanos en cada zona de acopio.
+  </div>
+</section>
+
+<section class="trace" id="trazabilidad" aria-labelledby="traceTitulo">
+  <div class="trace-inner">
+    <div>
+      <div class="eyebrow">Trazabilidad bajo pedido</div>
+      <h2 id="traceTitulo">Tu pedido, con su <em>origen</em> a la vista</h2>
+      <p>Estamos en capacidad de montar pedidos con código QR de trazabilidad en los sacos, siempre que el cliente lo solicite.</p>
+      <p style="margin-top:1.4rem"><a class="trace-cta" href="#cotizacion">Solicitar un pedido con QR</a></p>
+    </div>
+    <div class="trace-box">
+      <div class="trace-opt"><strong>Solo zonas de origen</strong><span>El QR muestra de qué zonas de Venezuela viene el café.</span></div>
+      <div class="trace-opt"><strong>Recorrido completo</strong><span>Origen, selección óptica y empaque del lote, según la información disponible.</span></div>
+    </div>
   </div>
 </section>
 
