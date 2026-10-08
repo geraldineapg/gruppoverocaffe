@@ -65,7 +65,7 @@
   function load(l,cb){
     if(l==='es'){ dict=null; cb(); return; }
     if(cache[l]){ dict=cache[l]; cb(); return; }
-    fetch('i18n/'+l+'.json?v=2').then(function(r){ return r.json(); }).then(function(d){ cache[l]=d; dict=d; cb(); }).catch(function(){ dict=null; lang='es'; cb(); });
+    fetch('i18n/'+l+'.json?v=3').then(function(r){ return r.json(); }).then(function(d){ cache[l]=d; dict=d; cb(); }).catch(function(){ dict=null; lang='es'; cb(); });
   }
   function ui(){
     var sw=document.querySelector('.lang-switch'); if(!sw) return;
